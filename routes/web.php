@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ImageProdController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ShipmentController;
 
 // Rutas de Usuario
 Route::controller(UserController::class)->group(function(){
@@ -28,7 +29,7 @@ Route::controller(ProductController::class)->group(function(){
     Route::get('/product/{id}', 'showProduct')->name('pageProduct');
 
     // Formulario de Registro de Producto
-    Route::get('/dashboard/create', 'create')->name('pageCreateP');
+    Route::get('/dashboard/create', 'create')->name('pageCreateP')->middleware('auth');
 
     // Guardar Registro de Producto
     Route::post('/dashboard/save', 'store')->name('pageSaveP');
@@ -58,7 +59,12 @@ Route::controller(CartController::class)->group(function(){
     Route::patch('/update/{itemId}', 'updateCartItem')->name('updateCart');
 
     // Comprar productos del productos del Carrito
-    Route::get('/cart/comprar', 'pageCompra')->name('comprarCart');
+    Route::get('/cart/comprar', 'pageCompra')->name('comprarCart')->middleware('auth');
+});
+
+Route::controller(ShipmentController::class)->group(function(){
+    // Formulario para añadir una dirección
+    Route::get('/createAddress', 'create')->name('createAddress');
 });
 
 Auth::routes();

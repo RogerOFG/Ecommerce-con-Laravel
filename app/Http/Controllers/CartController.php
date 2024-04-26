@@ -17,7 +17,7 @@ class CartController extends Controller
     }
 
     public function pageCompra(){
-        $cartItems = CartModel::where('idUser', auth()->id())->with('product', 'product.images')->get();
+        $cartItems = CartModel::where('idUser', auth()->id())->with('product', 'product.images', 'user.shipmentData')->get();
 
         $totalAmountToPay = $cartItems->sum(function ($cartItem) {
             return $cartItem->product->price * $cartItem->amount;

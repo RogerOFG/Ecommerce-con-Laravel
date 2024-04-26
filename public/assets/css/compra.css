@@ -15,12 +15,111 @@
 
 .cart__ubi{
     border-radius: 5px;
-    width: 100;
     height: auto;
     display: flex;
     padding-right: 20px;
     margin-top: 20px;
     background-color: #dddddd;
+}
+
+.cart__a{
+    text-decoration: none;
+}
+
+.cart__ubi--checked{
+    border: 2px dashed #cda434;
+    line-height: 1;
+}
+
+.cart__ubi--new{
+    position: relative;
+    padding: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: .3s ease-in-out;
+}
+
+.cart__ubi--new:hover{
+    padding: 30px 10px;
+    border: 2px dashed #cda434;
+}
+
+.cart__ubi--new:hover .cart__span--move{
+    bottom: 20px;
+}
+
+.cart__ubi--new:hover .cart__plus{
+    margin-bottom: 20px;
+}
+
+.cart__new{
+    width: 100%;
+    text-align: center;
+}
+
+.cart__plus{
+    font-size: 36px;
+    color: #cda434;
+}
+
+.cart__span--move{
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-weight: bolder;
+    color: #000;
+    transition: .3s ease-in-out;
+}
+
+.cart__ubi--empty{
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.cart__empty{
+    width: 100%;
+    border: 2px dashed #cda434;
+    text-align: center;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.checkbox {
+    cursor: pointer;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-left: 20px;
+}
+
+.checkbox__input {
+    display: none;
+}
+
+.checkbox__svg {
+    overflow: visible;
+    width: 20px;
+    height: 20px;
+}
+
+.checkbox__path {
+    fill: none;
+    stroke: #cda434;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+    stroke-dasharray: 241 9999999;
+    stroke-dashoffset: 0;
+}
+
+.checkbox__input:checked ~ .checkbox__svg .checkbox__path {
+    stroke-dasharray: 70.5096664428711 9999999;
+    stroke-dashoffset: -262.2723388671875;
 }
 
 .cart__icon,
@@ -56,13 +155,13 @@
     flex-direction: column;
 }
 
-.cart__span:nth-child(1){
+.cart__span{
     font-size: 15px;
     font-weight: bold;
+    color: #000;
 }
 
 .cart__span:nth-child(3){
-    font-size: 15px;
     font-style: italic;
 }
 
@@ -73,7 +172,8 @@
 .card__update-link{
     color: #cda434;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: bolder;
+    text-decoration: none;
 }
 
 .cart__products{

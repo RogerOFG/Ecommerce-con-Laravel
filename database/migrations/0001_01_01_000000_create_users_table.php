@@ -27,6 +27,7 @@ return new class extends Migration
             $table->id()->primary();
             $table->string('idUser');
             $table->string('city');
+            $table->string('department');
             $table->string('district');
             $table->string('address');
             $table->string('info');
