@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
 {
+    // Hello World
     public function create(){
         $userData =  User::findOrFail(auth()->id());
 

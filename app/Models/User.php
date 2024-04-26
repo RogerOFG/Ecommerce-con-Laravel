@@ -19,7 +19,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'surname',
+<<<<<<< HEAD
         'numCC',
+=======
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
         'email',
         'password',
     ];
@@ -46,8 +49,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+<<<<<<< HEAD
 
     public function shipmentData(){
         return $this->hasMany(ShipmentModel::class, 'idUser', 'id');
     }
+=======
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
 }

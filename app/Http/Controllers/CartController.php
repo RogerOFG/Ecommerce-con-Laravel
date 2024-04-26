@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\User;
+=======
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
 use App\Models\CartModel;
 use App\Models\ProductModel;
 use Illuminate\Http\Request;
@@ -18,8 +21,12 @@ class CartController extends Controller
     }
 
     public function pageCompra(){
+<<<<<<< HEAD
         $userData =  User::findOrFail(auth()->id());
         $cartItems = CartModel::where('idUser', auth()->id())->with('product', 'product.images', 'user.shipmentData')->get();
+=======
+        $cartItems = CartModel::where('idUser', auth()->id())->with('product', 'product.images')->get();
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
 
         $totalAmountToPay = $cartItems->sum(function ($cartItem) {
             return $cartItem->product->price * $cartItem->amount;
@@ -30,8 +37,12 @@ class CartController extends Controller
         return view('compra', [
             'cartItems' => $cartItems,
             'totalProducts' => $totalAmountToPay,
+<<<<<<< HEAD
             'totalToPay' => $totalToPay,
             'userData' => $userData
+=======
+            'totalToPay' => $totalToPay
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
         ]);
     }
 
@@ -75,11 +86,19 @@ class CartController extends Controller
 
     public function updateCartItem(Request $request, $id){
         $cart = CartModel::findOrFail($id);
+<<<<<<< HEAD
         $product = ProductModel::findOrFail($cart->idProduct);
 
         $rAmount = $request->input('amount');
 
         if($rAmount > $product->amountAvailable){
+=======
+        $product = ProductModel::findOrFail($cart->idUser);
+
+        $requestedAmount = $request->input('amount');
+
+        if($requestedAmount > $product->amountAvailable){
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
             return back()->with('error', 'La cantidad seleccionada no puede ser superior a la disponible');
         }
 
@@ -88,7 +107,11 @@ class CartController extends Controller
         ->first();
 
         if ($existingCartItem) {
+<<<<<<< HEAD
             $existingCartItem->update(['amount' => $rAmount]);
+=======
+            $existingCartItem->update(['amount' => $requestedAmount]);
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
         }
 
         return back();

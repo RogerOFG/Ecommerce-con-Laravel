@@ -22,6 +22,7 @@
         <ul class="header__ul">
             <li class="header__li"><a class="header__a" href="{{route('pageCategory')}}">Categorias</a></li>
             @if (Auth::check())
+<<<<<<< HEAD
                 <li class="header__li">
                     <div class="header__a header__a--father">
                         <a class="header__a" href="{{route('pagePerfil')}}">
@@ -49,6 +50,13 @@
             @endif
 
 
+=======
+                <li class="header__li"><a class="header__a" href="#">{{ Auth::user()->name }}</a></li>
+            @else
+                <li class="header__li"><a class="header__a" href="{{route('login')}}">Ingresar</a></li>
+            @endif
+            <li class="header__li"><a class="header__a" href="#">Mis compras</a></li>
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
             <li class="header__li">
                 <a class="header__a header__a--father" href="{{ route('pageCart') }}">
                     @if (Auth::check())
@@ -104,6 +112,13 @@
             </li>
 
             @if (Auth::check())
+<<<<<<< HEAD
+=======
+                @if (Auth::user()->admin == 1)
+                <li class="header__li"><a class="header__a" href="{{route('pageCreateP')}}">Dashboard</a></li>
+                @endif
+
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
                 <li class="header__li">
                     <a class="header__a" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="bi bi-box-arrow-left"></i>

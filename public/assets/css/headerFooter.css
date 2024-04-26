@@ -69,8 +69,12 @@
     width: 22px;
 }
 
+<<<<<<< HEAD
 .carrito,
 .perfil{
+=======
+.carrito{
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
     display: none;
     position: absolute;
     top: 30px;
@@ -84,6 +88,7 @@
     z-index: 1;
 }
 
+<<<<<<< HEAD
 .perfil{
     right: -48px;
     width: 170px;
@@ -114,6 +119,8 @@
     margin: 2px 0 6px;
 }
 
+=======
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
 .carrito__wrapper{
     display: flex;
     flex-direction: column;
@@ -124,6 +131,7 @@
 }
 
 .header__a--father:hover .carrito,
+<<<<<<< HEAD
 .carrito:hover,
 .header__a--father:hover .perfil,
 .perfil:hover{
@@ -132,6 +140,13 @@
 
 .carrito::before,
 .perfil::before{
+=======
+.carrito:hover{
+    display: block;
+}
+
+.carrito::before{
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
     content: "";
     position: absolute;
     top: -7px;
@@ -142,12 +157,16 @@
     background-color: #fff;
 }
 
+<<<<<<< HEAD
 .perfil::before{
     right: 74px;
 }
 
 .carrito::after,
 .perfil::after{
+=======
+.carrito::after{
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
     content: "";
     background-color: transparent;
     position: absolute;

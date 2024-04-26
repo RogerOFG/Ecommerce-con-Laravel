@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id()->primary();
             $table->string('name');
             $table->string('surname');
+<<<<<<< HEAD
             $table->string('numCC')->nullable()->default(null);
+=======
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -28,12 +31,19 @@ return new class extends Migration
             $table->id()->primary();
             $table->string('idUser');
             $table->string('city');
+<<<<<<< HEAD
             $table->string('department');
             $table->string('district');
             $table->string('address');
             $table->string('info');
             $table->string('number')->nullable()->default(null);
             $table->string('phone');
+=======
+            $table->string('district');
+            $table->string('address');
+            $table->string('info');
+            $table->string('number');
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
             $table->rememberToken();
             $table->timestamps();
         });
@@ -101,6 +111,12 @@ return new class extends Migration
         });
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Reverse the migrations.
+     */
+>>>>>>> 7260ff1 (Subida de proyecto Laravel)
     public function down(): void
     {
         Schema::dropIfExists('users');
