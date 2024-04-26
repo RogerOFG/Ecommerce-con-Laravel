@@ -1,0 +1,46 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\ImageProdModel;
+use App\Models\ProductModel;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
+class ImageProdController extends Controller
+{
+    public function index($id){
+        $prod = ProductModel::findOrFail($id);
+
+        return view('dashboard.uploadPictures', compact('prod'));
+    }
+
+    public function upload(Request $request, $id){
+        $request->validate([
+            'url.*' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
+        ]);
+
+        $product = ProductModel::findOrFail($id);
+
+        $productFolderPath = public_path("public/img/products/{$id}");
+        if (!file_exists($productFolderPath)) {
+            mkdir($productFolderPath, 0777, true);
+        }
+
+        foreach ($request->file('url') as $imageFile) {
+            $randomDigits = Str::random(4);
+            $imageName = "{$id}-" . Str::slug($product->brand, '-') . "-{$randomDigits}.{$imageFile->extension()}";
+
+            $imagePath = $imageFile->storeAs("public/img/products/{$id}", $imageName);
+
+            $url = [
+                'idProduct' => $id,
+                'url' => $imageName,
+            ];
+
+            ImageProdModel::create($url);
+        }
+
+        return back()->with('success', 'Imagen(es) subida(s) correctamente: ');
+    }
+}

@@ -1,0 +1,105 @@
+:root{
+    --prymaryColor: #FFFFFF;
+    --secondaryColor: #000000;
+    --tertiaryColor: #cda434;
+    --quaternaryColor: #7392B7;
+    --bg-color: #EFEFEF;
+}
+
+/* |--- -- ---- -- ---| */
+/* |--- -- MAIN -- ---| */
+/* |--- -- ---- -- ---| */
+
+.main{
+    padding-top: 60px;
+}
+
+/* |--- -- ----------- -- ---| */
+/* |--- -- MAIN SLIDER -- ---| */
+/* |--- -- ----------- -- ---| */
+
+.slider {
+    position: relative;
+    display: flex;
+    width: 600px;
+    height: 380px;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.slider__item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: .6s;
+}
+
+.slider__control{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 42%;
+    width: 34px;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    font-size: 32px;
+    color: #303030;
+    background: #ffffffaf;
+    transition: .3s ease;
+    cursor: pointer;
+}
+
+.slider__control:hover {
+    color: #000;
+    background: #fff;
+}
+
+.slider__control--prev {
+    left: 0;
+    border-radius: 0 10px 10px 0;
+}
+
+.slider__control--next {
+    right: 0;
+    border-radius: 10px 0 0 10px;
+}
+
+.slider__indicators {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 15px;
+}
+
+.slider__indicator {
+    cursor: pointer;
+    margin: 0 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 3px;
+    transition: .2s;
+}
+
+.slider__content {
+    width: 100%;
+    height: min-content;
+    display: flex;
+    justify-content: center;
+}
+
+.slider__text {
+    position: absolute;
+    bottom: 36px;
+    color: #fff;
+    font-size: 36px;
+    font-family: 'Kanit';
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: .4s;
+}
+
+
