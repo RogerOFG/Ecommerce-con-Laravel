@@ -66,7 +66,7 @@ class ShipmentController extends Controller
 =======
     public function create()
     {
-        return view('address');
+        return view('address'); 
     }
 
     public function store(Request $request)
