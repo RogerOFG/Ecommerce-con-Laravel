@@ -22,11 +22,15 @@ class CartController extends Controller
 
     public function pageCompra(){
 <<<<<<< HEAD
+<<<<<<< HEAD
         $userData =  User::findOrFail(auth()->id());
         $cartItems = CartModel::where('idUser', auth()->id())->with('product', 'product.images', 'user.shipmentData')->get();
 =======
         $cartItems = CartModel::where('idUser', auth()->id())->with('product', 'product.images')->get();
 >>>>>>> 7260ff1 (Subida de proyecto Laravel)
+=======
+        $cartItems = CartModel::where('idUser', auth()->id())->with('product', 'product.images', 'user.shipmentData')->get();
+>>>>>>> da6e634 (changes)
 
         $totalAmountToPay = $cartItems->sum(function ($cartItem) {
             return $cartItem->product->price * $cartItem->amount;

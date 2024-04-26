@@ -50,10 +50,16 @@ class User extends Authenticatable
         ];
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> da6e634 (changes)
 
     public function shipmentData(){
         return $this->hasMany(ShipmentModel::class, 'idUser', 'id');
     }
+<<<<<<< HEAD
 =======
 >>>>>>> 7260ff1 (Subida de proyecto Laravel)
+=======
+>>>>>>> da6e634 (changes)
 }

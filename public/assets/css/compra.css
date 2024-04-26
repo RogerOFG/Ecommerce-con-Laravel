@@ -73,9 +73,12 @@
 .cart__ubi{
     border-radius: 5px;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     width: 100;
 >>>>>>> 7260ff1 (Subida de proyecto Laravel)
+=======
+>>>>>>> da6e634 (changes)
     height: auto;
     display: flex;
     padding-right: 20px;
@@ -84,6 +87,9 @@
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> da6e634 (changes)
 .cart__a{
     text-decoration: none;
 }
@@ -184,8 +190,11 @@
     stroke-dashoffset: -262.2723388671875;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 7260ff1 (Subida de proyecto Laravel)
+=======
+>>>>>>> da6e634 (changes)
 .cart__icon,
 .cart__address,
 .card__update{
@@ -227,6 +236,7 @@
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .cart__span{
     font-size: 15px;
     font-weight: bold;
@@ -236,13 +246,20 @@
 .cart__span:nth-child(3){
 =======
 .cart__span:nth-child(1){
+=======
+.cart__span{
+>>>>>>> da6e634 (changes)
     font-size: 15px;
     font-weight: bold;
+    color: #000;
 }
 
 .cart__span:nth-child(3){
+<<<<<<< HEAD
     font-size: 15px;
 >>>>>>> 7260ff1 (Subida de proyecto Laravel)
+=======
+>>>>>>> da6e634 (changes)
     font-style: italic;
 }
 
@@ -254,11 +271,16 @@
     color: #cda434;
     font-size: 15px;
 <<<<<<< HEAD
+<<<<<<< HEAD
     font-weight: bolder;
     text-decoration: none;
 =======
     font-weight: bold;
 >>>>>>> 7260ff1 (Subida de proyecto Laravel)
+=======
+    font-weight: bolder;
+    text-decoration: none;
+>>>>>>> da6e634 (changes)
 }
 
 .cart__products{

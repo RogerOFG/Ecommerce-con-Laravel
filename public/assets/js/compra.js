@@ -12,6 +12,7 @@ checkboxes.forEach(function(item){
         item.checked = true;
         item.closest('.cart__ubi').classList.add('cart__ubi--checked');
     });
+<<<<<<< HEAD
 });
 
 function openFormAddress(){
@@ -26,3 +27,6 @@ function openFormAddress(){
         glass.classList.add('glass--show');
     }
 }
+=======
+});
+>>>>>>> da6e634 (changes)

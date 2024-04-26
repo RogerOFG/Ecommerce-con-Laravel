@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('idUser');
             $table->string('city');
 <<<<<<< HEAD
+<<<<<<< HEAD
             $table->string('department');
             $table->string('district');
             $table->string('address');
@@ -39,6 +40,9 @@ return new class extends Migration
             $table->string('number')->nullable()->default(null);
             $table->string('phone');
 =======
+=======
+            $table->string('department');
+>>>>>>> da6e634 (changes)
             $table->string('district');
             $table->string('address');
             $table->string('info');
