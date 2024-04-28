@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('info');
             $table->string('number');
+            $table->string('phone');
             $table->rememberToken();
             $table->timestamps();
         });

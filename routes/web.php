@@ -50,13 +50,13 @@ Route::controller(CartController::class)->group(function(){
     Route::get('/cart', 'index')->name('pageCart');
 
     // Añadir productos al Carrito
-    Route::post('/addCart/{id}', 'addToCart')->name('cartAdd');
+    Route::post('/cart/add/{id}', 'addToCart')->name('cartAdd');
 
     // Remover productos del Carrito
-    Route::delete('/removeCart/{itemId}', 'removeToCart')->name('cartRemove');
+    Route::delete('/cart/remove/{itemId}', 'removeToCart')->name('cartRemove');
 
     // Aumentar o Disminuir la cantidad de productos del Carrito
-    Route::patch('/update/{itemId}', 'updateCartItem')->name('updateCart');
+    Route::patch('/cart/update/{itemId}', 'updateCartItem')->name('updateCart');
 
     // Comprar productos del productos del Carrito
     Route::get('/cart/comprar', 'pageCompra')->name('comprarCart')->middleware('auth');
@@ -64,7 +64,10 @@ Route::controller(CartController::class)->group(function(){
 
 Route::controller(ShipmentController::class)->group(function(){
     // Formulario para añadir una dirección
-    Route::get('/createAddress', 'create')->name('createAddress');
+    Route::get('/address/create', 'create')->name('createAddress');
+
+    // Guardar Registro de Producto
+    Route::post('/address/save/', 'store')->name('saveAddress');
 });
 
 Auth::routes();

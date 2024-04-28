@@ -13,3 +13,16 @@ checkboxes.forEach(function(item){
         item.closest('.cart__ubi').classList.add('cart__ubi--checked');
     });
 });
+
+function openFormAddress(){
+    const form = document.getElementById('formAddress');
+    const glass = document.getElementById('glass');
+
+    if(form.classList.contains('main--show')){
+        form.classList.remove('main--show');
+        glass.classList.remove('glass--show');
+    }else{
+        form.classList.add('main--show');
+        glass.classList.add('glass--show');
+    }
+}

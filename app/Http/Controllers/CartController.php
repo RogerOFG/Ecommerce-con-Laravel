@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\CartModel;
 use App\Models\ProductModel;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ class CartController extends Controller
     }
 
     public function pageCompra(){
+        $userData =  User::findOrFail(auth()->id());
         $cartItems = CartModel::where('idUser', auth()->id())->with('product', 'product.images', 'user.shipmentData')->get();
 
         $totalAmountToPay = $cartItems->sum(function ($cartItem) {
@@ -28,7 +30,8 @@ class CartController extends Controller
         return view('compra', [
             'cartItems' => $cartItems,
             'totalProducts' => $totalAmountToPay,
-            'totalToPay' => $totalToPay
+            'totalToPay' => $totalToPay,
+            'userData' => $userData
         ]);
     }
 
@@ -41,7 +44,7 @@ class CartController extends Controller
             return back()->with('error', 'La cantidad seleccionada no puede ser superior a la disponible');
         }
 
-        $existingCartItem = CartModel::where('idUser', auth()->id())
+        $existingCartItem = CartModel::where('idUser', )
         ->where('idProduct', $id)
         ->first();
 
