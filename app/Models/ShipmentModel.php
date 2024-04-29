@@ -11,7 +11,6 @@ class ShipmentModel extends Model
 
     protected $table = 'shipment_info';
 
-<<<<<<< HEAD
     protected $fillable = [
         'idUser',
         'numCC',
@@ -20,9 +19,5 @@ class ShipmentModel extends Model
 
     public function user(){
         return $this->belongsTo(User::class, 'idUser', 'id');
-=======
-    public function user(){
-        return $this->belongsTo(User::class, 'ididUser', 'id');
->>>>>>> da6e634 (changes)
     }
 }

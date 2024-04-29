@@ -22,10 +22,7 @@
     position: relative;
     display: flex;
     width: 600px;
-<<<<<<< HEAD
     max-width: 100%;
-=======
->>>>>>> 7260ff1 (Subida de proyecto Laravel)
     height: 380px;
     margin: 0 auto;
     border-radius: 10px;
@@ -106,7 +103,6 @@
     transition: .4s;
 }
 
-<<<<<<< HEAD
 @media screen and (max-width: 601px) {
     .slider {
         width: 400px;
@@ -124,6 +120,3 @@
         height: 200px;
     }
 }
-=======
-
->>>>>>> 7260ff1 (Subida de proyecto Laravel)

@@ -3,16 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\ShipmentModel;
-<<<<<<< HEAD
 use App\Models\User;
-=======
->>>>>>> da6e634 (changes)
 use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
 {
-<<<<<<< HEAD
-    // Hello World
     public function create(){
         $userData =  User::findOrFail(auth()->id());
 
@@ -63,35 +58,5 @@ class ShipmentController extends Controller
         ShipmentModel::findOrFail($id)->delete();
 
         return redirect()->route('pageAccountF')->with('success', 'Elemento eliminado correctamente.');
-=======
-    public function create()
-    {
-        return view('address'); 
-    }
-
-    public function store(Request $request)
-    {
-        
-    }
-
-    public function show(ShipmentModel $shipmentModel)
-    {
-        
-    }
-
-    public function edit(ShipmentModel $shipmentModel)
-    {
-        
-    }
-
-    public function update(Request $request, ShipmentModel $shipmentModel)
-    {
-        
-    }
-
-    public function destroy(ShipmentModel $shipmentModel)
-    {
-        
->>>>>>> da6e634 (changes)
     }
 }

@@ -28,21 +28,12 @@
                                     <span class="element__name">{{ $item->product->name }}</span>
 
                                     <div class="element__amount">
-<<<<<<< HEAD
                                         <form class="element__content" action="{{ route('updateCart', $item->id) }}" method="POST">
                                             @csrf
                                             @method('PATCH')
                                             <button class="element__btn incremento">+</button>
                                             <input class="element_num amountChoose" type="hidden" value="{{ $item->amount }}">
                                             <input class="element_num txtAmount" name="amount" type="text">
-=======
-                                        <form id="myForm" class="element__content" action="{{ route('updateCart', $item->id) }}" method="POST">
-                                            @csrf
-                                            @method('PATCH')
-                                            <button class="element__btn incremento">+</button>
-                                            <input id="amountChoose" class="element_num" type="hidden" value="{{ $item->amount }}">
-                                            <input id="txtAmount" class="element_num" name="amount" type="text">
->>>>>>> 7260ff1 (Subida de proyecto Laravel)
                                             <button class="element__btn decremento">-</button>
                                             <input class="element__max" type="hidden" value="{{ $item->product->amountAvailable }}">
                                         </form>
@@ -131,7 +122,6 @@
     });
 
     function amountChoose(){
-<<<<<<< HEAD
         var forms = document.querySelectorAll('.element__content');
 
         forms.forEach(function(form) {
@@ -159,32 +149,5 @@
     }
 
     amountChoose();
-=======
-        const input = document.getElementById('amountChoose').value;
-        const txtAmount = document.getElementById('txtAmount');
-
-        txtAmount.value = input;
-    }
-
-    amountChoose();
-
-    const form = document.getElementById('myForm');
-
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const suma = document.querySelector('.incremento');
-        const resta = document.querySelector('.decremento');
-
-        suma.disabled = true;
-        suma.classList.add('element__btn--disabled');
-        resta.disabled = true;
-        resta.classList.add('element__btn--disabled');
-
-        setTimeout(function() {
-            form.submit();
-        }, 500);
-    });
->>>>>>> 7260ff1 (Subida de proyecto Laravel)
 </script>
 @endSection
