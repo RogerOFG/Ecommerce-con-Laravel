@@ -44,7 +44,7 @@ class CartController extends Controller
             return back()->with('error', 'La cantidad seleccionada no puede ser superior a la disponible');
         }
 
-        $existingCartItem = CartModel::where('idUser', )
+        $existingCartItem = CartModel::where('idUser', auth()->id())
         ->where('idProduct', $id)
         ->first();
 
@@ -75,11 +75,11 @@ class CartController extends Controller
 
     public function updateCartItem(Request $request, $id){
         $cart = CartModel::findOrFail($id);
-        $product = ProductModel::findOrFail($cart->idUser);
+        $product = ProductModel::findOrFail($cart->idProduct);
 
-        $requestedAmount = $request->input('amount');
+        $rAmount = $request->input('amount');
 
-        if($requestedAmount > $product->amountAvailable){
+        if($rAmount > $product->amountAvailable){
             return back()->with('error', 'La cantidad seleccionada no puede ser superior a la disponible');
         }
 
@@ -88,7 +88,7 @@ class CartController extends Controller
         ->first();
 
         if ($existingCartItem) {
-            $existingCartItem->update(['amount' => $requestedAmount]);
+            $existingCartItem->update(['amount' => $rAmount]);
         }
 
         return back();

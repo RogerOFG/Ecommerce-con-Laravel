@@ -18,6 +18,27 @@ Route::controller(UserController::class)->group(function(){
 
     // Register de Usuarios
     Route::get('/register', 'register')->name('register');
+
+    // Perfil del Usuario
+    Route::get('/perfil', 'perfil')->name('pagePerfil')->middleware('auth');
+
+    // Información personal del usuario
+    Route::get('/perfil/my-information', 'myInformation')->name('pageInfo')->middleware('auth');
+
+    // Información personal del usuario: Formulario
+    Route::get('/perfil/my-information/create', 'myInformationCreate')->name('pageInfoF')->middleware('auth');
+
+    // Información personal del usuario: Guardar Formulario 
+    Route::post('/perfil/my-information/save', 'myInformationSave')->name('saveInfo')->middleware('auth');
+
+    // Información de la cuenta
+    Route::get('/perfil/my-account', 'myAccount')->name('pageAccount')->middleware('auth');
+
+    // Información de la cuenta: Formulario
+    Route::get('/perfil/my-account/create', 'myAccountCreate')->name('pageAccountF')->middleware('auth');
+
+    // Compras del Usuario
+    Route::get('/perfil/my-shopping', 'myShopping')->name('pageShopping')->middleware('auth');
 });
 
 // Rutas de Productos
@@ -64,10 +85,10 @@ Route::controller(CartController::class)->group(function(){
 
 Route::controller(ShipmentController::class)->group(function(){
     // Formulario para añadir una dirección
-    Route::get('/address/create', 'create')->name('createAddress');
+    Route::get('/perfil/address/create', 'create')->name('createAddress');
 
     // Guardar Registro de Producto
-    Route::post('/address/save/', 'store')->name('saveAddress');
+    Route::post('/perfil/address/save/', 'store')->name('saveAddress');
 });
 
 Auth::routes();

@@ -1,0 +1,158 @@
+:root {
+    --prymaryColor: #FFFFFF;
+    --secondaryColor: #000000;
+    --tertiaryColor: #cda434;
+    --quaternaryColor: #7392B7;
+    --bg-color: #EFEFEF;
+}
+
+.section,
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;   
+    margin: 40px auto 20px;
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+.main__ttl{
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+.main__top,
+.main__bot {
+    width: 100%;
+    padding: 20px 24px;
+    border-radius: 12px;
+    background-color: var(--prymaryColor);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .25);
+}
+
+.main__bot{
+    padding: 30px 24px;
+}
+
+.ubi{
+    display: flex;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.ubi__link{
+    color: var(--tertiaryColor);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.ubi__sep{
+    margin: 0 10px;
+}
+
+.ubi__link--disabled{
+    color: #000;
+}
+
+.main__top {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: 1px solid #00000063;
+}
+
+.svg__icon {
+    width: 2.5em;
+}
+
+.svg__path {
+    fill: #00000091;
+}
+
+.main__data {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.content,
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.content__element{
+    position: relative;
+    display: flex;
+    gap: 30px;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.content__element:hover{
+    box-shadow: 1px 1px 3px #cda43450;
+}
+
+.content__logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 1px solid var(--tertiaryColor);
+}
+
+.content__icon{
+    font-size: 1.5rem;
+    color: var(--tertiaryColor);
+}
+
+.content__txt{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.content__ttl{
+    font-size: 16px;
+    color: var(--tertiaryColor);
+}
+
+.content__sub{
+    font-size: 14px;
+    color: #000;
+}
+
+.content__arrow{
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    font-size: 26px;
+    color: var(--tertiaryColor);
+    transform: translate(0%, -50%);
+}
+
+/*|--- ---------- ---|*/
+/*|--- FORMULARIO ---|*/
+/*|--- ---------- ---|*/
+
+.form__element{
+
+}

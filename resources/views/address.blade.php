@@ -21,13 +21,11 @@
 
             <div class="inputs__wrapper">
                 <div class="inputs__content inputs__content--two">
-                    <input class="inputs__text" name="name" type="text" value="{{ $userData->name }}" required>
-                    <label class="inputs__lbl">Nombre(s)</label>
+                    <input class="inputs__text" type="text" value="{{ $userData->name }}" readonly>
                 </div>
 
                 <div class="inputs__content inputs__content--two">
-                    <input class="inputs__text" name="surname" type="text" value="{{ $userData->surname }}" required>
-                    <label class="inputs__lbl">Apellidos</label>
+                    <input class="inputs__text" type="text" value="{{ $userData->surname }}" readonly>
                 </div>
             </div>
 

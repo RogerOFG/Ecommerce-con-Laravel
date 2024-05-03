@@ -22,11 +22,33 @@
         <ul class="header__ul">
             <li class="header__li"><a class="header__a" href="{{route('pageCategory')}}">Categorias</a></li>
             @if (Auth::check())
-                <li class="header__li"><a class="header__a" href="#">{{ Auth::user()->name }}</a></li>
+                <li class="header__li">
+                    <div class="header__a header__a--father">
+                        <a class="header__a" href="{{route('pagePerfil')}}">
+                            {{ Auth::user()->name }}
+                        </a> 
+
+                        <div class="perfil">
+                            <a class="perfil__content" href="{{ route('pagePerfil') }}">
+                                <span class="perfil__op">Mi perfil</span>
+                            </a>
+                            <hr class="perfil__hr">
+                            <a class="perfil__content" href="{{ route('pageShopping') }}">
+                                <span class="perfil__op">Mis compras</span>
+                            </a>
+                        </div>
+
+                    </div>
+                </li>
             @else
                 <li class="header__li"><a class="header__a" href="{{route('login')}}">Ingresar</a></li>
             @endif
-            <li class="header__li"><a class="header__a" href="#">Mis compras</a></li>
+
+            @if (Auth::check() && Auth::user()->admin == 1)
+                <li class="header__li"><a class="header__a" href="{{route('pageCreateP')}}">Dashboard</a></li>
+            @endif
+
+
             <li class="header__li">
                 <a class="header__a header__a--father" href="{{ route('pageCart') }}">
                     @if (Auth::check())
@@ -82,10 +104,6 @@
             </li>
 
             @if (Auth::check())
-                @if (Auth::user()->admin == 1)
-                <li class="header__li"><a class="header__a" href="{{route('pageCreateP')}}">Dashboard</a></li>
-                @endif
-
                 <li class="header__li">
                     <a class="header__a" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="bi bi-box-arrow-left"></i>

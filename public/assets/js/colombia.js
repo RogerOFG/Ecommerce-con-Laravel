@@ -1304,25 +1304,29 @@ function cargarDepartamentos() {
     
     inputDepartamentos.addEventListener('input', function(event) {
         const texto = event.target.value.toLowerCase();
-        departContent.innerHTML = ''; // Limpiar el contenido anterior
-        ciudContent.innerHTML = ''; // Limpiar el contenido de ciudades
-        inputCiudades.value = ''; // Limpiar el input de ciudades
-        let hayCoincidencia = false; // Variable para rastrear si hay coincidencia
+        departContent.innerHTML = '';
+
+        limpiarCiudades();
+
+        let hayCoincidencia = false;
+
         datos.forEach(function(depto) {
             if (depto.departamento.toLowerCase().includes(texto)) {
                 const option = document.createElement('div');
                 option.classList.add('inputs__option');
                 option.textContent = depto.departamento;
+
                 option.addEventListener('click', function() {
                     inputDepartamentos.value = depto.departamento;
                     limpiarCiudades();
                     cargarCiudades(depto.ciudades);
                 });
+
                 departContent.appendChild(option);
-                hayCoincidencia = true; // Hay al menos una coincidencia
+                hayCoincidencia = true;
             }
         });
-        // Agregar la clase de error si no hay coincidencia
+
         if (!hayCoincidencia && texto.trim() !== '') {
             inputDepartamentos.classList.add('inputs__text--error');
         } else {
@@ -1330,34 +1334,38 @@ function cargarDepartamentos() {
         }
     });
 
-    // Limpia las ciudades cuando se hace clic en un departamento
     function limpiarCiudades() {
-        ciudContent.innerHTML = ''; // Limpiar el contenido de ciudades
-        inputCiudades.value = ''; // Limpiar el input de ciudades
+        ciudContent.innerHTML = '';
+        inputCiudades.value = '';
     }
 }
 
-// Función para cargar las ciudades en el input text según el departamento seleccionado
 function cargarCiudades(ciudades) {
     const inputCiudades = document.getElementById('ciudades');
     const ciudContent = document.getElementById('ciudContent');
+
     inputCiudades.addEventListener('input', function(event) {
         const texto = event.target.value.toLowerCase();
-        ciudContent.innerHTML = ''; // Limpiar el contenido anterior
-        let hayCoincidencia = false; // Variable para rastrear si hay coincidencia
+        ciudContent.innerHTML = ''; 
+
+        let hayCoincidencia = false;
+
         ciudades.forEach(function(ciudad) {
             if (ciudad.toLowerCase().includes(texto)) {
                 const option = document.createElement('div');
                 option.classList.add('inputs__option');
                 option.textContent = ciudad;
+
                 option.addEventListener('click', function() {
                     inputCiudades.value = ciudad;
                 });
+
                 ciudContent.appendChild(option);
-                hayCoincidencia = true; // Hay al menos una coincidencia
+
+                hayCoincidencia = true;
             }
         });
-        // Agregar la clase de error si no hay coincidencia
+
         if (!hayCoincidencia && texto.trim() !== '') {
             inputCiudades.classList.add('inputs__text--error');
         } else {

@@ -11,6 +11,11 @@ class ShipmentModel extends Model
 
     protected $table = 'shipment_info';
 
+    protected $fillable = [
+        'idUser',
+        'numCC',
+    ];
+
     public function user(){
         return $this->belongsTo(User::class, 'ididUser', 'id');
     }
