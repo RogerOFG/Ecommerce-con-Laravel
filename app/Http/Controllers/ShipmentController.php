@@ -31,6 +31,7 @@ class ShipmentController extends Controller
         return redirect()->route('pageAccountF')->with('success', 'Dirección añadida correctamente');
     }
 
+<<<<<<< HEAD
     public function edit(ShipmentModel $shipmentModel, $id){
         $address = ShipmentModel::where('idUser', auth()->id())->findOrFail($id);
 
@@ -58,5 +59,21 @@ class ShipmentController extends Controller
         ShipmentModel::findOrFail($id)->delete();
 
         return redirect()->route('pageAccountF')->with('success', 'Elemento eliminado correctamente.');
+=======
+    public function show(ShipmentModel $shipmentModel){
+        
+    }
+
+    public function edit(ShipmentModel $shipmentModel){
+        
+    }
+
+    public function update(Request $request, ShipmentModel $shipmentModel){
+        
+    }
+
+    public function destroy(ShipmentModel $shipmentModel){
+        
+>>>>>>> fb40287 (a)
     }
 }
