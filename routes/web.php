@@ -35,14 +35,10 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/perfil/my-account', 'myAccount')->name('pageAccount')->middleware('auth');
 
     // Información de la cuenta: Formulario
-<<<<<<< HEAD
     Route::get('/perfil/my-account/direcctions', 'myAccountCreate')->name('pageAccountF')->middleware('auth');
 
     // Información de la cuenta: Formulario
     Route::post('/perfil/my-account/save', 'myAccountSave')->name('saveAccount')->middleware('auth');
-=======
-    Route::get('/perfil/my-account/create', 'myAccountCreate')->name('pageAccountF')->middleware('auth');
->>>>>>> fb40287 (a)
 
     // Compras del Usuario
     Route::get('/perfil/my-shopping', 'myShopping')->name('pageShopping')->middleware('auth');
@@ -92,7 +88,6 @@ Route::controller(CartController::class)->group(function(){
 
 Route::controller(ShipmentController::class)->group(function(){
     // Formulario para añadir una dirección
-<<<<<<< HEAD
     Route::get('/perfil/my-account/direcctions/create', 'create')->name('createAddress');
     
     // Formulario para modificar una dirección
@@ -106,12 +101,6 @@ Route::controller(ShipmentController::class)->group(function(){
 
     // Guardar la direccion
     Route::post('perfil/my-account/direcctions/save', 'store')->name('saveAddress');
-=======
-    Route::get('/perfil/address/create', 'create')->name('createAddress');
-
-    // Guardar Registro de Producto
-    Route::post('/perfil/address/save/', 'store')->name('saveAddress');
->>>>>>> fb40287 (a)
 });
 
 Auth::routes();

@@ -23,7 +23,6 @@
 
             <div class="content">
 
-<<<<<<< HEAD
                 <a href="{{ route('createAddress') }}" class="content__element">
                     <div class="content__logo">
                         <i class='content__icon bx bx-plus'></i>
@@ -53,9 +52,6 @@
                         </div>
                     @endforeach
                 @endif
-=======
-                
->>>>>>> fb40287 (a)
 
             </div>
         </div>

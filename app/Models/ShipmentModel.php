@@ -14,10 +14,7 @@ class ShipmentModel extends Model
     protected $fillable = [
         'idUser',
         'numCC',
-<<<<<<< HEAD
         'city'
-=======
->>>>>>> fb40287 (a)
     ];
 
     public function user(){

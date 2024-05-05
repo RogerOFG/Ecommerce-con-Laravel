@@ -27,7 +27,6 @@ return new class extends Migration
         Schema::create('shipment_info', function (Blueprint $table) {
             $table->id()->primary();
             $table->string('idUser');
-<<<<<<< HEAD
             $table->string('city');
             $table->string('department');
             $table->string('district');
@@ -35,16 +34,6 @@ return new class extends Migration
             $table->string('info');
             $table->string('number')->nullable()->default(null);
             $table->string('phone');
-=======
-            $table->string('numCC')->nullable()->default(null);
-            $table->string('city')->nullable()->default(null);
-            $table->string('department')->nullable()->default(null);
-            $table->string('district')->nullable()->default(null);
-            $table->string('address')->nullable()->default(null);
-            $table->string('info')->nullable()->default(null);
-            $table->string('number')->nullable()->default(null);
-            $table->string('phone')->nullable()->default(null);
->>>>>>> fb40287 (a)
             $table->rememberToken();
             $table->timestamps();
         });
