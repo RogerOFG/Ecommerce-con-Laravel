@@ -14,7 +14,9 @@ class userController extends Controller
     }
 
     public function perfil(){
-        return view('user.perfil');
+        $user = User::where('id', auth()->id())->get();
+
+        return view('user.perfil', compact('user'));
     }
 
     public function myInformation(){
@@ -22,14 +24,16 @@ class userController extends Controller
     }
 
     public function myInformationCreate(){
-        return view('user.infoForm');
+        $user = User::where('id', auth()->id())->get();
+
+        return view('user.infoForm', compact('user'));
     }
 
     public function myInformationSave(Request $request){
         $validate = $this->validate($request, [
             'name' => 'required|string',
             'surname' => 'required|string',
-            'numCC' => 'required'
+            'numCC' => 'required|int'
         ]);
 
         $rName = $request->input('name');
@@ -37,22 +41,13 @@ class userController extends Controller
         $rCC = $request->input('numCC');
 
         $user = User::find(auth()->id());
-        $infoUser = ShipmentModel::where('idUser', auth()->id())->first() ;
 
         if ($user){
             $user->update([
                 'name' => $rName,
-                'surname' => $rSurname
+                'surname' => $rSurname,
+                'numCC' => $rCC
             ]);
-
-            if($infoUser){
-                $infoUser->update(['numCC' => $rCC]);
-            }else{
-                ShipmentModel::create([
-                    'idUser' => auth()->id(),
-                    'numCC' => $rCC
-                ]);
-            }
 
             return back()->with('success', 'Información actualizada correctamente');
         }
@@ -64,7 +59,9 @@ class userController extends Controller
     }
 
     public function myAccountCreate(){
-        return view('user.accountForm');
+        $shipments = ShipmentModel::where('idUser', auth()->id())->get();
+
+        return view('user.accountForm', compact('shipments'));
     }
 
     public function myShopping(){

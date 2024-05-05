@@ -22,6 +22,7 @@
     position: relative;
     display: flex;
     width: 600px;
+    max-width: 100%;
     height: 380px;
     margin: 0 auto;
     border-radius: 10px;
@@ -102,4 +103,20 @@
     transition: .4s;
 }
 
+@media screen and (max-width: 601px) {
+    .slider {
+        width: 400px;
+        height: 250px;
+    }
 
+    .slider__text {
+        font-size: 26px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .slider {
+        width: 350px;
+        height: 200px;
+    }
+}

@@ -23,23 +23,24 @@
             </div>
 
             <div class="content">
+                @foreach ($user as $user)
                 <form class="form" action="{{ route('saveInfo') }}" method="POST">
                     @csrf
 
                     <div class="inputs__wrapper">
                         <div class="inputs__content inputs__content--two">
-                            <input class="inputs__text" name="name" type="text" required>
+                            <input class="inputs__text" name="name" type="text" value="{{ $user->name }}" required>
                             <label class="inputs__lbl">Nombre(s)</label>
                         </div>
 
                         <div class="inputs__content inputs__content--two">
-                            <input class="inputs__text" name="surname" type="text" required>
+                            <input class="inputs__text" name="surname" type="text" value="{{ $user->surname }}" required>
                             <label class="inputs__lbl">Apellidos</label>
                         </div>
                     </div>
 
                     <div class="inputs__content">
-                        <input class="inputs__text" name="numCC" type="text" required>
+                        <input class="inputs__text" name="numCC" type="text" value="{{ $user->numCC }}" required>
                         <label class="inputs__lbl">Documento de identidad</label>
                     </div>
 
@@ -48,6 +49,7 @@
                     </div>
 
                 </form>
+                @endforeach
             </div>
         </div>
     </main>

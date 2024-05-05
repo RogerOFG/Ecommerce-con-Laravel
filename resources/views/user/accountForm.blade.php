@@ -23,7 +23,35 @@
 
             <div class="content">
 
-                
+                <a href="{{ route('createAddress') }}" class="content__element">
+                    <div class="content__logo">
+                        <i class='content__icon bx bx-plus'></i>
+                    </div>
+
+                    <div class="content__txt">
+                        <h3 class="content__ttl">Nueva Direccion de entrega</h3>
+                        <p class="content__sub">Añade una direccion de entrega.</p>
+                    </div>
+
+                    <i class='content__arrow bx bx-chevron-right'></i>
+                </a>
+
+                @if (!$shipments->isEmpty())
+                    @foreach ($shipments as $shipment)
+                        <div class="content__element">
+                            <div class="content__logo">
+                                <i class="content__icon bi bi-geo"></i>
+                            </div>
+
+                            <div class="content__txt">
+                                <h3 class="content__sub">{{ $shipment->address }}</h3>
+                                <p class="content__sub">{{ $shipment->district }} - {{ $shipment->city }}, {{ $shipment->department }}</p>
+                            </div>
+
+                            <i class='content__arrow content__arrow--fsz bx bxs-edit'></i>
+                        </div>
+                    @endforeach
+                @endif
 
             </div>
         </div>

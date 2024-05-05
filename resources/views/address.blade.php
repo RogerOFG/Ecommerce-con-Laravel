@@ -11,7 +11,7 @@
 @endSection
 
 @section('content')
-    <main class="main">
+    <main class="main main--main">
         <h2 class="main__ttl">Añade una dirección</h2>
 
         <form class="inputs" action="{{ route('saveAddress') }}" method="POST">

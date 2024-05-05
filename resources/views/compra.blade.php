@@ -143,29 +143,29 @@
                     </div>
                 @else
                     @foreach ($shipments as $shipment)
-                    <div class="cart__ubi">
-                        <label class="checkbox">
-                            <input class="checkbox__input" type="checkbox">
-                            <svg class="checkbox__svg" viewBox="0 0 64 64" height="2em" width="2em">
-                                <path class="checkbox__path" d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938"></path>
-                            </svg>
-                        </label>
+                        <div class="cart__ubi">
+                            <label class="checkbox">
+                                <input class="checkbox__input" type="checkbox">
+                                <svg class="checkbox__svg" viewBox="0 0 64 64" height="2em" width="2em">
+                                    <path class="checkbox__path" d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938"></path>
+                                </svg>
+                            </label>
 
-                        <div class="cart__icon">
-                            <i class="cart__i bi bi-geo-alt"></i>
-                        </div>
+                            <div class="cart__icon">
+                                <i class="cart__i bi bi-geo-alt"></i>
+                            </div>
 
-                        <div class="cart__address">
-                            <div class="cart__content-address">
-                                <span class="cart__span">{{ $shipment->address }}</span>
-                                <span class="cart__span">{{ $shipment->district }} - {{ $shipment->city }}, {{ $shipment->department }}</span>
+                            <div class="cart__address">
+                                <div class="cart__content-address">
+                                    <span class="cart__span">{{ $shipment->address }}</span>
+                                    <span class="cart__span">{{ $shipment->district }} - {{ $shipment->city }}, {{ $shipment->department }}</span>
+                                </div>
+                            </div>
+
+                            <div class="card__update">
+                                <a class="card__update-link" href="#">Modificar dirección</a>
                             </div>
                         </div>
-
-                        <div class="card__update">
-                            <a class="card__update-link" href="#">Modificar dirección</a>
-                        </div>
-                    </div>
                     @endforeach
                     {{-- <a href="{{ route('createAddress') }}"> --}}
                         <div class="cart__ubi cart__ubi--new" onclick="openFormAddress()">

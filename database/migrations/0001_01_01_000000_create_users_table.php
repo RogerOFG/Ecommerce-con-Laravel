@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id()->primary();
             $table->string('name');
             $table->string('surname');
+            $table->string('numCC')->nullable()->default(null);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -26,14 +27,13 @@ return new class extends Migration
         Schema::create('shipment_info', function (Blueprint $table) {
             $table->id()->primary();
             $table->string('idUser');
-            $table->string('numCC')->nullable()->default(null);
-            $table->string('city')->nullable()->default(null);
-            $table->string('department')->nullable()->default(null);
-            $table->string('district')->nullable()->default(null);
-            $table->string('address')->nullable()->default(null);
-            $table->string('info')->nullable()->default(null);
-            $table->string('number')->nullable()->default(null);
-            $table->string('phone')->nullable()->default(null);
+            $table->string('city');
+            $table->string('department');
+            $table->string('district');
+            $table->string('address');
+            $table->string('info');
+            $table->string('number');
+            $table->string('phone');
             $table->rememberToken();
             $table->timestamps();
         });
