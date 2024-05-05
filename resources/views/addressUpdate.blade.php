@@ -11,7 +11,7 @@
 @endSection
 
 @section('content')
-    <h2 class="main__ttl main__ttl--content">Añade una dirección</h2>
+    <h2 class="main__ttl main__ttl--content">Modificar dirección</h2>
 
     <main class="main main--main">
         <div class="ubi">
@@ -21,34 +21,36 @@
             <div class="ubi__sep">></div>
             <a href="{{ route('pageAccountF') }}" class="ubi__link">Direcciones</a>
             <div class="ubi__sep">></div>
-            <div class="ubi__link ubi__link--disabled">Nueva dirección</div>
+            <div class="ubi__link ubi__link--disabled">Modificar dirección</div>
         </div>
 
-        <form class="inputs" action="{{ route('saveAddress') }}" method="POST" autocomplete="off">
+        <form action="{{ route('removeAddress', $address->id) }}" method="POST" class="delete">
             @csrf
+            @method('DELETE')
+            <button class="delete__btn">
+                <span class="delete__span delete__txt">Delete</span>
+                <span class="delete__span delete__icon">
+                    <svg class="delete__svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg>
+                </span>
+            </button>
+        </form>
+
+        <form class="inputs" action="{{ route('updateAddress', $address->id) }}" method="POST">
+            @csrf
+            @method('PATCH')
 
             <input type="hidden" name="idUser" value="{{auth()->id()}}">
 
             <div class="inputs__wrapper">
                 <div class="inputs__content inputs__content--two">
-                    <input class="inputs__text" type="text" value="{{ $userData->name }}" readonly>
-                </div>
-
-                <div class="inputs__content inputs__content--two">
-                    <input class="inputs__text" type="text" value="{{ $userData->surname }}" readonly>
-                </div>
-            </div>
-
-            <div class="inputs__wrapper">
-                <div class="inputs__content inputs__content--two">
-                    <input id="departamentos" class="inputs__text" name="department" type="text" required>
+                    <input id="departamentos" class="inputs__text" name="department" type="text" autocomplete="false" value="{{ $address->department }}" required>
                     <div id="departContent" class="inputs__select inputs__select--hidde"></div>
                     <label class="inputs__lbl">Departamento</label>
                     <p class="inputs__error">Error: Debe elegir una de las opciones</p>
                 </div>
 
                 <div class="inputs__content inputs__content--two">
-                    <input id="ciudades" class="inputs__text" name="city" type="text" autocomplete="false" required>
+                    <input id="ciudades" class="inputs__text" name="city" type="text" autocomplete="false" value="{{ $address->city }}" required>
                     <div id="ciudContent" class="inputs__select inputs__select--hidde"></div>
                     <label class="inputs__lbl">Ciudad</label>
                     <p class="inputs__error">Error: Debe elegir una de las opciones</p>
@@ -56,13 +58,13 @@
             </div>
 
             <div class="inputs__content">
-                <input class="inputs__text" name="district" type="text" required>
+                <input class="inputs__text" name="district" type="text" value="{{ $address->district }}" required>
                 <label class="inputs__lbl">Barrio</label>
             </div>
 
             <div class="inputs__wrapper">
                 <div class="inputs__content">
-                    <select id="typeStreet" class="inputs__text inputs__text--width" onchange="newAddress()">
+                    <select id="typeStreet" class="inputs__text inputs__text--width" autocomplete="off" onchange="newAddress()">
                         <option value="Avenida">Avenida</option>
                         <option value="Avenida Calle">Avenida Calle</option>
                         <option value="Avenida Carrera">Avenida Carrera</option>
@@ -102,24 +104,24 @@
             </div>
 
             <div class="inputs__content">
-                <input class="inputs__text" name="number" type="text" placeholder="Opcional">
+                <input class="inputs__text" name="number" type="text" placeholder="Opcional" value="{{ $address->number }}">
                 <label class="inputs__lbl">Piso/Departamento</label>
             </div>
 
             <div class="inputs__content">
-                <input class="inputs__text" name="phone" type="text" required>
+                <input class="inputs__text" name="phone" type="text" value="{{ $address->phone }}" required>
                 <label class="inputs__lbl">Telefono de contacto</label>
             </div>
 
             <div class="inputs__content">
-                <textarea class="inputs__text inputs__text--textarea" name="info" required></textarea>
+                <textarea class="inputs__text inputs__text--textarea" name="info" required>{{ $address->info }}</textarea>
                 <label class="inputs__lbl">Referencias adicionales de esta dirección</label>
             </div>
 
-            <input id="addressInput" name="address" type="hidden">
+            <input id="addressInput" name="address" type="text" value="{{ $address->address }}">
 
             <div class="inputs__submit">
-                <button type="submit" class="inputs__btn">Guardar</button>
+                <button type="submit" class="inputs__btn">Modificar</button>
             </div>
 
         </form>
@@ -127,5 +129,9 @@
 @endSection
 
 @section('scripts')
+    <script src="{{ asset('/assets/js/address.js') }}"></script>
     <script src="{{ asset('/assets/js/colombia.js') }}"></script>
+    <script>
+        setAddressValues();
+    </script>
 @endSection

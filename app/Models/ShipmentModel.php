@@ -14,9 +14,10 @@ class ShipmentModel extends Model
     protected $fillable = [
         'idUser',
         'numCC',
+        'city'
     ];
 
     public function user(){
-        return $this->belongsTo(User::class, 'ididUser', 'id');
+        return $this->belongsTo(User::class, 'idUser', 'id');
     }
 }

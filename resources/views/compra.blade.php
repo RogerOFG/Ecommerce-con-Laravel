@@ -157,7 +157,7 @@
 
                             <div class="cart__address">
                                 <div class="cart__content-address">
-                                    <span class="cart__span">{{ $shipment->address }}</span>
+                                    <span class="cart__span">{{ str_replace(['[', ']'], '', $shipment->address) }}</span>
                                     <span class="cart__span">{{ $shipment->district }} - {{ $shipment->city }}, {{ $shipment->department }}</span>
                                 </div>
                             </div>

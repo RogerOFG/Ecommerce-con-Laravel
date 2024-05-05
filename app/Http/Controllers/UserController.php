@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\ShipmentModel;
 use Illuminate\Http\Request;
 
-class userController extends Controller
+class UserController extends Controller
 {
     public function index(){
         return view('home');
@@ -61,7 +61,7 @@ class userController extends Controller
     public function myAccountCreate(){
         $shipments = ShipmentModel::where('idUser', auth()->id())->get();
 
-        return view('user.accountForm', compact('shipments'));
+        return view('user.account', compact('shipments'));
     }
 
     public function myShopping(){

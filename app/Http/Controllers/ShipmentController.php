@@ -28,22 +28,35 @@ class ShipmentController extends Controller
 
         ShipmentModel::insert($shipmentData);
 
-        return back()->with('success', 'Dirección añadida correctamente');
+        return redirect()->route('pageAccountF')->with('success', 'Dirección añadida correctamente');
     }
 
-    public function show(ShipmentModel $shipmentModel){
-        
+    public function edit(ShipmentModel $shipmentModel, $id){
+        $address = ShipmentModel::where('idUser', auth()->id())->findOrFail($id);
+
+        return view('addressUpdate', compact('address'));
     }
 
-    public function edit(ShipmentModel $shipmentModel){
-        
+    public function update(Request $request, $id){
+        $validate = $this->validate($request, [
+            'department' => 'required|string',
+            'address' => 'required',
+            'city' => 'required|string',
+            'district' => 'required|string',
+            'phone' => 'required',
+            'info' => 'required'
+        ]);
+
+        $shipmentData = request()->except((['_token', '_method']));
+
+        ShipmentModel::where('id', $id)->update($shipmentData);
+
+        return redirect()->route('pageAccountF')->with('success', 'Dirección modificada correctamente');
     }
 
-    public function update(Request $request, ShipmentModel $shipmentModel){
-        
-    }
+    public function remove($id){
+        ShipmentModel::findOrFail($id)->delete();
 
-    public function destroy(ShipmentModel $shipmentModel){
-        
+        return redirect()->route('pageAccountF')->with('success', 'Elemento eliminado correctamente.');
     }
 }

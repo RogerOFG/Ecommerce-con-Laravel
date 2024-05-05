@@ -1413,5 +1413,5 @@ function newAddress(){
     const num1 = document.getElementById('numFirst').value;
     const num2 = document.getElementById('numSecond').value;
 
-    input.value = type+" "+street+" # "+num1+" - "+num2;
+    input.value = "["+type+"] ["+street+"] # ["+num1+"] - ["+num2+"]";
 }

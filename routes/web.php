@@ -89,8 +89,17 @@ Route::controller(CartController::class)->group(function(){
 Route::controller(ShipmentController::class)->group(function(){
     // Formulario para añadir una dirección
     Route::get('/perfil/my-account/direcctions/create', 'create')->name('createAddress');
+    
+    // Formulario para modificar una dirección
+    Route::get('/perfil/my-account/direcctions/edit/{id}', 'edit')->name('editAddress');
+    
+    // Modificar una dirección
+    Route::patch('/perfil/my-account/direcctions/update/{id}', 'update')->name('updateAddress');
 
-    // Guardar Registro de Producto
+    // Remover una dirección
+    Route::delete('/perfil/my-account/direcctions/remove/{id}', 'remove')->name('removeAddress');
+
+    // Guardar la direccion
     Route::post('perfil/my-account/direcctions/save', 'store')->name('saveAddress');
 });
 

@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('district');
             $table->string('address');
             $table->string('info');
-            $table->string('number');
+            $table->string('number')->nullable()->default(null);
             $table->string('phone');
             $table->rememberToken();
             $table->timestamps();
