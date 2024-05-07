@@ -235,6 +235,19 @@
 @endSection
 
 @section('scripts')
+<script>
+    // LOADER
+    var loader = document.querySelector(".loader");
+    loader.style.display = "flex";
+    
+    
+    window.addEventListener("load", function() {
+        setTimeout(() => {
+            var loader = document.querySelector(".loader");
+            loader.style.display = "none";
+        }, 1000);
+    });
+</script>
 <script src="{{ asset('/assets/js/compra.js') }}"></script>
 <script src="{{ asset('/assets/js/colombia.js') }}"></script>
 @endSection

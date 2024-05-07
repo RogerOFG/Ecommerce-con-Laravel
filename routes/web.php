@@ -31,14 +31,8 @@ Route::controller(UserController::class)->group(function(){
     // Información personal del usuario: Guardar Formulario 
     Route::post('/perfil/my-information/save', 'myInformationSave')->name('saveInfo')->middleware('auth');
 
-    // Información de la cuenta
-    Route::get('/perfil/my-account', 'myAccount')->name('pageAccount')->middleware('auth');
-
     // Información de la cuenta: Formulario
     Route::get('/perfil/my-account/direcctions', 'myAccountCreate')->name('pageAccountF')->middleware('auth');
-
-    // Información de la cuenta: Formulario
-    Route::post('/perfil/my-account/save', 'myAccountSave')->name('saveAccount')->middleware('auth');
 
     // Compras del Usuario
     Route::get('/perfil/my-shopping', 'myShopping')->name('pageShopping')->middleware('auth');

@@ -54,10 +54,6 @@ class UserController extends Controller
 
     }
 
-    public function myAccount(){
-        return view('user.account');
-    }
-
     public function myAccountCreate(){
         $shipments = ShipmentModel::where('idUser', auth()->id())->get();
 

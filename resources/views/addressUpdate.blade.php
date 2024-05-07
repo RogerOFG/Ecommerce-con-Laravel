@@ -118,7 +118,7 @@
                 <label class="inputs__lbl">Referencias adicionales de esta dirección</label>
             </div>
 
-            <input id="addressInput" name="address" type="text" value="{{ $address->address }}">
+            <input id="addressInput" name="address" type="hidden" value="{{ $address->address }}">
 
             <div class="inputs__submit">
                 <button type="submit" class="inputs__btn">Modificar</button>

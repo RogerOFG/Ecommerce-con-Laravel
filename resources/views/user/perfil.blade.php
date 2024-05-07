@@ -45,19 +45,6 @@
                         <i class='content__arrow bx bx-chevron-right'></i>
                     </a>
 
-                    <a href="{{ route('pageAccount') }}" class="content__element">
-                        <div class="content__logo">
-                            <i class='content__icon bx bx-user'></i>
-                        </div>
-
-                        <div class="content__txt">
-                            <h3 class="content__ttl">Datos de tu cuenta</h3>
-                            <p class="content__sub">Datos que representan tu cuenta de ShopXeng</p>
-                        </div>
-
-                        <i class='content__arrow bx bx-chevron-right'></i>
-                    </a>
-
                     <a href="{{ route('pageShopping') }}" class="content__element">
                         <div class="content__logo">
                             <i class='content__icon bx bx-shopping-bag'></i>

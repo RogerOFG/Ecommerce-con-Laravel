@@ -20,6 +20,16 @@
 </head>
 <body>
     <div class="wrapper">
+        <div class="loader">
+            <div class="spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
         @yield('header')
 
         @yield('content')

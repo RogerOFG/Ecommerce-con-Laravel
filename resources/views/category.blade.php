@@ -63,6 +63,15 @@
 
 @section('scripts')
 <script>
+    // LOADER
+    var loader = document.querySelector(".loader");
+    loader.style.display = "flex";
+    
+    window.addEventListener("load", function() {
+        var loader = document.querySelector(".loader");
+        loader.style.display = "none";
+    });
+
     const btnSwitch = document.querySelector(".aside__close");
     const menu = document.querySelector(".aside");
 
