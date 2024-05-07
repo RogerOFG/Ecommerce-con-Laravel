@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ImageProdController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShipmentController;
+use App\Http\Controllers\OrderController;
 
 // Rutas de Usuario
 Route::controller(UserController::class)->group(function(){
@@ -33,9 +34,6 @@ Route::controller(UserController::class)->group(function(){
 
     // Información de la cuenta: Formulario
     Route::get('/perfil/my-account/direcctions', 'myAccountCreate')->name('pageAccountF')->middleware('auth');
-
-    // Compras del Usuario
-    Route::get('/perfil/my-shopping', 'myShopping')->name('pageShopping')->middleware('auth');
 });
 
 // Rutas de Productos
@@ -94,7 +92,12 @@ Route::controller(ShipmentController::class)->group(function(){
     Route::delete('/perfil/my-account/direcctions/remove/{id}', 'remove')->name('removeAddress');
 
     // Guardar la direccion
-    Route::post('perfil/my-account/direcctions/save', 'store')->name('saveAddress');
+    Route::post('/perfil/my-account/direcctions/save', 'store')->name('saveAddress');
+});
+
+Route::controller(OrderController::class)->group(function(){
+    // Compras del Usuario
+    Route::get('/perfil/my-shopping', 'myShopping')->name('pageShopping')->middleware('auth');
 });
 
 Auth::routes();

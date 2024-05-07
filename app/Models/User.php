@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function shipmentData(){
         return $this->hasMany(ShipmentModel::class, 'idUser', 'id');
     }
+
+    public function order(){
+        return $this->hasMany(OrderModel::class, 'idUser', 'id');
+    }
 }

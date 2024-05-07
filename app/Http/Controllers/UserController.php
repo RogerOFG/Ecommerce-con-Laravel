@@ -59,8 +59,4 @@ class UserController extends Controller
 
         return view('user.account', compact('shipments'));
     }
-
-    public function myShopping(){
-        return view('user.shopping');
-    }
 }
