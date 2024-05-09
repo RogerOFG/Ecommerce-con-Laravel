@@ -6,6 +6,10 @@
     --bg-color: #EFEFEF;
 }
 
+.btnShop{
+    display: none;
+}
+
 .main{
     position: fixed;
     top: -50%;

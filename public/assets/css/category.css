@@ -190,16 +190,22 @@
     margin-bottom: 5px;
     font-size: 18px;
     font-weight: 600;
+    color: #000;
+    text-decoration: none;
 }
 
 .aside__mark{
-    cursor: pointer;
-    padding: 4px 0 4px 0px;
+    padding: 5px 20px 5px 0px;
+    color: #000;
     border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 16px;
 }
 
 .aside__mark:hover{
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, .1);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, .2);
 }
 
 .aside--open{

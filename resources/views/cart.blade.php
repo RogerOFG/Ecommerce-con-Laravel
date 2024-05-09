@@ -49,7 +49,13 @@
                                         @method('DELETE')
                                         <button type="submit" class="element_a">Eliminar</button>
                                     </form>
-                                    <a class="element_a" href="#">Comprar Ahora</a>
+
+                                    <form action="{{ route('purchaseP') }}" method="POST">
+                                        @csrf
+                                        <input name="idProduct" type="hidden" value="{{ $item->product->id }}">
+                                        <input name="amount" type="hidden" value="{{ $item->amount }}">
+                                        <button type="submit" class="element_a">Comprar Ahora</button>
+                                    </form>
                                 </div>
                             </div>
                         @endforeach

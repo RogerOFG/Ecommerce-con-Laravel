@@ -35,6 +35,20 @@
         @yield('content')
 
         @yield('footer')
+
+        @if (Auth::check())
+            @if ($totalAmount)
+                <a href="{{ route('comprarCart') }}">
+                    <button class="btnShop">
+                        ¡Comprar ahora!
+                        <span class="btnShop__icon">
+                            <i class='btnShop__i bx bx-shopping-bag'></i>
+                        </span>
+                    </button>
+                </a>
+            @endif
+        @endif
+
     </div>
 
     @yield('scripts')

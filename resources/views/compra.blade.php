@@ -128,10 +128,12 @@
                 <h2>Dirección de envío</h2>
             </div>
 
-            @foreach ($cartItems as $item)
-                @php
-                    $shipments = $item->user->shipmentData;
-                @endphp
+            @if (isset($cartItems))
+                @foreach ($cartItems as $item)
+                    @php
+                        $shipments = $item->user->shipmentData;
+                    @endphp
+                @endforeach
 
                 @if($shipments->isEmpty())
                     <div class="cart__a" onclick="openFormAddress()">
@@ -163,46 +165,51 @@
                             </div>
 
                             <div class="card__update">
-                                <a class="card__update-link" href="#">Modificar dirección</a>
+                                <a class="card__update-link" href="{{ route('editAddress', $shipment->id) }}">Modificar dirección</a>
                             </div>
                         </div>
                     @endforeach
-                    {{-- <a href="{{ route('createAddress') }}"> --}}
-                        <div class="cart__ubi cart__ubi--new" onclick="openFormAddress()">
-                            <div class="cart__new">
-                                <i class='cart__plus bx bx-plus-circle'></i>
-                                <p class="cart__span cart__span--move">Añade una nueva dirección</p>
-                            </div>
-                        </div>
-                    {{-- </a> --}}
-                @endif
-            @endforeach
 
-            <div class="cart__products">
-                <h2>Productos pedidos</h2>
-
-                @foreach ($cartItems as $item)
-                    @php
-                        $firstImage = $item->product->images->first();
-                    @endphp
-                    <div class="product">
-                        <div class="product__ship">
-                            <span class="product__ship-title">Costo de envio</span>
-                            <span class="product__ship-op">Gratis</span>
-                        </div>
-
-                        <div class="product__data">
-                            <div class="product__pic" style="background-image: url({{'/storage/img/products/'.$item->product->id.'/'.$firstImage->url}});"></div>
-                            <div class="product__data-content">
-                                <span class="product__span">{{ $item->product->name }}</span>
-                                <span class="product__span">Cantidad: {{ $item->amount }}</span>
-                                <span class="product__span">${{ $item->product->price }} c/u</span>
-                            </div>
+                    <div class="cart__ubi cart__ubi--new" onclick="openFormAddress()">
+                        <div class="cart__new">
+                            <i class='cart__plus bx bx-plus-circle'></i>
+                            <p class="cart__span cart__span--move">Añade una nueva dirección</p>
                         </div>
                     </div>
-                @endforeach
+                @endif
 
-            </div>
+                <div class="cart__products">
+                    <h2>Productos pedidos</h2>
+                    @foreach ($cartItems as $item)
+                        @php
+                            $firstImage = $item->product->images->first();
+                        @endphp
+                        <div class="product">
+                            <div class="product__ship">
+                                <span class="product__ship-title">Costo de envio</span>
+                                <span class="product__ship-op">$8.000</span>
+                            </div>
+
+                            <div class="product__data">
+                                <div class="product__pic" style="background-image: url({{'/storage/img/products/'.$item->product->id.'/'.$firstImage->url}});"></div>
+                                <div class="product__data-content">
+                                    <span class="product__span">{{ $item->product->name }}</span>
+                                    <span class="product__span">
+                                        Cantidad: 
+                                        @if (isset($amountTotal))
+                                            {{$amountTotal}}
+                                        @else
+                                            {{ $item->amount }}
+                                        @endif
+                                    </span>
+                                    <span class="product__span">${{ $item->product->price }} c/u</span>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+            @endif
         </div>
     </section>
 
@@ -214,7 +221,7 @@
             </div>
 
             <div class="footer__box">
-                <span>Producto/s (3)</span>
+                <span>Producto/s ({{ isset($amountTotal) ? $amountTotal : $amount }})</span>
                 <span>${{ $totalProducts }}</span>
             </div>
 

@@ -123,6 +123,16 @@
     cursor: auto;
 }
 
+.content__element--none{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    cursor: help;
+    padding: 25px 20px;
+    border: 2px dashed #cda434;
+}
+
 .content__element--data{
     display: flex;
     gap: 30px;

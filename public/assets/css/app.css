@@ -81,3 +81,46 @@ body {
         transform: rotate(360deg) translateY(-200%);
     }
 }
+
+.btnShop {
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+    width: 150px;
+    height: 40px;
+    border-radius: 30px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 13px;
+    gap: 9px;
+    color: white;
+    background: linear-gradient(to right, #cda434, #967f3f);
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.212);
+    font-weight: 600;
+    z-index: 1;
+}
+
+.btnShop__icon {
+    position: absolute;
+    right: 7.5px;
+    background-color: rgb(255, 255, 255);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    transition: all .5s ease;
+}
+
+.btnShop__i{
+    color: #cda434;
+    font-size: 18px;
+}
+
+.btnShop:hover .btnShop__icon {
+    width: calc(150px - (7.5px)*2);
+}

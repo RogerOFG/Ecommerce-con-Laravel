@@ -41,6 +41,9 @@ Route::controller(ProductController::class)->group(function(){
     // Pagina de Categorias, lista de productos
     Route::get('/category', 'index')->name('pageCategory');
 
+    // Pagina de Categorias filtradas
+    Route::get('/category/{brand}', 'filterByBrand')->name('pageCategoryFilter');
+
     // Ver producto seleccionado
     Route::get('/product/{id}', 'showProduct')->name('pageProduct');
 
@@ -75,7 +78,10 @@ Route::controller(CartController::class)->group(function(){
     Route::patch('/cart/update/{itemId}', 'updateCartItem')->name('updateCart');
 
     // Comprar productos del productos del Carrito
-    Route::get('/cart/comprar', 'pageCompra')->name('comprarCart')->middleware('auth');
+    Route::get('/cart/buy', 'buyProducts')->name('comprarCart')->middleware('auth');
+
+    // Comprar producto escogido
+    Route::post('/cart/purchase', 'purchaseProduct')->name('purchaseP')->middleware('auth');
 });
 
 Route::controller(ShipmentController::class)->group(function(){

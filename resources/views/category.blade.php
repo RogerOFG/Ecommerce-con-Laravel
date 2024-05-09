@@ -18,12 +18,30 @@
             <div class="aside__type">
                 <div class="aside__line"></div>
                 <h1 class="aside__title">Relojes</h1>
-                
-                <p class="aside__subt"><span class="aside__subt">-</span> Marca</p>
-                <p class="aside__mark"><span class="aside__subt">-</span> Rolex</p>
-                <p class="aside__mark"><span class="aside__subt">-</span> Patek</p>
-                <p class="aside__mark"><span class="aside__subt">-</span> AP</p>
-                <p class="aside__mark"><span class="aside__subt">-</span> Casio</p>
+
+                <p class="aside__subt">
+                    - <a href="{{route('pageCategory')}}" class="aside__subt">Marca</a>
+                </p> 
+                <p class="aside__subt">
+                    - <a href="{{ route('pageCategoryFilter', ['brand' => 'Q&Q']) }}" class="aside__mark">Q&Q</a>
+                </p> 
+
+                <p class="aside__subt">
+                    - <a href="{{ route('pageCategoryFilter', ['brand' => 'Rolex']) }}" class="aside__mark">Rolex</a>
+                </p> 
+                </p> 
+
+                <p class="aside__subt">
+                    - <a href="{{ route('pageCategoryFilter', ['brand' => 'Patek']) }}" class="aside__mark">Patek</a>
+                </p> 
+
+                <p class="aside__subt">
+                    - <a href="{{ route('pageCategoryFilter', ['brand' => 'AP']) }}" class="aside__mark">AP</a>
+                </p> 
+
+                <p class="aside__subt">
+                    - <a href="{{ route('pageCategoryFilter', ['brand' => 'Casio']) }}" class="aside__mark">Casio</a>
+                </p> 
             </div>
         </aside>
 

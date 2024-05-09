@@ -18,6 +18,17 @@ class productController extends Controller
         return view('category', ['products' => $products]);
     }
 
+    public function filterByBrand($brand){
+        $products = ProductModel::where('brand', $brand)->get();
+
+        foreach ($products as $product) {
+            $image = $product->images()->first();
+            $product->image = $image;
+        }
+
+        return view('category', ['products' => $products]);
+    }
+
     public function showProduct($id){
         $product = ProductModel::findOrFail($id);
 

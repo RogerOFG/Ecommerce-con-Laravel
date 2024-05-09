@@ -55,7 +55,14 @@
                         </div>
 
                         <div class="infoProduct__buttons">
-                            <button class="infoProduct__btn">Comprar Ahora</button>
+
+                            <form action="{{ route('purchaseP') }}" method="POST">
+                                @csrf
+                                <input id="txtPurchaseAmount" name="amount" type="hidden">
+                                <input name="idProduct" type="hidden" value="{{ $product->id }}">
+
+                                <button class="infoProduct__btn">Comprar Ahora</button>
+                            </form>
 
                             <form id="addToCartForm" action="{{ route('cartAdd', $product->id) }}" method="POST">
                                 @csrf
@@ -103,8 +110,10 @@
     function amountChange(){
         const inputAmount = document.getElementById('amountProducts').value;
         const txtAmount = document.getElementById('txtAmount');
+        const txtPurchaseAmount = document.getElementById('txtPurchaseAmount');
 
         txtAmount.value = inputAmount;
+        txtPurchaseAmount.value = inputAmount;
     }
 
     amountChange();

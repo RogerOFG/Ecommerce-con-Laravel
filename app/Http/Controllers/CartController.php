@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\CartModel;
 use App\Models\ProductModel;
+use App\Models\ShipmentModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cart;
@@ -17,7 +18,7 @@ class CartController extends Controller
         return view('cart')->with('cartItems', $cartItems);
     }
 
-    public function pageCompra(){
+    public function buyProducts(){
         $userData =  User::findOrFail(auth()->id());
         $cartItems = CartModel::where('idUser', auth()->id())->with('product', 'product.images', 'user.shipmentData')->get();
 
@@ -25,11 +26,56 @@ class CartController extends Controller
             return $cartItem->product->price * $cartItem->amount;
         });
 
+        $totalAmount = $cartItems->sum(function ($cartItem) {
+            return $amount = $cartItem->amount;
+        });
+
         $totalToPay = $totalAmountToPay + '8000';
 
         return view('compra', [
             'cartItems' => $cartItems,
             'totalProducts' => $totalAmountToPay,
+            'totalToPay' => $totalToPay,
+            'userData' => $userData,
+            'amount' => $totalAmount
+        ]);
+    }
+
+    public function purchaseProduct(Request $request){
+        $requestID = $request->input('idProduct');
+        $requestAmount = $request->input('amount', 1);
+
+        $userData =  User::findOrFail(auth()->id());
+        $product = ProductModel::findOrFail($requestID);
+
+        if($requestAmount > $product->amountAvailable){
+            return back()->with('error', 'La cantidad seleccionada no puede ser superior a la disponible');
+        }
+
+        $existingCartItem = CartModel::where('idUser', auth()->id())
+        ->where('idProduct', $requestID)
+        ->first();
+
+        if (!$existingCartItem) {
+            CartModel::create([
+                'idUser' => auth()->id(),
+                'idProduct' => $requestID,
+                'amount' => $requestAmount,
+            ]);
+        }
+
+        $cartItem = CartModel::where([
+            ['idUser', auth()->id()],
+            ['idProduct', $requestID]
+        ])->with('product', 'product.images', 'user.shipmentData')->get();
+
+        $productTotal = ($product->price * $requestAmount);
+        $totalToPay = ($product->price * $requestAmount) + '8000';
+
+        return view('compra', [
+            'cartItems' => $cartItem,
+            'amountTotal' => $requestAmount,
+            'totalProducts' => $productTotal,
             'totalToPay' => $totalToPay,
             'userData' => $userData
         ]);
