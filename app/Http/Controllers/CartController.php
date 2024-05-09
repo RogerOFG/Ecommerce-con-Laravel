@@ -30,7 +30,7 @@ class CartController extends Controller
             return $amount = $cartItem->amount;
         });
 
-        $totalToPay = $totalAmountToPay + '8000';
+        $totalToPay = $totalAmountToPay;
 
         return view('compra', [
             'cartItems' => $cartItems,
@@ -70,7 +70,7 @@ class CartController extends Controller
         ])->with('product', 'product.images', 'user.shipmentData')->get();
 
         $productTotal = ($product->price * $requestAmount);
-        $totalToPay = ($product->price * $requestAmount) + '8000';
+        $totalToPay = ($product->price * $requestAmount);
 
         return view('compra', [
             'cartItems' => $cartItem,

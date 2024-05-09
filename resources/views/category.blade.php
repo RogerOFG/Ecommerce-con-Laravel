@@ -62,7 +62,7 @@
                         <div class="card__title">{{$prod->name}}</div>
                         <hr class="card__divider">
                         <div class="card__footer">
-                            <div class="card__price">$ {{$prod->price}}</div>
+                            <div class="card__price">${{ number_format($prod->price, 0, '.', '.') }}</div>
                             <form action="{{ route('cartAdd', $prod->id) }}" method="POST">
                                 @csrf
                                 <input name="amount" type="hidden" value="1">

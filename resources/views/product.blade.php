@@ -28,7 +28,7 @@
 
             <div class="infoProduct">
                 <h2 class="infoProduct__title">{{$product->name}}</h2>
-                <p class="infoProduct__price">$ {{$product->price}}</p> 
+                <p class="infoProduct__price">$ {{ number_format($product->price, 0, '.', '.') }}</p> 
                 <div>
                     <span> <i class="bi bi-truck"></i>  Los productos normalmente te llegaran de 2 a 5 días hábiles. </span> <br> <br>
                     <span class="infoProduct__alert">

@@ -187,7 +187,7 @@
                         <div class="product">
                             <div class="product__ship">
                                 <span class="product__ship-title">Costo de envio</span>
-                                <span class="product__ship-op">$8.000</span>
+                                <span class="product__ship-op">Gratis</span>
                             </div>
 
                             <div class="product__data">
@@ -202,7 +202,7 @@
                                             {{ $item->amount }}
                                         @endif
                                     </span>
-                                    <span class="product__span">${{ $item->product->price }} c/u</span>
+                                    <span class="product__span">${{ number_format($item->product->price, 0, '.', '.') }} c/u</span>
                                 </div>
                             </div>
                         </div>
@@ -222,17 +222,17 @@
 
             <div class="footer__box">
                 <span>Producto/s ({{ isset($amountTotal) ? $amountTotal : $amount }})</span>
-                <span>${{ $totalProducts }}</span>
+                <span>${{ number_format($totalProducts, 0, '.', '.') }}</span>
             </div>
 
             <div class="footer__box footer__box--mb">
                 <span>Envío</span>
-                <span>$8.000</span>
+                <span>Gratis</span>
             </div>
 
             <div class="footer__total">
                 <span>Total</span>
-                <span>${{ $totalToPay }} COP</span>
+                <span>${{ number_format($totalToPay, 0, '.', '.') }} COP</span>
             </div>
         </div>
         <div class="footer__submit">
