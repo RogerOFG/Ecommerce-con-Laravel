@@ -59,4 +59,16 @@ class UserController extends Controller
 
         return view('user.account', compact('shipments'));
     }
+
+    public function dashboard(){
+        return view('dashboard.dashboard');
+    }
+
+    public function dashboardUsers(){
+        return view('dashboard.users');
+    }
+
+    public function dashboardUsersA(){
+        return view('dashboard.usersAddress');
+    }
 }

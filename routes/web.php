@@ -34,6 +34,15 @@ Route::controller(UserController::class)->group(function(){
 
     // Información de la cuenta: Formulario
     Route::get('/perfil/my-account/direcctions', 'myAccountCreate')->name('pageAccountF')->middleware('auth');
+
+    // Dashboard: Inicio
+    Route::get('/dashboard', 'dashboard')->name('pageDash')->middleware('auth');
+
+    // Dashboard: Usuarios
+    Route::get('/dashboard/users', 'dashboardUsers')->name('pageDashU')->middleware('auth');
+
+    // Dashboard: Usuarios Direcciones
+    Route::get('/dashboard/users/address', 'dashboardUsersA')->name('pageDashUA')->middleware('auth');
 });
 
 // Rutas de Productos
