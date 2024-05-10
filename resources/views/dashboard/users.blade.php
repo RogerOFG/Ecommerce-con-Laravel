@@ -12,7 +12,7 @@
     <main>
         <h1>Usuarios</h1>
         <!-- Analyses -->
-        <div class="analyse analyse--three">
+        <div class="analyse">
 
             <div class="element">
                 <div class="status">
@@ -21,6 +21,17 @@
                     <div class="info">
                         <h3>Registros</h3>
                         <h1>136</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="element">
+                <div class="status">
+                    <i class='bx bx-calendar'></i>
+
+                    <div class="info">
+                        <h3>Registros del día</h3>
+                        <h1>4</h1>
                     </div>
                 </div>
             </div>
@@ -36,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="element">
+            <div class="element element--hover">
                 <div class="status">
                     <i class='bx bx-user-plus'></i>
 
@@ -77,7 +88,6 @@
                     </tr>
                 </tbody>
             </table>
-            <a href="#">Show All</a>
         </div>
         <!-- End of Recent Orders -->
 

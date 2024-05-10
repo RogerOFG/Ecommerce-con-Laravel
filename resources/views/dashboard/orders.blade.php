@@ -4,56 +4,68 @@
     <title>Dashboard | ShopXeng</title>
 @endSection
 
-@section('opDash')
+@section('opOrders')
     class="active"
 @endSection
 
 @section('content')
     <main>
-        <h1>Dashboard</h1>
+        <h1>Pedidos</h1>
+
         <!-- Analyses -->
-        <div class="analyse">
+        <div class="analyse analyse--three">
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bx-calendar-check'></i>
+                    <i class='bx bxs-cart'></i>
 
                     <div class="info">
-                        <h3>Ventas totales</h3>
-                        <h1>$65,024</h1>
+                        <h3>Pedidos Totales</h3>
+                        <h1>47</h1>
                     </div>
                 </div>
             </div>
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bxs-watch'></i>
+                    <i class='bx bxs-calendar'></i>
 
                     <div class="info">
-                        <h3>Productos vendidos</h3>
-                        <h1>36</h1>
+                        <h3>Pedidos del día</h3>
+                        <h1>8</h1>
                     </div>
                 </div>
             </div>
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bx-user-plus'></i>
+                    <i class='bx bxs-inbox'></i>
 
                     <div class="info">
-                        <h3>Registros</h3>
-                        <h1>136</h1>
+                        <h3>Pedidos en proceso</h3>
+                        <h1>2</h1>
                     </div>
                 </div>
             </div>
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bx-cart'></i>
+                    <i class='bx bxs-truck'></i>
 
                     <div class="info">
-                        <h3>Pedidos</h3>
-                        <h1>37</h1>
+                        <h3>Pedidos en camino</h3>
+                        <h1>6</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="element">
+                <div class="status">
+                    <i class='bx bx-calendar-x'></i>
+
+                    <div class="info">
+                        <h3>Pedidos cancelados</h3>
+                        <h1>2</h1>
                     </div>
                 </div>
             </div>
@@ -62,27 +74,33 @@
 
         <!-- Recent Orders Table -->
         <div class="recent-orders">
-            <h2>Pedidos del dia</h2>
+            <h2>Pedidos Registrados</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Nombre</th>
+                        <th>Comprador</th>
                         <th>Producto</th>
                         <th>Cantidad</th>
-                        <th>Status</th>
-                        <th></th>
+                        <th>Estado</th>
+                        <th>Ver</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Roger Omar Florez Garcia</td>
                         <td>Q&Q Hombre</td>
-                        <td>1</td>
-                        <td>En camino</td>
+                        <td>3</td>
+                        <td>En proceso</td>
+                        <td>
+                            <form action="{{ route('pageDashOS') }}">
+                                <button type="submit" class="recent-orders-btn">
+                                    <i class='bx bx-search-alt'></i>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 </tbody>
             </table>
-            <a href="#">Show All</a>
         </div>
         <!-- End of Recent Orders -->
 

@@ -4,30 +4,42 @@
     <title>Dashboard | ShopXeng</title>
 @endSection
 
-@section('opDash')
+@section('opProd')
     class="active"
 @endSection
 
 @section('content')
     <main>
-        <h1>Dashboard</h1>
+        <h1>Productos</h1>
+
         <!-- Analyses -->
         <div class="analyse">
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bx-calendar-check'></i>
+                    <i class='bx bxs-watch'></i>
 
                     <div class="info">
-                        <h3>Ventas totales</h3>
-                        <h1>$65,024</h1>
+                        <h3>Productos agregados</h3>
+                        <h1>19</h1>
                     </div>
                 </div>
             </div>
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bxs-watch'></i>
+                    <i class='bx bxs-component'></i>
+
+                    <div class="info">
+                        <h3>Stock total</h3>
+                        <h1>136</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="element">
+                <div class="status">
+                    <i class='bx bxs-cart'></i>
 
                     <div class="info">
                         <h3>Productos vendidos</h3>
@@ -36,24 +48,13 @@
                 </div>
             </div>
 
-            <div class="element">
+            <div class="element element--hover">
                 <div class="status">
-                    <i class='bx bx-user-plus'></i>
+                    <i class='bx bx-cart-add'></i>
 
                     <div class="info">
-                        <h3>Registros</h3>
-                        <h1>136</h1>
-                    </div>
-                </div>
-            </div>
-
-            <div class="element">
-                <div class="status">
-                    <i class='bx bx-cart'></i>
-
-                    <div class="info">
-                        <h3>Pedidos</h3>
-                        <h1>37</h1>
+                        <h3>Nuevo</h3>
+                        <h2>Producto</h2>
                     </div>
                 </div>
             </div>
@@ -62,27 +63,37 @@
 
         <!-- Recent Orders Table -->
         <div class="recent-orders">
-            <h2>Pedidos del dia</h2>
+            <h2>Productos Registrados</h2>
             <table>
                 <thead>
                     <tr>
+                        <th>Marca</th>
                         <th>Nombre</th>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Status</th>
-                        <th></th>
+                        <th>Precio</th>
+                        <th>Cristal</th>
+                        <th>Caja</th>
+                        <th>Pulsera</th>
+                        <th>Manecillas</th>
+                        <th>Agua</th>
+                        <th>Garantia</th>
+                        <th>Stock</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Roger Omar Florez Garcia</td>
+                        <td>Q&Q</td>
                         <td>Q&Q Hombre</td>
-                        <td>1</td>
-                        <td>En camino</td>
+                        <td>70.000</td>
+                        <td>Cristal Mineral</td>
+                        <td>Caja de acero horneado</td>
+                        <td>Pulso en acero inoxidable</td>
+                        <td>Hora, minutos y segundos</td>
+                        <td>3 metros</td>
+                        <td>5 meses</td>
+                        <td>4</td>
                     </tr>
                 </tbody>
             </table>
-            <a href="#">Show All</a>
         </div>
         <!-- End of Recent Orders -->
 

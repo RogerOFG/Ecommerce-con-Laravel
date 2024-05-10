@@ -10,15 +10,52 @@
 
 @section('content')
     <main>
-        <h1>Direcciones</h1>
+        <h1>Usuario</h1>
+        <!-- Analyses -->
+        <div class="analyse analyse--three">
+
+            <div class="element">
+                <div class="status">
+                    <i class='bx bx-user'></i>
+
+                    <div class="info">
+                        <h2>Nombre</h2>
+                        <h3>Roger Omar Florez Garcia</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="element">
+                <div class="status">
+                    <i class='bx bx-envelope'></i>
+
+                    <div class="info">
+                        <h2>Correo</h3>
+                        <h3>roger_flasx@hotmail.com</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="element">
+                <div class="status">
+                    <i class='bx bx-id-card'></i>
+
+                    <div class="info">
+                        <h2>Cedula</h3>
+                        <h3>1002212675</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- End of Analyses -->
 
         <!-- Recent Orders Table -->
         <div class="recent-orders">
-            <h2>Usuarios Registrados</h2>
+            <h2>Direccion(es) del usuario</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Nombre</th>
                         <th>Ciudad</th>
                         <th>Departamento</th>
                         <th>Barrio</th>
@@ -30,7 +67,6 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Roger Omar Florez Garcia</td>
                         <td>Barranquilla</td>
                         <td>Atlantico</td>
                         <td>San Isidro</td>
@@ -41,7 +77,6 @@
                     </tr>
                 </tbody>
             </table>
-            <a href="#">Show All</a>
         </div>
         <!-- End of Recent Orders -->
 

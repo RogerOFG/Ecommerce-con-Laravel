@@ -61,13 +61,16 @@ Route::controller(ProductController::class)->group(function(){
 
     // Guardar Registro de Producto
     Route::post('/dashboard/save', 'store')->name('pageSaveP');
+
+    // Dashboard: Productos
+    Route::get('/dashboard/products', 'dashboardProd')->name('pageDashP')->middleware('auth');
 });
 
 // Rutas de Imegenes de los Productos
 Route::controller(ImageProdController::class)->group(function(){
     // Formulario subida de Imagenes de Productos
     Route::get('/dashboard/images/{id}', 'index')->name('pageImagesP');
-    
+
     // Guardar Imagenes de Producto
     Route::post('/dashboard/upload/{id}', 'upload')->name('pageUploadP');
 });
@@ -113,6 +116,12 @@ Route::controller(ShipmentController::class)->group(function(){
 Route::controller(OrderController::class)->group(function(){
     // Compras del Usuario
     Route::get('/perfil/my-shopping', 'myShopping')->name('pageShopping')->middleware('auth');
+
+    // Dashboard: Pedidos
+    Route::get('/dashboard/orders', 'dashboardOrders')->name('pageDashO')->middleware('auth');
+
+    // Dashboard: Pedidos
+    Route::get('/dashboard/order', 'dashboardSeeOrder')->name('pageDashOS')->middleware('auth');
 });
 
 Auth::routes();

@@ -43,27 +43,17 @@
 
                     <h3>Usuarios</h3>
                 </a>
-                <a href="{{ route('pageDash') }}" @yield('opProd')>
+                <a href="{{ route('pageDashP') }}" @yield('opProd')>
                     <i class='bx bx-store'></i>
 
                     <h3>Productos</h3>
                 </a>
-                <a href="{{ route('pageDash') }}" @yield('opHist')>
-                    <i class='bx bx-receipt'></i>
 
-                    <h3>Historial</h3>
-                </a>
-                <a href="{{ route('pageDash') }}" @yield('opTickets')>
-                    <span class="material-icons-sharp">
-                        mail_outline
-                    </span>
-                    <h3>Tickets</h3>
-                </a>
-                <a href="{{ route('pageDash') }}" @yield('opOrders')>
+                <a href="{{ route('pageDashO') }}" @yield('opOrders')>
                     <i class='bx bx-cart'></i>
-                    
+
                     <h3>Ordenes</h3>
-                    <span class="message-count">27</span>
+                    <span class="message-count">2</span>
                 </a>
                 <a href="#">
                     <span class="material-icons-sharp">
