@@ -92,6 +92,70 @@ b{
     color: var(--color-dark);
 }
 
+.paginator {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    margin-top: 30px;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 2rem 3rem #848bc82e;;
+    list-style-type: none;
+}
+
+.page__numbers,
+.page__btn,
+.page__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4px 6px;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.page__numbers{
+    margin: 4px 2px;
+    font-size: 1rem;
+}
+
+.page__btn{
+    color: var(--color-danger);
+}
+
+.page__dots {
+    width: 2.6rem;
+    height: 2.6rem;
+    color: var(--greyLight);
+    cursor: initial;
+}
+
+.page__numbers {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.4rem;
+}
+
+.page__numbers:hover {
+    color: var(--primary);
+}
+
+.page__numbers.active {
+    color: #ffffff;
+    background: var(--color-danger);
+    margin: 4px;
+    font-weight: 600;
+}
+
 .text-muted{
     color: var(--color-info-dark);
 }
@@ -363,6 +427,26 @@ main table tbody td{
     color: var(--color-dark-variant);
 }
 
+main table tbody td.cancel{
+    font-weight: 600;
+    color: var(--color-danger);
+}
+
+main table tbody td.process{
+    font-weight: 600;
+    color: var(--color-warning);
+}
+
+main table tbody td.way{
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+main table tbody td.delivered{
+    font-weight: 600;
+    color: var(--color-success);
+}
+
 main table tbody tr:last-child td{
     border: none;
 }
@@ -545,6 +629,97 @@ main .recent-orders a{
     display: flex;
     align-items: center;
     gap: 0.6rem;
+}
+
+.recent--form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 500px;
+    height: auto;
+    padding: 40px 20px;
+    border-radius: var(--card-border-radius);
+    background-color: var(--color-white);
+    box-shadow: var(--box-shadow);
+}
+
+.form--gap{
+    gap: 20px;
+}
+
+.form__content{
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+}
+
+.form__content--area{
+    display: flex;
+}
+
+.form__content .bx,
+.form__line,
+.form__name{
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translate(0%, -50%);
+    color: var(--color-dark);
+}
+
+.form__line{
+    left: 32px;
+}
+
+.form__input,
+.form__btn{
+    position: relative;
+    width: 100%;
+    height: 45px;
+    padding: 0 50px;
+    border-radius: 12px;
+    background-color: transparent;
+    box-shadow: 2px 3px 10px var(--color-light);
+    z-index: 2;
+}
+
+.form__btn{
+    margin-top: 20px;
+    font-weight: 600;
+    background-color: var(--color-danger);
+    color: var(--color-white);
+    cursor: pointer;
+}
+
+.form__input:valid ~ .bx,
+.form__input:focus ~ .bx,
+.form__input:valid ~ .form__line,
+.form__input:focus ~ .form__line{
+    color: var(--color-danger);
+}
+
+.form__name{
+    left: 20px;
+    transition: .3s ease-in-out;
+    z-index: 1;
+    padding: 0 6px;
+    background-color: #fff;
+}
+
+.form__input:valid ~ .form__name,
+.form__input:focus ~ .form__name{
+    top: 0;
+    left: 10px;
+    color: var(--color-danger);
+    z-index: 3;
 }
 
 @media screen and (max-width: 1200px) {

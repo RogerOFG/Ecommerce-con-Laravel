@@ -21,12 +21,4 @@ class OrderController extends Controller
 
         return view('user.shopping', ['orders' => $orders]);
     }
-
-    public function dashboardOrders(){
-        return view('dashboard.orders');
-    }
-
-    public function dashboardSeeOrder(){
-        return view('dashboard.seeOrder');
-    }
 }

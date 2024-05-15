@@ -8,6 +8,53 @@ use App\Http\Controllers\ImageProdController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DashboardController;
+
+Route::middleware('admin')->group(function () {
+    Route::controller(DashboardController::class)->group(function(){
+        // Dashboard: Inicio
+        Route::get('/dashboard', 'index')->name('pageDash');
+
+        // Dashboard: Usuarios
+        Route::get('/dashboard/users', 'dashboardUsers')->name('pageDashU');
+
+        // Dashboard: Usuarios Direcciones
+        Route::post('/dashboard/users/{id}/address', 'dashboardUsersA')->name('pageDashUA');
+
+        // Dashboard: Productos
+        Route::get('/dashboard/products', 'dashboardProd')->name('pageDashP')->middleware('auth');
+
+        // Dashboard: Pedidos
+        Route::get('/dashboard/orders', 'dashboardOrders')->name('pageDashO');
+
+        // Dashboard: Pedido Detallado
+        Route::post('/dashboard/order/{id}', 'dashboardSeeOrder')->name('pageDashOS');
+    });
+
+    Route::controller(ProductController::class)->group(function(){
+        // Formulario de Registro de Producto
+        Route::get('/dashboard/products/create', 'create')->name('pageCreateP');
+
+        // Guardar Registro de Producto
+        Route::post('/dashboard/products/save', 'store')->name('pageSaveP');
+    });
+
+    Route::controller(ImageProdController::class)->group(function(){
+        // Formulario subida de Imagenes de Productos
+        Route::get('/dashboard/images/{id}', 'index')->name('pageImagesP');
+
+        // Guardar Imagenes de Producto
+        Route::post('/dashboard/upload/{id}', 'upload')->name('pageUploadP');
+    });
+
+    Route::controller(UserController::class)->group(function(){
+        // Formulario de registro de Admins
+        Route::get('/dashboard/register/admin', 'registerAdmin')->name('registerAdmin');
+
+        // Guardar formulario de registro de Admins
+        Route::post('/dashboard/register/admin/save', 'saveAdmin')->name('saveAdmin');
+    });
+});
 
 // Rutas de Usuario
 Route::controller(UserController::class)->group(function(){
@@ -34,15 +81,6 @@ Route::controller(UserController::class)->group(function(){
 
     // Información de la cuenta: Formulario
     Route::get('/perfil/my-account/direcctions', 'myAccountCreate')->name('pageAccountF')->middleware('auth');
-
-    // Dashboard: Inicio
-    Route::get('/dashboard', 'dashboard')->name('pageDash')->middleware('auth');
-
-    // Dashboard: Usuarios
-    Route::get('/dashboard/users', 'dashboardUsers')->name('pageDashU')->middleware('auth');
-
-    // Dashboard: Usuarios Direcciones
-    Route::get('/dashboard/users/address', 'dashboardUsersA')->name('pageDashUA')->middleware('auth');
 });
 
 // Rutas de Productos
@@ -55,24 +93,6 @@ Route::controller(ProductController::class)->group(function(){
 
     // Ver producto seleccionado
     Route::get('/product/{id}', 'showProduct')->name('pageProduct');
-
-    // Formulario de Registro de Producto
-    Route::get('/dashboard/create', 'create')->name('pageCreateP')->middleware('auth');
-
-    // Guardar Registro de Producto
-    Route::post('/dashboard/save', 'store')->name('pageSaveP');
-
-    // Dashboard: Productos
-    Route::get('/dashboard/products', 'dashboardProd')->name('pageDashP')->middleware('auth');
-});
-
-// Rutas de Imegenes de los Productos
-Route::controller(ImageProdController::class)->group(function(){
-    // Formulario subida de Imagenes de Productos
-    Route::get('/dashboard/images/{id}', 'index')->name('pageImagesP');
-
-    // Guardar Imagenes de Producto
-    Route::post('/dashboard/upload/{id}', 'upload')->name('pageUploadP');
 });
 
 // Rutas del Carrito de Compras
@@ -116,12 +136,6 @@ Route::controller(ShipmentController::class)->group(function(){
 Route::controller(OrderController::class)->group(function(){
     // Compras del Usuario
     Route::get('/perfil/my-shopping', 'myShopping')->name('pageShopping')->middleware('auth');
-
-    // Dashboard: Pedidos
-    Route::get('/dashboard/orders', 'dashboardOrders')->name('pageDashO')->middleware('auth');
-
-    // Dashboard: Pedidos
-    Route::get('/dashboard/order', 'dashboardSeeOrder')->name('pageDashOS')->middleware('auth');
 });
 
 Auth::routes();

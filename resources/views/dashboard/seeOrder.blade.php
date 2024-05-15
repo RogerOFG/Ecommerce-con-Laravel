@@ -14,22 +14,30 @@
 
         <!-- Recent Orders Table -->
         <div class="recent-orders">
-            <h2>Pedido: 1</h2>
+            <h2>Pedido: {{ $order->id }}</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Comprador</th>
                         <th>Producto</th>
-                        <th>Cantidad</th>
+                        <th>Cantidad solicitada</th>
                         <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Roger Omar Florez Garcia</td>
-                        <td>Q&Q Hombre</td>
-                        <td>3</td>
-                        <td>En proceso</td>
+                        <td>{{ $order->user->name }} {{ $order->user->surname }}</td>
+                        <td>{{ $order->prod->name }}</td>
+                        <td>{{ $order->amount }}</td>
+                        @if ($order->state == 0)
+                            <td class="cancel">Cancelado</td>
+                        @elseif ($order->state == 1)
+                            <td class="process">En proceso</td>
+                        @elseif ($order->state == 2)
+                            <td class="way">En camino</td>
+                        @elseif ($order->state == 3)
+                            <td class="delivered">Entregado</td>
+                        @endif
                     </tr>
                 </tbody>
             </table>
@@ -38,7 +46,7 @@
 
         <!-- Recent Orders Table -->
         <div class="recent-orders">
-            <h2>Usuario: 1</h2>
+            <h2>Usuario: {{ $order->user->id }}</h2>
             <table>
                 <thead>
                     <tr>
@@ -51,12 +59,13 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Roger Omar</td>
-                        <td>Florez Garcia</td>
-                        <td>1002212675</td>
-                        <td>roger_flasx@hotmail.com</td>
+                        <td>{{ $order->user->name }}</td>
+                        <td>{{ $order->user->surname }}</td>
+                        <td>{{ $order->user->numCC }}</td>
+                        <td>{{ $order->user->email }}</td>
                         <td>
-                            <form action="{{ route('pageDashUA') }}">
+                            <form action="{{ route('pageDashUA', $order->user->id) }}" method="POST">
+                                @csrf
                                 <button type="submit" class="recent-orders-btn"><i class='bx bx-map'></i></button>
                             </form>
                         </td>
@@ -68,10 +77,11 @@
 
         <!-- Recent Orders Table -->
         <div class="recent-orders">
-            <h2>Producto Q&Q: 1</h2>
+            <h2>Producto: {{ $order->prod->id }}</h2>
             <table>
                 <thead>
                     <tr>
+                        <th>Marca</th>
                         <th>Cristal</th>
                         <th>Caja</th>
                         <th>Pulsera</th>
@@ -84,14 +94,15 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Cristal Mineral</td>
-                        <td>Caja de acero horneado</td>
-                        <td>Pulso en acero inoxidable</td>
-                        <td>Hora, minutos y segundos</td>
-                        <td>3 metros</td>
-                        <td>5 meses</td>
-                        <td>4</td>
-                        <td>70.000</td>
+                        <td>{{ $order->prod->brand }}</td>
+                        <td>{{ $order->prod->cristal }}</td>
+                        <td>{{ $order->prod->caja }}</td>
+                        <td>{{ $order->prod->pulsera }}</td>
+                        <td>{{ $order->prod->manecillas }}</td>
+                        <td>{{ $order->prod->metrosAgua }} metros</td>
+                        <td>{{ $order->prod->garanty }} meses</td>
+                        <td>{{ $order->prod->amountAvailable }}</td>
+                        <td>{{ number_format($order->prod->price, 0, '.', '.') }}</td>
                     </tr>
                 </tbody>
             </table>

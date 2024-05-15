@@ -21,7 +21,7 @@
 
                     <div class="info">
                         <h3>Productos agregados</h3>
-                        <h1>19</h1>
+                        <h1>{{ $totalProd }}</h1>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
 
                     <div class="info">
                         <h3>Stock total</h3>
-                        <h1>136</h1>
+                        <h1>{{ $stock }}</h1>
                     </div>
                 </div>
             </div>
@@ -43,12 +43,12 @@
 
                     <div class="info">
                         <h3>Productos vendidos</h3>
-                        <h1>36</h1>
+                        <h1>{{ $totalPS }}</h1>
                     </div>
                 </div>
             </div>
 
-            <div class="element element--hover">
+            <a href="{{ route('pageCreateP') }}" class="element element--hover">
                 <div class="status">
                     <i class='bx bx-cart-add'></i>
 
@@ -57,7 +57,7 @@
                         <h2>Producto</h2>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
         <!-- End of Analyses -->
 
@@ -80,22 +80,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Q&Q</td>
-                        <td>Q&Q Hombre</td>
-                        <td>70.000</td>
-                        <td>Cristal Mineral</td>
-                        <td>Caja de acero horneado</td>
-                        <td>Pulso en acero inoxidable</td>
-                        <td>Hora, minutos y segundos</td>
-                        <td>3 metros</td>
-                        <td>5 meses</td>
-                        <td>4</td>
-                    </tr>
+                    @foreach ($products as $item)
+                        <tr>
+                            <td>{{ $item->brand }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ number_format($item->price, 0, '.', '.') }}</td>
+                            <td>{{ $item->cristal }}</td>
+                            <td>{{ $item->caja }}</td>
+                            <td>{{ $item->pulsera }}</td>
+                            <td>{{ $item->manecillas }}</td>
+                            <td>{{ $item->metrosAgua }}</td>
+                            <td>{{ $item->garanty }}</td>
+                            <td>{{ $item->amountAvailable }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
         <!-- End of Recent Orders -->
+
+        {{ $products->links('layouts.pagination') }}
 
     </main>
 @endSection

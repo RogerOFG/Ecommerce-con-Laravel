@@ -20,7 +20,7 @@
 
                     <div class="info">
                         <h2>Nombre</h2>
-                        <h3>Roger Omar Florez Garcia</h3>
+                        <h3>{{ $user->name }} {{ $user->surname }}</h3>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
 
                     <div class="info">
                         <h2>Correo</h3>
-                        <h3>roger_flasx@hotmail.com</h3>
+                        <h3>{{ $user->email }}</h3>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
 
                     <div class="info">
                         <h2>Cedula</h3>
-                        <h3>1002212675</h3>
+                        <h3>{{ $user->numCC }}</h3>
                     </div>
                 </div>
             </div>
@@ -66,15 +66,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Barranquilla</td>
-                        <td>Atlantico</td>
-                        <td>San Isidro</td>
-                        <td>Calle 50 No 23 - 42</td>
-                        <td>Es una casa</td>
-                        <td>Aprt 101</td>
-                        <td>3005369591</td>
-                    </tr>
+                    @foreach($addresses as $address)
+                        <tr>
+                            <td>{{ $address->city }}</td>
+                            <td>{{ $address->department }}</td>
+                            <td>{{ $address->district }}</td>
+                            <td>{{ str_replace(['[', ']'], '', $address->address) }}</td>
+                            <td>{{ $address->info }}</td>
+                            <td>{{ $address->number }}</td>
+                            <td>{{ $address->phone }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

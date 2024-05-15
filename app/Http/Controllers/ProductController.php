@@ -62,24 +62,4 @@ class productController extends Controller
 
         return back()->with('success', 'Producto Registrado');
     }
-
-    public function dashboardProd(){
-        return view('dashboard.products');
-    }
-
-    public function show(ProductModel $productModel){
-        
-    }
-
-    public function edit(ProductModel $productModel){
-        
-    }
-
-    public function update(Request $request, ProductModel $productModel){
-        
-    }
-
-    public function destroy(ProductModel $productModel){
-        
-    }
 }

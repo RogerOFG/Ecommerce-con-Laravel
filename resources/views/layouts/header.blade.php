@@ -45,7 +45,7 @@
             @endif
 
             @if (Auth::check() && Auth::user()->admin == 1)
-                <li class="header__li"><a class="header__a" href="{{route('pageCreateP')}}">Dashboard</a></li>
+                <li class="header__li"><a class="header__a" href="{{route('pageDash')}}">Dashboard</a></li>
             @endif
 
 

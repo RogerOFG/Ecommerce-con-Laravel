@@ -52,10 +52,14 @@
                 <a href="{{ route('pageDashO') }}" @yield('opOrders')>
                     <i class='bx bx-cart'></i>
 
-                    <h3>Ordenes</h3>
-                    <span class="message-count">2</span>
+                    <h3>Pedidos</h3>
+                    @if ($totalOrdersP === 1)
+                        <span class="message-count">
+                            {{ $totalOrdersP }}
+                        </span>
+                    @endif
                 </a>
-                <a href="#">
+                <a href="{{ route('pageHome') }}">
                     <span class="material-icons-sharp">
                         logout
                     </span>
@@ -86,7 +90,7 @@
 
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>Roger</b></p>
+                        <p>Hey, <b>{{ $userName }}</b></p>
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">

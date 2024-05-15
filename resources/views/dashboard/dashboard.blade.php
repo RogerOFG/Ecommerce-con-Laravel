@@ -12,7 +12,7 @@
     <main>
         <h1>Dashboard</h1>
         <!-- Analyses -->
-        <div class="analyse">
+        <div class="analyse analyse--three">
 
             <div class="element">
                 <div class="status">
@@ -20,7 +20,7 @@
 
                     <div class="info">
                         <h3>Ventas totales</h3>
-                        <h1>$65,024</h1>
+                        <h1>${{ number_format($totalSales, 0, '.', '.') }}</h1>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
 
                     <div class="info">
                         <h3>Productos vendidos</h3>
-                        <h1>36</h1>
+                        <h1>{{ $totalProSales }}</h1>
                     </div>
                 </div>
             </div>
@@ -42,18 +42,7 @@
 
                     <div class="info">
                         <h3>Registros</h3>
-                        <h1>136</h1>
-                    </div>
-                </div>
-            </div>
-
-            <div class="element">
-                <div class="status">
-                    <i class='bx bx-cart'></i>
-
-                    <div class="info">
-                        <h3>Pedidos</h3>
-                        <h1>37</h1>
+                        <h1>{{ $totalUsers }}</h1>
                     </div>
                 </div>
             </div>
@@ -82,7 +71,7 @@
                     </tr>
                 </tbody>
             </table>
-            <a href="#">Show All</a>
+            <a href="{{ route('pageDashO') }}">Show All</a>
         </div>
         <!-- End of Recent Orders -->
 

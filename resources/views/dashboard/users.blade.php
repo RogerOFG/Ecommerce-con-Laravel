@@ -19,8 +19,8 @@
                     <i class='bx bx-user'></i>
 
                     <div class="info">
-                        <h3>Registros</h3>
-                        <h1>136</h1>
+                        <h3>Usuarios</h3>
+                        <h1>{{ $totalUsers }}</h1>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
 
                     <div class="info">
                         <h3>Registros del día</h3>
-                        <h1>4</h1>
+                        <h1>{{ $totalUsersDay }}</h1>
                     </div>
                 </div>
             </div>
@@ -42,12 +42,12 @@
 
                     <div class="info">
                         <h3>Administradores</h3>
-                        <h1>1</h1>
+                        <h1>{{ $totalAdmins }}</h1>
                     </div>
                 </div>
             </div>
 
-            <div class="element element--hover">
+            <a href="{{ route('registerAdmin') }}" class="element element--hover">
                 <div class="status">
                     <i class='bx bx-user-plus'></i>
 
@@ -56,7 +56,7 @@
                         <h1>Admin</h1>
                     </div>
                 </div>
-            </div>
+            </a>
 
         </div>
         <!-- End of Analyses -->
@@ -75,21 +75,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Roger Omar</td>
-                        <td>Florez Garcia</td>
-                        <td>1002212675</td>
-                        <td>roger_flasx@hotmail.com</td>
-                        <td>
-                            <form action="{{ route('pageDashUA') }}">
-                                <button type="submit" class="recent-orders-btn"><i class='bx bx-map'></i></button>
-                            </form>
-                        </td>
-                    </tr>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->surname }}</td>
+                            <td>{{ $user->numCC }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>
+                                <form action="{{ route('pageDashUA', $user->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="recent-orders-btn"><i class='bx bx-map'></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
         <!-- End of Recent Orders -->
+
+        {{ $users->links('layouts.pagination') }}
 
     </main>
 @endSection

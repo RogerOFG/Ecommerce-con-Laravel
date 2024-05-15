@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\ShipmentModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -60,15 +61,26 @@ class UserController extends Controller
         return view('user.account', compact('shipments'));
     }
 
-    public function dashboard(){
-        return view('dashboard.dashboard');
+    public function registerAdmin(){
+        return view('dashboard.registerAdmin');
     }
 
-    public function dashboardUsers(){
-        return view('dashboard.users');
-    }
+    public function saveAdmin(Request $request){
+        $validate = $this->validate($request, [
+            'name' => 'required|string',
+            'surname' => 'required|string',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
 
-    public function dashboardUsersA(){
-        return view('dashboard.usersAddress');
+        User::insert([
+            'name' => $request->input('name'),
+            'surname' => $request->input('surname'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'admin' => $request->input('admin'),
+        ]);
+
+        return redirect()->route('pageDashU')->with('success', 'Aministrador Registrado');
     }
 }
