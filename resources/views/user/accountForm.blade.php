@@ -10,7 +10,7 @@
 
 @section('content')
     <main class="main">
-        <h2 class="main__ttl">Administra tu información</h2>
+        <h2 class="main__ttl">Administra tu informaciónn</h2>
 
         <div class="main__bot">
             <div class="ubi">
