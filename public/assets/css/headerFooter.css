@@ -232,8 +232,8 @@
 }
 
 .header__nav.active .header__ul {
-    animation: animation2-part1 .4s forwards .4s ease,
-                animation2-part2 .5s ease forwards .4s;
+    animation: animation2-part1 .4s forwards .2s ease,
+                animation2-part2 .5s ease forwards .2s;
 }
 
 .header__icon-menu{
@@ -351,13 +351,13 @@
 
     .header__nav.active .header__a{
         color: transparent;
-        animation: animation5 .7s forwards .7s;
+        animation: animation5 .7s forwards .2s;
     }
 
     .header__nav.active .header__cart{
         display: block;
         opacity: 0;
-        animation: animation5 .7s forwards .7s;
+        animation: animation5 .7s forwards .2s;
     }
 
     .header__nav.active .header__li{
@@ -370,11 +370,11 @@
         }
 
         60%{
-            width: 60%;
+            width: 80%;
         }
 
         100%{
-            width: 60%;
+            width: 80%;
         }
     }
 
@@ -447,11 +447,11 @@
 
     @keyframes endAnimation {
         0%{
-            width: 60%;
+            width: 80%;
         }
 
         70%{ 
-            width: 60%;
+            width: 80%;
         }
 
         100%{
