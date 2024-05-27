@@ -52,5 +52,6 @@
     </div>
 
     @yield('scripts')
+    <script src="{{ asset('/assets/js/header.js') }}"></script>
 </body>
 </html>

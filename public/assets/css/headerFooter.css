@@ -8,6 +8,10 @@
     --bg-color: #EFEFEF;
 }
 
+.no-animate {
+    animation: none !important;
+}
+
 /* |--- -- ------ -- ---| */
 /* |--- -- HEADER -- ---| */
 /* |--- -- ------ -- ---| */
@@ -22,7 +26,6 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    border-bottom: 1px solid #000;
 }
 
 .header__logoSVG{
@@ -32,18 +35,25 @@
 
 .header__nav{
     padding-top: 10px;
+    border-top: 1px solid #000;
+    animation: endAnimation .7s forwards;
+    transition: .3s ease-in-out;
 }
 
 .header__ul{
+    position: relative;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 20px;
     font-weight: bolder;
     font-size: 14px;
     background: radial-gradient(circle at top right, gray, black, gray);
     height: 35px;
     border-radius: 20px;
-}    
+    animation: endAnimation2 .7s forwards;
+    transition: .3s ease-in-out;
+}
 
 .header__li{
     display: flex;
@@ -211,6 +221,31 @@
     padding-left: 10px;
 }
 
+.header__li-menu{
+    display: none;
+    align-items: center;
+    list-style: none;
+}
+
+.header__nav.active {
+    animation: animation .7s forwards;
+}
+
+.header__nav.active .header__ul {
+    animation: animation2-part1 .4s forwards .4s ease,
+                animation2-part2 .5s ease forwards .4s;
+}
+
+.header__icon-menu{
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.header__divider{
+    display: none;
+}
+
 /* |--- -- ------ -- ---| */
 /* |--- -- FOOTER -- ---| */
 /* |--- -- ------ -- ---| */
@@ -268,4 +303,169 @@
 
 .footer__polit{
     color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+    .header__logoSVG {
+        width: 70px;
+    }
+
+    .header__nav{
+        width: 120px;
+        margin: 0 auto;
+    }
+
+    .header__ul{
+        height: 32px;
+    }
+
+    .header__li{
+        display: none;
+    }
+
+    .header__nav.active .header__divider{
+        position: absolute;
+        top: 46px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 0;
+        display: block;
+        animation: animation6 .7s forwards .8s;
+    }
+
+    .header__cart{
+        display: none;
+    }
+
+    .header__li-menu{
+        display: block;
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        transform: translate(-50%, 0%);
+    }
+
+    .header__nav.active .header__li-menu{
+        animation: animation4 .7s forwards .6s;
+    }
+
+    .header__nav.active .header__a{
+        color: transparent;
+        animation: animation5 .7s forwards .7s;
+    }
+
+    .header__nav.active .header__cart{
+        display: block;
+        opacity: 0;
+        animation: animation5 .7s forwards .7s;
+    }
+
+    .header__nav.active .header__li{
+        display: block;
+    }
+
+    @keyframes animation {
+        0%{
+            width: 120px;
+        }
+
+        60%{
+            width: 60%;
+        }
+
+        100%{
+            width: 60%;
+        }
+    }
+
+    @keyframes animation2-part1 {
+        0% {
+            height: 32px;
+        }
+    
+        50% {
+            height: 183px;
+        }
+    
+        100% {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            height: auto;
+            padding: 60px 20px 30px;
+        }
+    }
+
+    @keyframes animation2-part2 {
+        0% {
+            display: none;
+        }
+    
+        100% {
+            display: flex;
+            height: auto;
+        }
+    }
+
+    @keyframes animation4 {
+        0%{
+            top: 0px;
+        }
+
+        100%{
+            top: 10px;
+            transform: translate(-50%, 0%);
+        }
+    }
+
+    @keyframes animation5 {
+        0%{
+            opacity: 0;
+            color: transparent;
+        }
+
+        100%{
+            opacity: 1;
+            color: #fff;
+        }
+    }
+
+    @keyframes animation6 {
+        0%{
+            width: 0;
+        }
+
+        100%{
+            border-top: 1px solid #FFE;
+            width: 50%;
+            padding-top: 4px;
+            text-align: center;
+        }
+    }
+
+    /* END ANIMATION */
+
+    @keyframes endAnimation {
+        0%{
+            width: 60%;
+        }
+
+        70%{ 
+            width: 60%;
+        }
+
+        100%{
+            width: 120px;
+        }
+    }
+
+    @keyframes endAnimation2 {
+        0% {
+            height: 183px;
+        }
+
+        100% {
+            height: 32px;
+        }
+    }
 }

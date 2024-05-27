@@ -18,9 +18,12 @@
         </a>
     </div>
     
-    <nav class="header__nav">
-        <ul class="header__ul">
+    <nav id="headerNav" class="header__nav no-animate">
+        <ul id="headerUl" class="header__ul no-animate">
+            <div class="header__divider"></div>
+
             <li class="header__li"><a class="header__a" href="{{route('pageCategory')}}">Categorias</a></li>
+
             @if (Auth::check())
                 <li class="header__li">
                     <div class="header__a header__a--father">
@@ -47,7 +50,6 @@
             @if (Auth::check() && Auth::user()->admin == 1)
                 <li class="header__li"><a class="header__a" href="{{route('pageDash')}}">Dashboard</a></li>
             @endif
-
 
             <li class="header__li">
                 <a class="header__a header__a--father" href="{{ route('pageCart') }}">
@@ -114,6 +116,8 @@
                     </form>
                 </li>
             @endif
+
+            <li id="btnMenu" class="header__li-menu"><i class='header__icon-menu bx bx-menu'></i></li>
         </ul>
     </nav>
 </header>
