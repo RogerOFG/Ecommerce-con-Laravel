@@ -13,8 +13,6 @@
 }
 
 body{
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #7392b773);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,10 +68,11 @@ body{
 .form__title{
     margin-bottom: 20px;
     font-size: 30px;
+    text-shadow: 1px 1px 2px #00000047;
 }
 
 .form__input{
-    background-color: #eee;
+    background-color: #cda43421;
     border: none;
     margin: 8px 0;
     padding: 10px 15px;
@@ -84,7 +83,7 @@ body{
 }
 
 .form__btn{
-    background-color: var(--quaternaryColor);
+    background-color: var(--tertiaryColor);
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -105,14 +104,18 @@ body{
 }
 
 .toggle__msj{
+    margin: 20px 0;
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.3px;
-    margin: 20px 0;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px #00000047;
 }
 
 .form__btn.form__btn--hidden{
-    background-color: transparent;
+    font-weight: bolder;
+    color: var(--tertiaryColor);
+    background-color: #fff;
     border-color: #fff;
 }
 
@@ -156,9 +159,9 @@ body{
 }
 
 .toggle{
-    background-color: var(--quaternaryColor);
+    background-color: var(--tertiaryColor);
     height: 100%;
-    background: linear-gradient(to right, #5c6bc0, var(--quaternaryColor));
+    background: linear-gradient(to right, #cda434, #cda43477);
     color: #fff;
     position: relative;
     left: -100%;
@@ -205,5 +208,77 @@ body{
 }
 
 @media screen and (max-width: 784px) {
+    .container{
+        width: 468px;
+        min-height: 515px;
+    }
+
+    .formContainer{
+        height: 83%;
+    }
+
+    .sign-up{
+        transform: translateX(-100%);
+        width: 100%;
+        z-index: 1;
+    }
     
+    .sign-in{
+        transform: translateX(0);
+        width: 100%;
+        z-index: 2;
+    }
+
+    .container.container--active .toggleContainer{
+        transform: translateX(0%);
+        border-radius: 0;
+    }
+
+    .container.container--active .sign-up {
+        transform: translateX(0);
+    }
+
+    .container.container--active .sign-in {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    .toggleContainer{
+        width: 100%;
+        border-radius: 0;
+        z-index: 1;
+        left: 0;
+    }
+
+    .toggle__panel{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        padding: 22px 30px;
+    }
+}
+
+@media screen and (max-width: 784px) {
+    .container{
+        width: 328px;
+    }
+
+    .form{
+        padding: 0 20px;
+    }
+
+    .form__title{
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 337px) {
+    .container{
+        width: 285px;
+    }
+
+    .form{
+        padding: 0 10px;
+    }
 }

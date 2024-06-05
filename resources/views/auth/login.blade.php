@@ -3,7 +3,7 @@
 @section('head')
     <link rel="stylesheet" href="{{ asset('/assets/css/loginRegister.css') }}">
 
-    <title>Login - Register</title>
+    <title>ShopXeng - Login - Register</title>
 @endSection
 
 @section('content')
