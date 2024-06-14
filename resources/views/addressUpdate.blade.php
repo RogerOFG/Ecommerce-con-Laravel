@@ -63,7 +63,7 @@
                 <label class="inputs__lbl">Barrio</label>
             </div>
 
-            <div class="inputs__wrapper">
+            <div class="inputs__wrapper inputs__wrapper--address">
                 <div class="inputs__content">
                     <select id="typeStreet" class="inputs__text inputs__text--width" autocomplete="off" onchange="newAddress()">
                         <option value="Avenida">Avenida</option>

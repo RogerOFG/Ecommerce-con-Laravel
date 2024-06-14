@@ -92,6 +92,14 @@
                             <td>{{ $item->metrosAgua }}</td>
                             <td>{{ $item->garanty }}</td>
                             <td>{{ $item->amountAvailable }}</td>
+                            <td>
+                                <form action="{{ route('pageShowI', $item->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="recent-orders-btn">
+                                        <i class="bi bi-card-image"></i>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

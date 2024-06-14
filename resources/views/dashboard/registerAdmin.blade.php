@@ -13,7 +13,7 @@
         <h1>Registro de Administrador</h1>
 
         <!-- Recent Orders Table -->
-        <div class="recent-orders recent--form">
+        <div class="recent--form">
             <form class="form" action="{{ route('saveAdmin') }}" method="POST">
                 @csrf
 

@@ -140,6 +140,7 @@
 
 .boxCart__btn{
     width: 245px;
+    max-width: 100%;
     height: 50px;
     margin-top: 50px;
     border-radius: 8px;
@@ -154,4 +155,28 @@
 
 .boxCart__btn:hover{
     background-color: #cda434dc;
+}
+
+@media screen and (max-width: 620px) {
+    .element__top {
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 20px;
+    }
+
+    .element__name{
+        font-size: 20px;
+    }
+
+    .element__bot{
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .boxCart{
+        padding: 40px 20px;
+    }
 }

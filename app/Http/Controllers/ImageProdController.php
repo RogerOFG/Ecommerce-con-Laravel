@@ -41,6 +41,16 @@ class ImageProdController extends Controller
             ImageProdModel::create($url);
         }
 
-        return back()->with('success', 'Imagen(es) subida(s) correctamente: ');
+        return redirect()->route('pageDashP')->with('success', 'Imagen(es) subida(s) correctamente');
+    }
+
+    public function images($id){
+        $product = ProductModel::where('id', $id)->first();
+        $images = ImageProdModel::where('idProduct', $id)->get();
+
+        return view('dashboard.imagesProduct', [
+            'product' => $product,
+            'images' => $images
+        ]);
     }
 }

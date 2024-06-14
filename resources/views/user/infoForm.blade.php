@@ -13,7 +13,7 @@
     <main class="section">
         <h2 class="main__ttl">Administra tu información</h2>
 
-        <div class="main__bot">
+        <div class="main__bot main__bot--form">
             <div class="ubi">
                 <a class="ubi__link" href="{{ route('pagePerfil') }}">Perfil</a>
                 <div class="ubi__sep">></div>

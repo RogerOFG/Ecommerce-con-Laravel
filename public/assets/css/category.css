@@ -346,3 +346,9 @@
 .card__btnCart:hover .card__svgCart {
     fill: var(--tertiaryColor);
 }
+
+@media screen and (max-width: 600px) {
+    .card {
+        z-index: -1;
+    }
+}

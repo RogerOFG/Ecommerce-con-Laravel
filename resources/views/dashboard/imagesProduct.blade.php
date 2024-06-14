@@ -10,7 +10,7 @@
 
 @section('content')
     <main>
-        <h1>Usuarios</h1>
+        <h1>Imagen(es)</h1>
         <!-- Analyses -->
         <div class="analyse">
 
@@ -19,8 +19,8 @@
                     <i class='bx bx-user'></i>
 
                     <div class="info">
-                        <h3>Usuarios</h3>
-                        <h1>{{ $totalUsers }}</h1>
+                        <h3>{{ $product->name }}</h3>
+                        <h1>Producto</h1>
                     </div>
                 </div>
             </div>
@@ -30,8 +30,8 @@
                     <i class='bx bx-calendar'></i>
 
                     <div class="info">
-                        <h3>Registros del día</h3>
-                        <h1>{{ $totalUsersDay }}</h1>
+                        <h3>{{ $product->brand }}</h3>
+                        <h1>Marca</h1>
                     </div>
                 </div>
             </div>
@@ -41,8 +41,8 @@
                     <i class='bx bxs-user-badge'></i>
 
                     <div class="info">
-                        <h3>Administradores</h3>
-                        <h1>{{ $totalAdmins }}</h1>
+                        <h3>{{ $product->category }}</h3>
+                        <h1>Categoria</h1>
                     </div>
                 </div>
             </div>
@@ -52,8 +52,8 @@
                     <i class='bx bx-user-plus'></i>
 
                     <div class="info">
-                        <h3>Nuevo</h3>
-                        <h1>Admin</h1>
+                        <h3>{{ $product->amountAvailable }}</h3>
+                        <h1>Stock</h1>
                     </div>
                 </div>
             </a>
@@ -63,29 +63,27 @@
 
         <!-- Recent Orders Table -->
         <div class="recent-orders">
-            <h2>Usuarios Registrados</h2>
+            <h2>Imagen(es) del Producto</h2>
+
             <table>
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Cedula</th>
-                        <th>correo</th>
-                        <th>Direcciones</th>
+                        <th>Imagen</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($images as $img)
                         <tr>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->surname }}</td>
-                            <td>{{ $user->numCC }}</td>
-                            <td>{{ $user->email }}</td>
                             <td>
-                                <form action="{{ route('pageDashUA', $user->id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="recent-orders-btn"><i class="bi bi-geo-alt"></i></button>
-                                </form>
+                                <div class="form__content-pic">
+                                    <img class="form__picture" src="{{ asset('/storage/img/products/'.$product->id.'/'.$img->url) }}" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form__delete-pic">
+                                    <i class="bi bi-trash"></i>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -93,9 +91,6 @@
             </table>
         </div>
         <!-- End of Recent Orders -->
-
-        {{ $users->links('layouts.pagination') }}
-
     </main>
 @endSection
 

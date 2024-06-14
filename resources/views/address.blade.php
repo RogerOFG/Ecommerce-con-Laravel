@@ -61,8 +61,8 @@
                 <label class="inputs__lbl">Barrio</label>
             </div>
 
-            <div class="inputs__wrapper">
-                <div class="inputs__content">
+            <div class="inputs__wrapper inputs__wrapper--address">
+                <div class="inputs__content inputs__content--typeStreet">
                     <select id="typeStreet" class="inputs__text inputs__text--width" onchange="newAddress()">
                         <option value="Avenida">Avenida</option>
                         <option value="Avenida Calle">Avenida Calle</option>

@@ -11,6 +11,11 @@ class productModel extends Model
 
     protected $table = 'products';
 
+    protected $fillable = [
+        'name', 'category', 'brand', 'price', 'cristal', 'caja', 'pulsera', 
+        'manecillas', 'metrosAgua', 'garanty', 'amountAvailable'
+    ];
+
     public function images(){
         return $this->hasMany(ImageProdModel::class, 'idProduct', 'id');
     }

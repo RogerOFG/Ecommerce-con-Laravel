@@ -58,8 +58,8 @@ class productController extends Controller
 
         $productData = request()->except('_token');
 
-        ProductModel::insert($productData);
+        $product = ProductModel::create($productData);
 
-        return back()->with('success', 'Producto Registrado');
+        return redirect()->route('pageImagesP', ['id' => $product->id])->with('success', 'Producto Registrado, añada las imagenes');
     }
 }

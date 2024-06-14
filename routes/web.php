@@ -45,6 +45,9 @@ Route::middleware('admin')->group(function () {
 
         // Guardar Imagenes de Producto
         Route::post('/dashboard/upload/{id}', 'upload')->name('pageUploadP');
+
+        // Ver Imagenes de Producto
+        Route::post('/dashboard/product/{id}/image', 'images')->name('pageShowI');
     });
 
     Route::controller(UserController::class)->group(function(){

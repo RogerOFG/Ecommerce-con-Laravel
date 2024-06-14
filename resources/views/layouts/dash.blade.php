@@ -9,6 +9,9 @@
     {{-- BOXICONS --}}
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
 
+    {{-- Bootstrap Icons --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <link rel="icon" href="{{ asset('/assets/img/logo/icon/icon-black.ico') }}">
 
     <link rel="stylesheet" href="{{ asset('/assets/css/dashboard.css') }}">
