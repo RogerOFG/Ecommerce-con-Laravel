@@ -218,7 +218,7 @@ aside .sidebar{
     background-color: var(--color-white);
     box-shadow: var(--box-shadow);
     border-radius: 15px;
-    height: 100vh;
+    height: 88vh;
     position: relative;
     top: 1.5rem;
     transition: all 0.3s ease;
@@ -807,10 +807,18 @@ main .recent-orders a{
     width: 100px;
     height: 100px;
     margin: 0 auto;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .form__picture{
     width: 100%;
+    height: 100%;
+}
+
+.form__delete-pic{
+    border: none;
+    background-color: transparent;
 }
 
 .form__delete-pic .bi{
@@ -818,6 +826,54 @@ main .recent-orders a{
     color: #FF0060;
     cursor: pointer;
 }
+
+/* INICIO: MODAL IMAGEN */
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100vh;
+    background-color: #00000091;
+    z-index: 1000;
+}
+
+.modal--active{
+    display: flex;
+}
+
+.modal .bi{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    display: flex;
+    border-radius: 50%;
+    font-size: 34px;
+    font-weight: bolder;
+    color: #fff;
+    background-color: var(--color-danger);
+    cursor: pointer;
+}
+
+.modal__picture{
+    display: block;
+    width: 80%;
+    height: 80vh;
+    margin: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.modal__img{
+    width: auto;
+    height: 100%;
+    margin: auto;
+}
+
+/* FIN: MODAL IMAGEN */
 
 @media screen and (max-width: 1200px) {
     .container{

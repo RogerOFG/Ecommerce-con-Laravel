@@ -48,6 +48,9 @@ Route::middleware('admin')->group(function () {
 
         // Ver Imagenes de Producto
         Route::post('/dashboard/product/{id}/image', 'images')->name('pageShowI');
+
+        // Eliminar Imagen de Producto
+        Route::delete('/dashboard/product/{id}/image/{url}/delete', 'delete')->name('deleteImage');
     });
 
     Route::controller(UserController::class)->group(function(){

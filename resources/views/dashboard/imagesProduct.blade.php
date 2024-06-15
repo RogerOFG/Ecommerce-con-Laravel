@@ -4,12 +4,22 @@
     <title>Dashboard | ShopXeng</title>
 @endSection
 
-@section('opUser')
+@section('opProd')
     class="active"
 @endSection
 
 @section('content')
     <main>
+        {{-- Modal Image --}}
+        <div id="modalImage" class="modal">
+            <i id="modalClose" class="bi bi-x"></i>
+            <picture class="modal__picture">
+                <img id="imgPreview" class="modal__img" src="" alt="">
+            </picture>
+        </div>
+        <input id="idProduct" type="hidden" value="{{ $product->id }}">
+        {{-- End Modal Image --}}
+
         <h1>Imagen(es)</h1>
         <!-- Analyses -->
         <div class="analyse">
@@ -47,13 +57,13 @@
                 </div>
             </div>
 
-            <a href="{{ route('registerAdmin') }}" class="element element--hover">
+            <a href="{{ route('pageImagesP', $product->id) }}" class="element element--hover">
                 <div class="status">
                     <i class='bx bx-user-plus'></i>
 
                     <div class="info">
-                        <h3>{{ $product->amountAvailable }}</h3>
-                        <h1>Stock</h1>
+                        <h3>Añadir</h3>
+                        <h1>Imagenes</h1>
                     </div>
                 </div>
             </a>
@@ -77,13 +87,18 @@
                         <tr>
                             <td>
                                 <div class="form__content-pic">
-                                    <img class="form__picture" src="{{ asset('/storage/img/products/'.$product->id.'/'.$img->url) }}" alt="">
+                                    <img class="form__picture" src="{{ asset('/storage/img/products/'.$product->id.'/'.$img->url) }}" data-image-url="{{ $img->url }}" data-product-id="{{ $product->id }}" alt="">
                                 </div>
                             </td>
                             <td>
-                                <div class="form__delete-pic">
-                                    <i class="bi bi-trash"></i>
-                                </div>
+                                <form action="{{ route('deleteImage', ['id' => $product->id, 'url' => $img->url]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="form__delete-pic" data-image-name="{{ $img->url }}">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -95,4 +110,5 @@
 @endSection
 
 @section('scripts')
+<script src="{{ asset('/assets/js/modalImage.js') }}"></script>
 @endSection

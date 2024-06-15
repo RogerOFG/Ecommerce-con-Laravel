@@ -47,7 +47,7 @@
                     <label for="file" class="form__footer"> 
                         <p class="file-name">Not selected file</p>
                     </label> 
-                    <input id="file" type="file" name="url[]" accept="image/webp" multiple style="display: none;">
+                    <input id="file" type="file" name="url[]" accept=".webp,.jpg,.jpeg" multiple style="display: none;">
                 </div>
 
                 <div class="form__content">

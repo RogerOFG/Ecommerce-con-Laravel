@@ -53,4 +53,25 @@ class ImageProdController extends Controller
             'images' => $images
         ]);
     }
+
+    public function delete($id, $url){
+        $product = ProductModel::find($id);
+
+        if (!$product) {
+            return response()->json(['message' => 'Producto no encontrado'], 404);
+        }
+
+        // Eliminamos la imagen de la base de datos
+        $product->images()->where('url', $url)->delete();
+
+        // Eliminamos la imagen del almacenamiento
+        $path = public_path('storage/img/products/' . $id . '/' . $url);
+
+        if (file_exists($path)) {
+            unlink($path);
+            return redirect()->route('pageDashP')->with('success', 'Imagen eliminada correctamente');
+        }
+
+        return redirect()->route('pageDashP')->with('error', 'La imagen no existe');
+    }
 }
