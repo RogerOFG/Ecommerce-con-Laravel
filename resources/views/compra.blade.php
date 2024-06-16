@@ -191,7 +191,7 @@
                             </div>
 
                             <div class="product__data">
-                                <div class="product__pic" style="background-image: url({{'/storage/img/products/'.$item->product->id.'/'.$firstImage->url}});"></div>
+                                <div class="product__pic" style="background-image: url({{ asset('/storage/img/products/'.$item->product->id.'/'.$firstImage->url) }});"></div>
                                 <div class="product__data-content">
                                     <span class="product__span">{{ $item->product->name }}</span>
                                     <span class="product__span">
