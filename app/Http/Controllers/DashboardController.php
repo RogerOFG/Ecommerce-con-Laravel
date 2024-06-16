@@ -106,12 +106,15 @@ class DashboardController extends Controller
 
         $idUser = $order->idUser;
         $idProd = $order->idProduct;
+        $idAddress = $order->idAddress;
 
         $user = User::where('id', $idUser)->first();
         $prod = ProductModel::where('id', $idProd)->first();
+        $address = ShipmentModel::where('id', $idAddress)->first(); 
 
         $order->user = $user;
         $order->prod = $prod;
+        $order->add = $address;
 
         return view('dashboard.seeOrder', [
             'order' => $order

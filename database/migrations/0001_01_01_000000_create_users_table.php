@@ -65,6 +65,7 @@ return new class extends Migration
             $table->id()->primary();
             $table->string('idProduct');
             $table->string('idUser');
+            $table->string('idAddress');
             $table->string('state');
             $table->string('amount');
             $table->timestamps();

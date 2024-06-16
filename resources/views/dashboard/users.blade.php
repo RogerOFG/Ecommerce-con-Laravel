@@ -16,7 +16,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bx-user'></i>
+                    <i class="bi bi-person"></i>
 
                     <div class="info">
                         <h3>Usuarios</h3>
@@ -27,7 +27,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bx-calendar'></i>
+                    <i class="bi bi-calendar-event"></i>
 
                     <div class="info">
                         <h3>Registros del día</h3>
@@ -38,7 +38,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bxs-user-badge'></i>
+                    <i class="bi bi-person-badge-fill"></i>
 
                     <div class="info">
                         <h3>Administradores</h3>
@@ -49,7 +49,7 @@
 
             <a href="{{ route('registerAdmin') }}" class="element element--hover">
                 <div class="status">
-                    <i class='bx bx-user-plus'></i>
+                    <i class="bi bi-person-plus"></i>
 
                     <div class="info">
                         <h3>Nuevo</h3>

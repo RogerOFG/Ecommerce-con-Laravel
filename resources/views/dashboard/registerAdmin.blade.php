@@ -19,25 +19,25 @@
 
                 <div class="form__content">
                     <input class="form__input" name="name" type="text" placeholder="Nombre(s)" required>
-                    <i class='bx bxs-user'></i>
+                    <i class="bi bi-person-fill"></i>
                     <span class="form__line">|</span>
                 </div>
 
                 <div class="form__content">
                     <input class="form__input" name="surname" type="text" placeholder="Apellidos" required>
-                    <i class='bx bxs-user'></i>
+                    <i class="bi bi-person-fill"></i>
                     <span class="form__line">|</span>
                 </div>
 
                 <div class="form__content">
                     <input class="form__input" name="email" type="email" placeholder="Correo" required>
-                    <i class='bx bxs-envelope'></i>
+                    <i class="bi bi-envelope-fill"></i>
                     <span class="form__line">|</span>
                 </div>
 
                 <div class="form__content">
                     <input class="form__input" name="password" type="password" placeholder="Contraseña" required>
-                    <i class='bx bxs-key'></i>
+                    <i class="bi bi-key-fill"></i>
                     <span class="form__line">|</span>
                 </div>
 

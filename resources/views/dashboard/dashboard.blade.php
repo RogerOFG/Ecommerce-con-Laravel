@@ -16,7 +16,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bx-calendar-check'></i>
+                    <i class="bi bi-calendar-check"></i>
 
                     <div class="info">
                         <h3>Ventas totales</h3>
@@ -27,7 +27,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bxs-watch'></i>
+                    <i class="bi bi-watch"></i>
 
                     <div class="info">
                         <h3>Productos vendidos</h3>
@@ -38,7 +38,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bx-user-plus'></i>
+                    <i class="bi bi-person-add"></i>
 
                     <div class="info">
                         <h3>Registros</h3>

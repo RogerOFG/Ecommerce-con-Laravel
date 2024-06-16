@@ -17,7 +17,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bxs-cart'></i>
+                    <i class="bi bi-cart3"></i>
 
                     <div class="info">
                         <h3>Pedidos Totales</h3>
@@ -28,7 +28,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bxs-calendar'></i>
+                    <i class="bi bi-calendar-event"></i>
 
                     <div class="info">
                         <h3>Pedidos del día</h3>
@@ -39,7 +39,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bxs-inbox'></i>
+                    <i class="bi bi-inbox-fill"></i>
 
                     <div class="info">
                         <h3>Pedidos en proceso</h3>
@@ -50,7 +50,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bxs-truck'></i>
+                    <i class="bi bi-truck"></i>
 
                     <div class="info">
                         <h3>Pedidos en camino</h3>
@@ -61,7 +61,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bx-calendar-x'></i>
+                    <i class="bi bi-calendar-x"></i>
 
                     <div class="info">
                         <h3>Pedidos cancelados</h3>
@@ -81,6 +81,8 @@
                         <th>Comprador</th>
                         <th>Producto</th>
                         <th>Cantidad</th>
+                        <th>Fecha</th>
+                        <th>Tiempo Limite</th>
                         <th>Estado</th>
                         <th>Ver</th>
                     </tr>
@@ -91,6 +93,8 @@
                             <td>{{ $item->user->name }} {{ $item->user->surname }}</td>
                             <td>{{ $item->prod->name }}</td>
                             <td>{{ $item->amount }}</td>
+                            <td class="datesCreate">{{ $item->created_at }}</td>
+                            <td class="timeAvailable">5 dias habiles</td>
                             @if ($item->state == 0)
                                 <td class="cancel">Cancelado</td>
                             @elseif ($item->state == 1)
@@ -104,7 +108,7 @@
                                 <form action="{{ route('pageDashOS', $item->id) }}" method="POST">
                                     @csrf
                                     <button type="submit" class="recent-orders-btn">
-                                        <i class='bx bx-search-alt'></i>
+                                        <i class="bi bi-search"></i>
                                     </button>
                                 </form>
                             </td>
@@ -119,4 +123,5 @@
 @endSection
 
 @section('scripts')
+<script src="{{ asset('/assets/js/ordersDate.js') }}"></script>
 @endSection

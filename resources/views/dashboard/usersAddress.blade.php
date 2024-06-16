@@ -16,7 +16,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bx-user'></i>
+                    <i class="bi bi-person"></i>
 
                     <div class="info">
                         <h2>Nombre</h2>
@@ -27,7 +27,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bx-envelope'></i>
+                    <i class="bi bi-envelope-at"></i>
 
                     <div class="info">
                         <h2>Correo</h3>
@@ -38,7 +38,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bx-id-card'></i>
+                    <i class="bi bi-person-vcard"></i>
 
                     <div class="info">
                         <h2>Cedula</h3>

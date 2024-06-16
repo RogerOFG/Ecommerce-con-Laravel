@@ -37,23 +37,23 @@
 
             <div class="sidebar">
                 <a href="{{ route('pageDash') }}" @yield('opDash')>
-                    <i class='bx bxs-dashboard'></i>
+                    <i class="bi bi-columns-gap"></i>
 
                     <h3>Dashboard</h3>
                 </a>
                 <a href="{{ route('pageDashU') }}" @yield('opUser')>
-                    <i class='bx bxs-user-circle'></i>
+                    <i class="bi bi-person-circle"></i>
 
                     <h3>Usuarios</h3>
                 </a>
                 <a href="{{ route('pageDashP') }}" @yield('opProd')>
-                    <i class='bx bx-store'></i>
+                    <i class="bi bi-shop"></i>
 
                     <h3>Productos</h3>
                 </a>
 
                 <a href="{{ route('pageDashO') }}" @yield('opOrders')>
-                    <i class='bx bx-cart'></i>
+                    <i class="bi bi-cart3"></i>
 
                     <h3>Pedidos</h3>
                     @if ($totalOrdersP === 1)
@@ -63,9 +63,7 @@
                     @endif
                 </a>
                 <a href="{{ route('pageHome') }}">
-                    <span class="material-icons-sharp">
-                        logout
-                    </span>
+                    <i class="bi bi-box-arrow-right"></i>
                     <h3>Logout</h3>
                 </a>
             </div>
@@ -97,7 +95,7 @@
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">
-                        <i class='bx bxs-user-circle'></i>
+                        <i class="bi bi-person-circle"></i>
                     </div>
                 </div>
 

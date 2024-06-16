@@ -11,7 +11,8 @@
     --color-light: rgba(132, 139, 200, 0.18);
     --color-dark-variant: #677483;
     --color-background: #f6f6f9;
-    --color-even-table: #e3e3e3;
+    --color-odd-table: #f7f7f7;
+    --color-even-table: #dfdddd94;
 
     --card-border-radius: 2rem;
     --border-radius-1: 0.4rem;
@@ -29,6 +30,7 @@
     --color-dark: #edeffd;
     --color-dark-variant: #a3bdcc;
     --color-light: rgba(0, 0, 0, 0.4);
+    --color-odd-table: #272d31;
     --color-even-table: #32393d;
     --box-shadow: 0 2rem 3rem var(--color-light);
 }
@@ -239,8 +241,8 @@ aside .sidebar a{
     transition: all 0.3s ease;
 }
 
-aside .sidebar a .bx{
-    font-size: 1.6rem;
+aside .sidebar a .bi{
+    font-size: 1.3rem;
     transition: all 0.3s ease;
 }
 
@@ -264,7 +266,7 @@ aside .sidebar a.active::before{
     background-color: var(--color-primary);
 }
 
-aside .sidebar a.active .bx{
+aside .sidebar a.active .bi{
     color: var(--color-primary);
     margin-left: calc(1rem - 3px);
 }
@@ -273,7 +275,7 @@ aside .sidebar a:hover{
     color: var(--color-primary);
 }
 
-aside .sidebar a:hover .bx{
+aside .sidebar a:hover .bi{
     margin-left: 0.6rem;
 }
 
@@ -327,7 +329,7 @@ main .analyse > .element .status{
     justify-content: space-between;
 }
 
-.element .status .bx{
+.element .status .bi{
     width: 80px;
     height: 80px;
     border-radius: 10px;
@@ -337,7 +339,7 @@ main .analyse > .element .status{
     justify-content: center;
 }
 
-.element:nth-child(1) .status .bx{
+.element:nth-child(1) .status .bi{
     background: #CFE8FF;
     color: #1976D2;
 }
@@ -347,7 +349,7 @@ main .analyse > .element .status{
     color: #1976D2;
 }
 
-.element:nth-child(2) .status .bx{
+.element:nth-child(2) .status .bi{
     background: #FFF2C6;
     color: #FBC02D;
 }
@@ -357,7 +359,7 @@ main .analyse > .element .status{
     color: #FBC02D;
 }
 
-.element:nth-child(3) .status .bx{
+.element:nth-child(3) .status .bi{
     background: #BBF7D0;
     color: #388E3C;
 }
@@ -367,7 +369,7 @@ main .analyse > .element .status{
     color: #388E3C;
 }
 
-.element:nth-child(4) .status .bx{
+.element:nth-child(4) .status .bi{
     background: #e4cdfe;
     color: #a42fd3;
 }
@@ -377,7 +379,7 @@ main .analyse > .element .status{
     color: #a42fd3;
 }
 
-.element:nth-child(5) .status .bx{
+.element:nth-child(5) .status .bi{
     background: #FECDD3;
     color: #D32F2F;
 }
@@ -409,6 +411,10 @@ main .recent-orders h2{
     margin-bottom: 0.8rem;
 }
 
+main .recent-orders--tbody h2{
+    margin-bottom: 0;
+}
+
 main .recent-orders table{
     background-color: var(--color-white);
     width: 100%;
@@ -423,6 +429,11 @@ main .recent-orders table:hover{
     box-shadow: none;
 }
 
+main table tbody td.title {
+    font-weight: bold;
+    color: var(--color-dark);
+}
+
 main table tbody td{
     height: 2.8rem;
     border-bottom: 1px solid var(--color-light);
@@ -431,22 +442,30 @@ main table tbody td{
 
 main table tbody td.cancel{
     font-weight: 600;
-    color: var(--color-danger);
+    color: #fff;
+    background-color: var(--color-danger);
+    cursor: no-drop;
 }
 
 main table tbody td.process{
     font-weight: 600;
-    color: var(--color-warning);
+    color: #fff;
+    background-color: var(--color-warning);
+    cursor: zoom-in;
 }
 
 main table tbody td.way{
     font-weight: 600;
-    color: var(--color-primary);
+    color: #fff;
+    background-color: var(--color-primary);
+    cursor: wait;
 }
 
 main table tbody td.delivered{
     font-weight: 600;
-    color: var(--color-success);
+    color: #fff;
+    background-color: var(--color-success);
+    cursor: cell;
 }
 
 main table tbody tr:last-child td{
@@ -525,8 +544,13 @@ main .recent-orders a{
     overflow: hidden;
 }
 
-.profile-photo .bx{
-    font-size: 39px;
+.profile-photo .bi{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 36px;
 }
 
 .right-section .user-profile{
@@ -669,7 +693,7 @@ main .recent-orders a{
     gap: 20px;
 }
 
-.form__content .bx,
+.form__content .bi,
 .form__line,
 .form__name{
     position: absolute;
@@ -707,8 +731,8 @@ main .recent-orders a{
     cursor: pointer;
 }
 
-.form__input:valid ~ .bx,
-.form__input:focus ~ .bx,
+.form__input:valid ~ .bi,
+.form__input:focus ~ .bi,
 .form__input:valid ~ .form__line,
 .form__input:focus ~ .form__line{
     color: var(--color-danger);
@@ -875,6 +899,28 @@ main .recent-orders a{
 
 /* FIN: MODAL IMAGEN */
 
+/* INICIO RECENT-ORDERS--TBODY */
+
+.recent-orders--tbody tbody:nth-child(even) {
+    background: var(--color-even-table);
+}
+
+.recent-orders--tbody tbody:nth-child(odd){
+    background-color: var(--color-odd-table);
+}
+
+.recent-orders--tbody tbody{
+    padding-top: 15px;
+}
+
+/* FIN RECENT-ORDERS--TBODY */
+
+@media screen and (min-width: 1200px) {
+    main .recent-orders--tbody table tbody td{
+        border: none;
+    }
+}
+
 @media screen and (max-width: 1200px) {
     .container{
         width: 95%;
@@ -956,9 +1002,9 @@ main .recent-orders a{
     }
 
     @keyframes showMenu {
-       to{
-        left: 0;
-       } 
+        to{
+            left: 0;
+        } 
     }
 
     aside .logo{
@@ -1088,8 +1134,20 @@ main .recent-orders a{
         border-bottom: 1px solid var(--color-white) !important;
     }
 
+    /* tbody */
+
+    .recent-orders--tbody tr:nth-child(even) {
+        background: unset;
+    }
+
+    /* tbody */
+
     main table tbody tr:last-child td {
         border-bottom: 1px solid var(--color-light);
+    }
+
+    main .recent-orders--tbody table tbody tr:last-child td {
+        border-bottom: 1px solid var(--color-white);
     }
 
     td {

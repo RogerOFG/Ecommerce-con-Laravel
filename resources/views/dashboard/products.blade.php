@@ -17,7 +17,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bxs-watch'></i>
+                    <i class="bi bi-watch"></i>
 
                     <div class="info">
                         <h3>Productos agregados</h3>
@@ -28,7 +28,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bxs-component'></i>
+                    <i class="bi bi-boxes"></i>
 
                     <div class="info">
                         <h3>Stock total</h3>
@@ -39,7 +39,7 @@
 
             <div class="element">
                 <div class="status">
-                    <i class='bx bxs-cart'></i>
+                    <i class="bi bi-cart-check"></i>
 
                     <div class="info">
                         <h3>Productos vendidos</h3>
@@ -50,7 +50,7 @@
 
             <a href="{{ route('pageCreateP') }}" class="element element--hover">
                 <div class="status">
-                    <i class='bx bx-cart-add'></i>
+                    <i class="bi bi-cart-plus"></i>
 
                     <div class="info">
                         <h3>Nuevo</h3>
