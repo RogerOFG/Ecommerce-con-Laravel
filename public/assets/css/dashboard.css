@@ -915,6 +915,170 @@ main .recent-orders a{
 
 /* FIN RECENT-ORDERS--TBODY */
 
+.element-tr{
+    position: relative;
+}
+
+.change-state{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    height: 0;
+    background-color: var(--color-white);
+    z-index: 10;
+    transition: .3s ease-in-out;
+}
+
+.change-state.active{
+    display: flex;
+    height: 226px;
+}
+
+/*  */
+
+.disk {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.up {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.down {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.card1 {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 90px 5px 5px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .2s ease-in-out;
+}
+
+.card1 .bi {
+    position: absolute;
+    top: 34px;
+    right: 24px;
+    font-size: 26px;
+    color: var(--color-warning);
+}
+
+.card2 {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 5px 90px 5px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .2s ease-in-out;
+}
+
+.card2 .bi {
+    position: absolute;
+    top: 36px;
+    left: 24px;
+    font-size: 26px;
+    color: #03A9F4;
+}
+
+.card3 {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 5px 5px 5px 90px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .2s ease-in-out;
+}
+
+.card3 .bi {
+    position: absolute;
+    bottom: 36px;
+    right: 24px;
+    font-size: 26px;
+    color: var(--color-danger);
+}
+
+.card4 {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 5px 5px 90px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .2s ease-in-out;
+}
+
+.card4 .bi {
+    position: absolute;
+    bottom: 36px;
+    left: 24px;
+    font-size: 26px;
+    color: var(--color-success);
+}
+
+.card1:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: var(--color-warning);
+}
+
+.card1:hover .bi {
+    color: white;
+}
+
+.card2:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: var(--color-primary);
+}
+
+.card2:hover .bi {
+    color: white;
+}
+
+.card3:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: var(--color-danger);
+}
+
+.card3:hover .bi {
+    color: white;
+}
+
+.card4:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: var(--color-success);
+}
+
+.card4:hover .bi {
+    color: white;
+}
+
 @media screen and (min-width: 1200px) {
     main .recent-orders--tbody table tbody td{
         border: none;
@@ -952,28 +1116,6 @@ main .recent-orders a{
     main .new-users .user-list .user{
         flex-basis: 40%;
     }
-
-    main .recent-orders {
-        width: 94%;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        margin: 2rem 0 0 0.8rem;
-    }
-
-    main .recent-orders table{
-        width: 83vw;
-    }
-
-    /* main table thead tr th:last-child,
-    main table thead tr th:first-child{
-        display: none;
-    }
-
-    main table tbody tr td:last-child,
-    main table tbody tr td:first-child{
-        display: none;
-    } */
 }
 
 @media screen and (max-width: 880px) {

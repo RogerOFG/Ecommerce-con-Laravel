@@ -29,6 +29,9 @@ Route::middleware('admin')->group(function () {
 
         // Dashboard: Pedido Detallado
         Route::post('/dashboard/order/{id}', 'dashboardSeeOrder')->name('pageDashOS');
+
+        // Dashboard: Modificar estado del pedido
+        Route::post('/dashboard/order/{id}/state', 'dashboardChangeOrder')->name('pageDashOC');
     });
 
     Route::controller(ProductController::class)->group(function(){

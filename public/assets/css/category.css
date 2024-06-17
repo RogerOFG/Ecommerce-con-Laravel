@@ -225,6 +225,7 @@
 }
 
 .card {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 260px;
@@ -234,6 +235,22 @@
     box-shadow: 4px 4px var(--secondaryColor);
     border-radius: 10px;
     overflow: hidden;
+}
+
+.card--soldout::after {
+    content: "SOLD OUT";
+    position: absolute;
+    top: 35px;
+    right: -74px;
+    width: 100%;
+    padding: 6px 0;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--tertiaryColor);
+    transform: rotate(45deg);
+    z-index: 10;
 }
 
 .card__link{

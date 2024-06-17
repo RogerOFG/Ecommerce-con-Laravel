@@ -35,14 +35,41 @@
 
                         <td class="title">Estado:</td>
                         @if ($order->state == 0)
-                            <td class="cancel">Cancelado</td>
+                            <td class="btn-state cancel">Cancelado</td>
                         @elseif ($order->state == 1)
-                            <td class="process">En proceso</td>
+                            <td class="btn-state process">En proceso</td>
                         @elseif ($order->state == 2)
-                            <td class="way">En camino</td>
+                            <td class="btn-state way">En camino</td>
                         @elseif ($order->state == 3)
-                            <td class="delivered">Entregado</td>
+                            <td class="btn-state delivered">Entregado</td>
                         @endif
+                    </tr>
+
+                    <tr class="element-tr">
+                        <td class="change-state">
+                            <form action="{{ route('pageDashOC', $order->id) }}" method="POST" class="disk">
+                                @csrf
+
+                                <input id="stateOrder" name="state" type="hidden">
+
+                                <div class="up">
+                                    <button class="card1">
+                                        <i class="bi bi-hourglass-split"></i>
+                                    </button>
+                                    <button class="card2">
+                                        <i class="bi bi-truck"></i>
+                                    </button>
+                                </div>
+                                <div class="down">
+                                    <button class="card3">
+                                        <i class="bi bi-bag-x-fill"></i>
+                                    </button>
+                                    <button class="card4">
+                                        <i class="bi bi-bag-check-fill"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </td>
                     </tr>
                 </tbody>
                 {{-- End of Order --}}
@@ -170,4 +197,31 @@
 @endSection
 
 @section('scripts')
+<script>
+    const stateOrder = document.getElementById('stateOrder');
+    const btn1 = document.querySelector('.card1');
+    const btn2 = document.querySelector('.card2');
+    const btn3 = document.querySelector('.card3');
+    const btn4 = document.querySelector('.card4');
+
+    btn1.addEventListener('click', function(){
+        stateOrder.value = 1;
+    });
+    btn2.addEventListener('click', function(){
+        stateOrder.value = 2;
+    });
+    btn3.addEventListener('click', function(){
+        stateOrder.value = 0;
+    });
+    btn4.addEventListener('click', function(){
+        stateOrder.value = 3;
+    });
+
+    const btnState = document.querySelector('.btn-state');
+    const changeState = document.querySelector('.change-state');
+
+    btnState.addEventListener('click', function(){
+        changeState.classList.toggle('active');
+    });
+</script>
 @endSection

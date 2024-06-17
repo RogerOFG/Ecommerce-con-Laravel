@@ -120,4 +120,13 @@ class DashboardController extends Controller
             'order' => $order
         ]);
     }
+
+    public function dashboardChangeOrder(Request $request, $id){
+        $order = OrderModel::where('id', $id)->first();
+        $state = $request->input('state');
+
+        $order->update(['state' => $state]);
+
+        return redirect()->route('pageDashO')->with('success', 'Estado cambiado correctamente');
+    }
 }
