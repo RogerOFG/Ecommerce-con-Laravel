@@ -118,6 +118,22 @@
         </form>
     </main>
 
+    <div id="alertAddress" class="alertAddress">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <span>Por favor escoja o añada una dirección a la que enviaremos su pedido</span>
+    </div>
+
+    <div id="alertContinue" class="alertContinue">
+        <div class="alertContinue-contain">
+            <span>¿Esta segur@ de que toda su Información es correcta?</span>
+            
+            <div class="alertContinue-option">
+                <button id="confirmNo" class="alertContinue-btn alertContinue-btn--transparent">Creo que no</button>
+                <button id="confirmYes" class="alertContinue-btn">Todo correcto</button>
+            </div>
+        </div>
+    </div>
+
     <div id="glass" class="glass"></div>
 
     <!-- SECTION -->
@@ -148,6 +164,7 @@
                         <div class="cart__ubi">
                             <label class="checkbox">
                                 <input class="checkbox__input" type="checkbox">
+                                <input class="addressID" value="{{ $shipment->id }}" type="hidden">
                                 <svg class="checkbox__svg" viewBox="0 0 64 64" height="2em" width="2em">
                                     <path class="checkbox__path" d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938"></path>
                                 </svg>
@@ -197,7 +214,7 @@
                                     <span class="product__span">
                                         Cantidad: 
                                         @if (isset($amountTotal))
-                                            {{$amountTotal}}
+                                            {{$item->amount = $amountTotal}}
                                         @else
                                             {{ $item->amount }}
                                         @endif
@@ -235,9 +252,20 @@
                 <span>${{ number_format($totalToPay, 0, '.', '.') }} COP</span>
             </div>
         </div>
-        <div class="footer__submit">
-            <a class="footer__btn" href="#">Finalizar Compra</a>
-        </div>
+
+        <form class="footer__submit" action="{{ route('finishP') }}" method="POST" onsubmit="return validateAddress()">
+            @csrf
+            {{-- ID DE LA DIRECCION ESCOGIDA --}}
+            <input id="addressChoose" name="idAddress" type="hidden">
+
+            @foreach ($cartItems as $item)
+                <input name="items[]" value="{{ json_encode(['id' => $item->product->id, 'amount' => $item->amount]) }}" type="hidden">
+            @endforeach
+
+            <input value="{{ $totalToPay }}" type="hidden">
+
+            <button class="footer__btn" type="submit">Finalizar Compra</button>
+        </form>
     </footer>
 @endSection
 

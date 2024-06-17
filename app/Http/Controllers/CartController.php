@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\CartModel;
 use App\Models\ProductModel;
+use App\Models\OrderModel;
 use App\Models\ShipmentModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cart;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
@@ -138,5 +140,74 @@ class CartController extends Controller
         }
 
         return back();
+    }
+
+    public function billPurchase(Request $request){
+        $request->validate([
+            'idAddress' => 'required|exists:shipment_info,id',
+            'items' => 'required|array',
+        ]);
+
+        $addressData = ShipmentModel::findOrFail($request->input('idAddress'));
+        $products = $request->input('items');
+
+        foreach($products as $item){
+            $decodedItem = json_decode($item, true);
+            $prodData = ProductModel::find($decodedItem['id']);
+
+            if($prodData){
+                $prodsArray[] = $prodData;
+                $amount = $decodedItem['amount'];
+                $stock = $prodData->amountAvailable;
+
+                // Validamos si la cantidad solicitada esta en stock
+                if($amount <= $stock){
+                    // Creamos el registro de la compra
+                    OrderModel::create([
+                        'idProduct' => $prodData->id,
+                        'idUser' => auth()->id(),
+                        'idAddress' => $addressData->id,
+                        'state' => 1,
+                        'amount' => $decodedItem['amount'],
+                    ]);
+
+                    // actualizamos el nuevo monto en stock
+                    $prodData->update(['amountAvailable' => $stock - $amount]);
+
+                    $existingCartItem = CartModel::where('idUser', auth()->id())
+                    ->where('idProduct', $prodData->id)
+                    ->first();
+                    
+                    // Eliminamos / Restamos items del carrito del usuario
+                    if($existingCartItem) {
+                        $amountC = $existingCartItem->amount;
+                        $newCartAmount = $amountC - $amount;
+
+                        if($newCartAmount <= 0){
+                            $existingCartItem->delete();
+                        }else{
+                            $existingCartItem->update(['amount' => $newCartAmount]);
+                        }
+                    }
+                }else{
+                    return redirect()->route('pageCart')->with('error', 'Disminuye la cantidad de productos, que no supere la cantidad disponible.');
+                }
+            }
+        }
+
+        Session::put('address', $addressData);
+        Session::put('products', $prodsArray);
+
+        return redirect()->route('billView');
+    }
+
+    public function billView(){
+        $address = Session::get('address');
+        $products = Session::get('products');
+    
+        return view('bill', [
+            'address' => $address,
+            'products' => $products
+        ]);
     }
 }

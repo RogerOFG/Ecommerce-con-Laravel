@@ -4,7 +4,109 @@
     --tertiaryColor: #cda434;
     --quaternaryColor: #7392B7;
     --bg-color: #EFEFEF;
+    --bg-error: #f2dede;
+    --color-error: rgba(166,66,66,1);
 }
+
+body{
+    position: relative;
+}
+
+/* ALERT ADDRESS */
+
+.alertAddress{
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 644px;
+    max-width: 100%;
+    min-height: 80px;
+    padding: 4px 20px;
+    margin: 0 auto;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--color-error);
+    border: 2px solid var(--color-error);
+    background-color: var(--bg-error);
+    transition: .7s ease-in-out;
+    z-index: 100;
+}
+
+.alertAddress .bi{
+    font-size: 24px;
+}
+
+.alertAddress.active-alert{
+    top: 6px;
+}
+
+/* ALERT ADDRESS */
+
+/* ALERT CONTINUE */
+
+.alertContinue{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #0000005e;
+    z-index: 100;
+    backdrop-filter: blur(2px);
+}
+
+.alertContinue.active{
+    display: flex;
+}
+
+.alertContinue-contain{
+    width: 370px;
+    max-width: 100%;
+    padding: 20px 25px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.alertContinue-option{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 30px;
+}
+
+.alertContinue-btn{
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: 1px solid var(--tertiaryColor);
+    background-color: var(--tertiaryColor);
+    cursor: pointer;
+}
+
+.alertContinue-btn--transparent{
+    color: var(--tertiaryColor);
+    background-color: transparent;
+}
+
+/* ALERT CONTINUE */
 
 .btnShop{
     display: none;
@@ -354,12 +456,16 @@
 }
 
 .footer__btn{
+    padding: 15px 40px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
     color: #fff;
     background-color: #cda434;
-    padding: 15px 40px;
-    text-align: center;
-    border-radius: 10px;
-    text-decoration: none;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 620px) {

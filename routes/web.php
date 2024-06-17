@@ -120,6 +120,11 @@ Route::controller(CartController::class)->group(function(){
 
     // Comprar producto escogido
     Route::post('/cart/purchase', 'purchaseProduct')->name('purchaseP')->middleware('auth');
+
+    // Informe de la compra
+    Route::post('/bill', 'billPurchase')->name('finishP')->middleware('auth');
+
+    Route::get('/bill/view', 'billView')->name('billView')->middleware('auth');
 });
 
 Route::controller(ShipmentController::class)->group(function(){

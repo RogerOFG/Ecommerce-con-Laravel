@@ -11,6 +11,14 @@ class OrderModel extends Model
 
     protected $table = 'order';
 
+    protected $fillable = [
+        'idProduct',
+        'idUser',
+        'idAddress',
+        'state',
+        'amount'
+    ];
+
     public function product(){
         return $this->hasMany(ProductModel::class, 'idProduct', 'id');
     }
