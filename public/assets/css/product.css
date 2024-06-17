@@ -153,6 +153,11 @@
     color: #fff;
     border: 1px solid var(--tertiaryColor);
     overflow: hidden;
+    cursor: pointer;
+}
+
+.infoProduct__btn--non{
+    cursor: not-allowed;
 }
 
 .infoProduct__txt{

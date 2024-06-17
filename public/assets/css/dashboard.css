@@ -340,18 +340,18 @@ main .analyse > .element .status{
 }
 
 .element:nth-child(1) .status .bi{
-    background: #CFE8FF;
-    color: #1976D2;
+    background: #e4cdfe;
+    color: #a42fd3;
 }
 
 .element--hover:nth-child(1):hover{
-    background-color: #CFE8FF;
-    color: #1976D2;
+    background-color: #e4cdfe;
+    color: #a42fd3;
 }
 
 .element:nth-child(2) .status .bi{
-    background: #FFF2C6;
-    color: #FBC02D;
+    background: #ffc5bd;
+    color: #ff7360;
 }
 
 .element--hover:nth-child(2):hover{
@@ -360,31 +360,41 @@ main .analyse > .element .status{
 }
 
 .element:nth-child(3) .status .bi{
+    background: #FFF2C6;
+    color: #FBC02D;
+}
+
+.element--hover:nth-child(3):hover{
+    background-color: #FFF2C6;
+    color: #FBC02D;
+}
+
+.element:nth-child(4) .status .bi{
+    background: #CFE8FF;
+    color: #1976D2;
+}
+
+.element--hover:nth-child(4):hover{
+    background-color: #CFE8FF;
+    color: #1976D2;
+}
+
+.element:nth-child(5) .status .bi{
     background: #BBF7D0;
     color: #388E3C;
 }
 
-.element--hover:nth-child(3):hover{
+.element--hover:nth-child(5):hover{
     background-color: #BBF7D0;
     color: #388E3C;
 }
 
-.element:nth-child(4) .status .bi{
-    background: #e4cdfe;
-    color: #a42fd3;
-}
-
-.element--hover:nth-child(4):hover{
-    background-color: #e4cdfe;
-    color: #a42fd3;
-}
-
-.element:nth-child(5) .status .bi{
+.element:nth-child(6) .status .bi{
     background: #FECDD3;
     color: #D32F2F;
 }
 
-.element--hover:nth-child(5):hover{
+.element--hover:nth-child(6):hover{
     background-color: #FECDD3;
     color: #D32F2F;
 }

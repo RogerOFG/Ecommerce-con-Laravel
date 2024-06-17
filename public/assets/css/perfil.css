@@ -156,6 +156,9 @@
 }
 
 .content__picture{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 74px;
     height: 74px;
     overflow: hidden;

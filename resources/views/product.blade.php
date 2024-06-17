@@ -56,6 +56,8 @@
 
                         <div class="infoProduct__buttons">
 
+                            @if ($product->amountAvailable > 0)
+
                             <form action="{{ route('purchaseP') }}" method="POST">
                                 @csrf
                                 <input id="txtPurchaseAmount" name="amount" type="hidden">
@@ -77,6 +79,9 @@
                                     </span>
                                 </button>
                             </form>
+                            @else
+                                <button class="infoProduct__btn infoProduct__btn--non">No disponible</button>
+                            @endif
 
                         </div>
                     </span>

@@ -13,17 +13,34 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function index() {
-        $totalProductsSales = OrderModel::where('state', 2)->sum('amount');
+        $fechaA = date('Y-m-d');
+
+        $totalProductsSales = OrderModel::where('state', 3)->sum('amount');
         $totalUsers = User::count();
 
-        $totalSales = OrderModel::where('state', 2)
+        $totalSales = OrderModel::where('state', 3)
             ->join('products', 'order.idProduct', '=', 'products.id')
             ->sum(DB::raw('order.amount * products.price'));
+
+        $ordersToday = OrderModel::whereDate('created_at', $fechaA)->get();
+
+        foreach ($ordersToday as $order){
+            $userO = User::where('id', $order->idUser)->first();
+            $order->user = $userO;
+
+            $prodO = ProductModel::where('id', $order->idProduct)->first();
+            $order->prod = $prodO;
+
+            $totalPagoP = $order->amount * $order->prod->price;
+
+            $order->total = $totalPagoP;
+        }
 
         return view('dashboard.dashboard', [
             'totalSales' => $totalSales,
             'totalProSales' => $totalProductsSales,
-            'totalUsers' => $totalUsers
+            'totalUsers' => $totalUsers,
+            'ordersToday' => $ordersToday
         ]);
     }
 
@@ -74,9 +91,10 @@ class DashboardController extends Controller
 
         $totalOrders = OrderModel::count();
         $totalOrdersToday = OrderModel::whereDate('created_at', $fechaA)->count();
-        $totalOrdersCanceled = OrderModel::where('state', 0)->count();
         $totalOrdersInProcess = OrderModel::where('state', 1)->count();
         $totalOrdersInWay = OrderModel::where('state', 2)->count();
+        $totalOrdersFinished = OrderModel::where('state', 3)->count();
+        $totalOrdersCanceled = OrderModel::where('state', 0)->count();
 
         $orders = OrderModel::latest()->get();
         
@@ -94,9 +112,10 @@ class DashboardController extends Controller
         return view('dashboard.orders', [
             'totalOrders' => $totalOrders,
             'totalOrdersT' => $totalOrdersToday,
-            'totalOrdersC' => $totalOrdersCanceled,
             'totalOrdersP' => $totalOrdersInProcess,
             'totalOrdersW' => $totalOrdersInWay,
+            'totalOrdersF' => $totalOrdersFinished,
+            'totalOrdersC' => $totalOrdersCanceled,
             'orders' => $orders
         ]);
     }

@@ -56,9 +56,11 @@
                     <i class="bi bi-cart3"></i>
 
                     <h3>Pedidos</h3>
-                    <span class="message-count">
-                        {{ $totalOrdersP }}
-                    </span>
+                    @if ($totalOrdersP > 0)
+                        <span class="message-count">
+                            {{ $totalOrdersP }}
+                        </span>
+                    @endif
                 </a>
                 <a href="{{ route('pageHome') }}">
                     <i class="bi bi-box-arrow-right"></i>

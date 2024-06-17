@@ -15,7 +15,7 @@ if (datesCreate.length === time.length) {
 
         var limitDate = new Date(date);
 
-        limitDate.setDate(day + 5);
+        limitDate.setDate(day + 4);
 
         if (now < limitDate) {
             var remainingDays = Math.ceil((limitDate - now) / (1000 * 60 * 60 * 24));

@@ -61,6 +61,17 @@
 
             <div class="element">
                 <div class="status">
+                    <i class="bi bi-bag-check-fill"></i>
+
+                    <div class="info">
+                        <h3>Pedidos completados</h3>
+                        <h1>{{ $totalOrdersF }}</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="element">
+                <div class="status">
                     <i class="bi bi-calendar-x"></i>
 
                     <div class="info">

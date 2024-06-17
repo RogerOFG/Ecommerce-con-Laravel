@@ -58,17 +58,31 @@
                         <th>Nombre</th>
                         <th>Producto</th>
                         <th>Cantidad</th>
+                        <th>Precio x unidad</th>
+                        <th>Total pago</th>
                         <th>Status</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($ordersToday as $item)
                     <tr>
-                        <td>Roger Omar Florez Garcia</td>
-                        <td>Q&Q Hombre</td>
-                        <td>1</td>
-                        <td>En camino</td>
+                        <td>{{ $item->user->name }} {{ $item->user->surname }}</td>
+                        <td>{{ $item->prod->name }}</td>
+                        <td>{{ $item->amount }}</td>
+                        <td>{{ number_format($item->prod->price, 0, '.', '.') }}</td>
+                        <td>{{ number_format($item->total, 0, '.', '.') }}</td>
+                        @if ($item->state == 0)
+                            <td class="cancel">Cancelado</td>
+                        @elseif ($item->state == 1)
+                            <td class="process">En proceso</td>
+                        @elseif ($item->state == 2)
+                            <td class="way">En camino</td>
+                        @elseif ($item->state == 3)
+                            <td class="delivered">Entregado</td>
+                        @endif
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
             <a href="{{ route('pageDashO') }}">Show All</a>
