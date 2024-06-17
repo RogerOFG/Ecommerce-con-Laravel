@@ -57,6 +57,6 @@ class ShipmentController extends Controller
     public function remove($id){
         ShipmentModel::findOrFail($id)->delete();
 
-        return redirect()->route('pageAccountF')->with('success', 'Elemento eliminado correctamente.');
+        return redirect()->route('pageAccountF')->with('success', 'Direccion eliminada correctamente.');
     }
 }

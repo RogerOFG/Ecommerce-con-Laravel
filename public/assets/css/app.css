@@ -6,6 +6,21 @@
     --tertiaryColor: #cda434;
     --quaternaryColor: #7392B7;
     --bg-color: #EFEFEF;
+
+    --color-info: #004085;
+    --color-success: #155724;
+    --color-warning: #856404;
+    --color-danger: #721c24;
+
+    --bg-info: #cce5ff;
+    --bg-success: #d4edda;
+    --bg-warning: #fff3cd;
+    --bg-danger: #f8d7da;
+
+    --border-info: #b8daff;
+    --border-success: #c3e6cb;
+    --border-warning: #ffeeba;
+    --border-danger: #f5c6cb;
 }
 
 * {
@@ -28,6 +43,61 @@ body {
 .main{
     flex: 1; 
 }
+
+/* Validación de errores */
+
+.alert{
+    position: fixed;
+    top: -56px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 644px;
+    max-width: 100%;
+    padding: 12px 20px;
+    margin: 0 auto;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    text-shadow: 0px 1px #000;
+    border: 2px solid;
+    transition: .7s ease-in-out;
+    z-index: 100;
+}
+
+.alert-info{
+    color: var(--color-info);
+    border-color: var(--border-info);
+    background-color: var(--bg-success);
+}
+
+.alert-success{
+    color: var(--color-success);
+    border-color: var(--border-success);
+    background-color: var(--bg-success);
+}
+
+.alert-error{
+    color: var(--color-danger);
+    border-color: var(--border-danger);
+    background-color: var(--bg-danger);
+}
+
+.alert-warning{
+    color: var(--color-warning);
+    border-color: var(--border-warning);
+    background-color: var(--bg-warning);
+}
+
+.alert.active{
+    top: 6px;
+}
+
+/* LOADER */
 
 .loader{
     position: fixed;

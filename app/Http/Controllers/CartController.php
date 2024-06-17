@@ -50,7 +50,9 @@ class CartController extends Controller
         $userData =  User::findOrFail(auth()->id());
         $product = ProductModel::findOrFail($requestID);
 
-        if($requestAmount > $product->amountAvailable){
+        if($product->amountAvailable <= 0){
+            return back()->with('error', 'El producto se encuentra sin existencias en el momento');
+        }else if($requestAmount > $product->amountAvailable){
             return back()->with('error', 'La cantidad seleccionada no puede ser superior a la disponible');
         }
 

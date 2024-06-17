@@ -12,3 +12,15 @@ btnMenu.addEventListener('click', function(){
         headerNav.classList.add('active');
     }
 });
+
+const alert = document.querySelector('.alert-controller');
+
+if(alert){
+    setTimeout(() => {
+        alert.classList.add('active');
+
+        setTimeout(() => {
+            alert.classList.remove('active');
+        }, 4000);
+    }, 10);
+}
