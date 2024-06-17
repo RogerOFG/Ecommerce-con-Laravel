@@ -12,9 +12,6 @@
     
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    
-    {{-- BOXICONS --}}
-    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
 
     @yield('head')
 </head>
@@ -68,7 +65,7 @@
                     <button class="btnShop">
                         ¡Comprar ahora!
                         <span class="btnShop__icon">
-                            <i class='btnShop__i bx bx-shopping-bag'></i>
+                            <i class="btnShop__i bi bi-bag"></i>
                         </span>
                     </button>
                 </a>

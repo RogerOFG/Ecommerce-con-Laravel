@@ -22,7 +22,7 @@
 
                 <a href="{{ route('pageInfoF') }}" class="content__element">
                     <div class="content__logo">
-                        <i class='content__icon bx bx-id-card'></i>
+                        <i class="content__icon bi bi-person-vcard"></i>
                     </div>
 
                     <div class="content__txt">
@@ -30,12 +30,12 @@
                         <p class="content__sub">Información de tu documento de identidad.</p>
                     </div>
 
-                    <i class='content__arrow bx bx-chevron-right'></i>
+                    <i class="content__arrow bi bi-chevron-right"></i>
                 </a>
 
                 <a href="{{ route('pageAccountF') }}" class="content__element">
                     <div class="content__logo">
-                        <i class='content__icon bx bx-map'></i>
+                        <i class="content__icon bi bi-geo-alt"></i>
                     </div>
 
                     <div class="content__txt">
@@ -43,7 +43,7 @@
                         <p class="content__sub">Direcciones guardadas en tu cuenta.</p>
                     </div>
 
-                    <i class='content__arrow bx bx-chevron-right'></i>
+                    <i class="content__arrow bi bi-chevron-right"></i>
                 </a>
 
             </div>

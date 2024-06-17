@@ -168,7 +168,7 @@
 }
 
 .content__icon{
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--tertiaryColor);
 }
 
@@ -208,13 +208,14 @@
     position: absolute;
     top: 50%;
     right: 20px;
-    font-size: 26px;
+    font-size: 20px;
+    text-shadow: 1px 0px #cda434;
     color: var(--tertiaryColor);
     transform: translate(0%, -50%);
 }
 
 .content__arrow--fsz{
-    font-size: 21px;
+    font-size: 18px;
 }
 
 .content__options{

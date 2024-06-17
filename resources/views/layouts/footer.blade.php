@@ -7,16 +7,16 @@
 
         <div class="footer__socials">
             <a href="#" class="footer__icon">
-                <i class='bx bxl-facebook'></i>
+                <i class="bi bi-facebook"></i>
             </a>
             <a href="#" class="footer__icon">
-                <i class='footer__icon bx bxl-instagram'></i>
+                <i class="bi bi-instagram"></i>
             </a>
             <a href="#" class="footer__icon">
-                <i class='footer__icon bx bxl-gmail'></i>
+                <i class="bi bi-envelope"></i>
             </a>
             <a href="#" class="footer__icon">
-                <i class='footer__icon bx bxl-whatsapp'></i>
+                <i class="bi bi-whatsapp"></i>
             </a>
         </div>
 

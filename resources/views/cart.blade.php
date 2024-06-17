@@ -40,7 +40,7 @@
                                         <span class="element__available">{{ $item->product->amountAvailable }} disponibles</span>
                                     </div>
 
-                                    <span class="element__price">${{ $item->product->price }}</span>
+                                    <span class="element__price">${{ number_format($item->product->price, 0, '.', '.') }}</span>
                                 </div>
 
                                 <div class="element__bot">

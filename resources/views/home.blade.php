@@ -22,11 +22,11 @@
 
             <div class="slider__controls">
                 <span class="slider__control slider__control--prev" onclick="changeSlide(-1)">
-                    <i class="bx bxs-chevron-left"></i>
+                    <i class="bi bi-caret-left-fill"></i>
                 </span>
 
                 <span class="slider__control slider__control--next" onclick="changeSlide(1)">
-                    <i class="bx bxs-chevron-right"></i>
+                    <i class="bi bi-caret-right-fill"></i>
                 </span>
             </div>
 

@@ -189,7 +189,7 @@
 
                     <div class="cart__ubi cart__ubi--new" onclick="openFormAddress()">
                         <div class="cart__new">
-                            <i class='cart__plus bx bx-plus-circle'></i>
+                            <i class="cart__plus bi bi-plus-circle"></i>
                             <p class="cart__span cart__span--move">Añade una nueva dirección</p>
                         </div>
                     </div>
