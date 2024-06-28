@@ -142,10 +142,23 @@ class DashboardController extends Controller
 
     public function dashboardChangeOrder(Request $request, $id){
         $order = OrderModel::where('id', $id)->first();
-        $state = $request->input('state');
-
-        $order->update(['state' => $state]);
-
-        return redirect()->route('pageDashO')->with('success', 'Estado cambiado correctamente');
+        
+        if ($order->state != 0) {
+            $product = ProductModel::where('id', $order->idProduct)->first();
+        
+            $state = $request->input('state');
+            $amount = $request->input('amount');
+            $newAmount = $product->amountAvailable + $amount;
+            
+            if ($state == 0) {
+                $product->update(['amountAvailable' => $newAmount]);
+            }
+    
+            $order->update(['state' => $state]);
+    
+            return redirect()->route('pageDashO')->with('success', 'Estado cambiado correctamente');
+        }
+        
+        return redirect()->route('pageDashO')->with('error', 'Esta orden ya ha sido cancelada');
     }
 }

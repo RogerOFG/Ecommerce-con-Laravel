@@ -42,10 +42,44 @@
                 <h3 class="slider__text">Calidad</h3>
             </div>
         </div>
+
+        <div class="featured">
+            {{-- <h2>Mas vendidos</h2> --}}
+
+            
+        </div>
+
+        {{-- <form id="contactForm">
+            <input type="text" name="message" placeholder="Escribe tu mensaje aquí" required />
+            <button type="submit">Enviar</button>
+        </form> --}}
     </main>
 @endSection
 
 @section('scripts')
 {{-- SLIDER --}}
 <script src="{{ asset('/assets/js/slider.js') }}"></script>
+
+{{-- <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const message = event.target.message.value;
+
+        fetch('http://localhost:5000/send-message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message })
+        }).then(response => {
+            if (response.ok) {
+                alert('Mensaje enviado');
+            } else {
+                alert('Error enviando mensaje');
+            }
+        }).catch(error => {
+            console.error('Error:', error);
+        });
+    });
+</script> --}}
 @endSection

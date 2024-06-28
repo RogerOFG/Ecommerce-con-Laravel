@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="inputs__content">
-                    <input id="streetNum" class="inputs__text inputs__text--width" type="number" oninput="newAddress()" required>
+                    <input id="streetNum" class="inputs__text inputs__text--width" type="text" oninput="newAddress()" required>
                     <label class="inputs__lbl">Calle / Carrera</label>
                 </div>
 
@@ -108,7 +108,7 @@
             </div>
 
             <div class="inputs__content">
-                <input class="inputs__text" name="phone" type="text" required>
+                <input class="inputs__text" name="phone" type="number" required>
                 <label class="inputs__lbl">Telefono de contacto</label>
             </div>
 

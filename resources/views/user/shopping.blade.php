@@ -32,8 +32,10 @@
                             <div class="content__info">
                                 <h3 class="content__ttl">
                                     @if($order->state == 1)
-                                        En camino
+                                        En proceso
                                     @elseif($order->state == 2)
+                                        En camino
+                                    @elseif($order->state == 3)
                                         Entregado
                                     @elseif($order->state == 0)
                                         Cancelado

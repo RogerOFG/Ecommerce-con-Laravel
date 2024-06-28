@@ -6,6 +6,7 @@ use App\Models\ImageProdModel;
 use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ImageProdController extends Controller
 {
@@ -15,32 +16,41 @@ class ImageProdController extends Controller
         return view('dashboard.uploadPictures', compact('prod'));
     }
 
-    public function upload(Request $request, $id){
+    public function upload(Request $request, $id) {
+        // Validar la solicitud
         $request->validate([
             'url.*' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
-
+    
+        // Obtener el producto por ID
         $product = ProductModel::findOrFail($id);
-
-        $productFolderPath = public_path("public/img/products/{$id}");
-        if (!file_exists($productFolderPath)) {
-            mkdir($productFolderPath, 0777, true);
-        }
-
+    
+        // Definir la ruta de la carpeta donde se guardarán las imágenes
+        $productFolderPath = "public/img/products/{$id}";
+    
+        // Crear el directorio si no existe usando Storage de Laravel
+        Storage::makeDirectory($productFolderPath, 0775, true); // Permisos 0775
+    
+        // Iterar sobre cada archivo de imagen subido
         foreach ($request->file('url') as $imageFile) {
+            // Generar un nombre único para la imagen
             $randomDigits = Str::random(4);
             $imageName = "{$id}-" . Str::slug($product->brand, '-') . "-{$randomDigits}.{$imageFile->extension()}";
-
-            $imagePath = $imageFile->storeAs("public/img/products/{$id}", $imageName);
-
+    
+            // Guardar la imagen en el almacenamiento de Laravel
+            $imagePath = $imageFile->storeAs($productFolderPath, $imageName);
+    
+            // Guardar la URL de la imagen en la base de datos
             $url = [
                 'idProduct' => $id,
                 'url' => $imageName,
             ];
-
+    
             ImageProdModel::create($url);
         }
-
+        
+        chmod(storage_path("app/{$productFolderPath}"), 0775);
+    
         return redirect()->route('pageDashP')->with('success', 'Imagen(es) subida(s) correctamente');
     }
 

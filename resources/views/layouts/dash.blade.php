@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-
+    
     {{-- Bootstrap Icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -18,6 +18,32 @@
 
 <body>
     <div class="container">
+        <!-- Recibir Alertas -->
+        @if(session('success'))
+            <div class="alert alert-controller alert-success">
+                {{ session('success') }}
+            </div>
+        @elseif (session('error'))
+            <div class="alert alert-controller alert-error">
+                {{ session('error') }}
+            </div>
+        @elseif (session('warning'))
+            <div class="alert alert-controller alert-warning">
+                {{ session('warning') }}
+            </div>
+        @endif
+
+        <!-- Validacion de errores -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li> {{ $error }} </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <!-- Sidebar Section -->
         <aside>
             <div class="toggle">
@@ -169,6 +195,19 @@
     </div>
 
     <script src="{{ asset('/assets/js/dashMenu&Night.js') }}"></script>
+    <script>
+        const alert = document.querySelector('.alert-controller');
+
+        if(alert){
+            setTimeout(() => {
+                alert.classList.add('active');
+
+                setTimeout(() => {
+                    alert.classList.remove('active');
+                }, 4000);
+            }, 10);
+        }
+    </script>
     @yield('scripts')
 </body>
 </html>

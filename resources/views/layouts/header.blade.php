@@ -117,7 +117,7 @@
                 </li>
             @endif
 
-            <li id="btnMenu" class="header__li-menu"><i class='header__icon-menu bx bx-menu'></i></li>
+            <li id="btnMenu" class="header__li-menu"><i class="header__icon-menu bi bi-list"></i></li>
         </ul>
     </nav>
 </header>

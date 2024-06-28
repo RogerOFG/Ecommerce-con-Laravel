@@ -42,7 +42,8 @@
 
                         <div class="infoProduct__amount">
                             Cantidad: 
-                            <select id="amountProducts" onchange="amountChange()" class="infoProduct__select">
+                            <select id="amountProducts" onchange="amountChange()" @if ($product->amountAvailable <= 0) disabled @endif class="infoProduct__select">
+                                @if ($product->amountAvailable <= 0) <option>0</option> @endif
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -94,10 +95,12 @@
                         <li class="data__li"> <strong>Caja: </strong> {{$product->caja}} <strong>(No es caja de presentación)</strong></li>
                         <li class="data__li"> <strong>Pulsera: </strong> {{$product->pulsera}}</li>
                         <li class="data__li"> Hora análoga</li>
-                        @if ($product->metrosAgua != 0)
+                        @if ($product->metrosAgua == 0)
+                            <li class="data__li"> No es resistente al agua</li>
+                        @elseif (is_numeric($product->metrosAgua))
                             <li class="data__li"> Resistente al agua ({{$product->metrosAgua}}M de profundidad)</li>
                         @else
-                            <li class="data__li"> No es resistente al agua</li>
+                            <li class="data__li"> {{$product->metrosAgua}} </li>
                         @endif
                         <li class="data__li"> Garantia de {{$product->garanty}} Meses por defectos de fábrica y funcionamiento</li>
                     </div>

@@ -51,6 +51,7 @@
                                 @csrf
 
                                 <input id="stateOrder" name="state" type="hidden">
+                                <input name="amount" type="hidden" value="{{ $order->amount }}">
 
                                 <div class="up">
                                     <button class="card1">

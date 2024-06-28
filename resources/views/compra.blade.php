@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="inputs__content">
-                    <input id="streetNum" class="inputs__text inputs__text--width" type="number" oninput="newAddress()" required>
+                    <input id="streetNum" class="inputs__text inputs__text--width" type="text" oninput="newAddress()" required>
                     <label class="inputs__lbl">Calle / Carrera</label>
                 </div>
 
@@ -258,6 +258,7 @@
             {{-- ID DE LA DIRECCION ESCOGIDA --}}
             <input id="addressChoose" name="idAddress" type="hidden">
 
+            <input name="transactionToken" value="{{ $transactionToken }}" type="hidden">
             @foreach ($cartItems as $item)
                 <input name="items[]" value="{{ json_encode(['id' => $item->product->id, 'amount' => $item->amount]) }}" type="hidden">
             @endforeach

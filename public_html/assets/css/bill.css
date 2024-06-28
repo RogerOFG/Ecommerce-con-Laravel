@@ -1,0 +1,45 @@
+:root{
+    --prymaryColor: #FFFFFF;
+    --secondaryColor: #000000;
+    --tertiaryColor: #cda434;
+    --quaternaryColor: #7392B7;
+    --bg-color: #EFEFEF;
+    --bg-error: #f2dede;
+    --color-error: #a64242;
+}
+
+.table--ttl{
+    padding: 10px 20px;
+    margin: 30px 0 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 20px;
+    background-color: #fff;
+    font-weight: bold;
+    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+}
+
+main .recent-orders{
+    position: relative !important;
+    left: 0;
+    width: 90%;
+    max-width: 1053px;
+    margin: 0 auto;
+    transform: translate(0);
+}
+
+main .recent-orders table {
+    width: 100%;
+}
+
+main table tbody td{
+    font-size: 14px;
+}
+
+main table tbody td.title{
+    color: var(--tertiaryColor);
+}
+
+table h2{
+    color: var(--tertiaryColor);
+}

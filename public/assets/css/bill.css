@@ -8,38 +8,122 @@
     --color-error: #a64242;
 }
 
-.table--ttl{
-    padding: 10px 20px;
-    margin: 30px 0 20px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 20px;
+body{
     background-color: #fff;
-    font-weight: bold;
-    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
 }
 
-main .recent-orders{
-    position: relative !important;
-    left: 0;
-    width: 90%;
-    max-width: 1053px;
+.main{
+    padding-top: 40px;
+}
+
+.order{
+    width: 600px;
+    max-width: 99%;
     margin: 0 auto;
-    transform: translate(0);
+    background-color: #fff;
+    border-radius: 12px;
+    border: 1px solid #cccccc8a;
+    overflow: hidden;
+    box-shadow: 0px 0px 3px #cccccc8a;
 }
 
-main .recent-orders table {
-    width: 100%;
+.order__top{
+    background-color: #f7f7f7;
+    padding: 20px;
 }
 
-main table tbody td{
+.order__ttl{
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--tertiaryColor);
+}
+
+.order__date{
     font-size: 14px;
 }
 
-main table tbody td.title{
+.order__mid{
+    padding: 20px;
+}
+
+.order__sub{
+    margin-bottom: 10px;
+    font-size: 17px;
+    font-weight: bold;
     color: var(--tertiaryColor);
 }
 
-table h2{
-    color: var(--tertiaryColor);
+.order__line{
+    width: 100%;
+    height: 1px;
+    margin: 18px 0;
+    background-color: #cccccc8a;
+}
+
+.order__line--hidde{
+    display: none;
+}
+
+.order__element{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.order__element--total{
+    padding-top: 10px;
+}
+
+.order__name{
+    font-size: 16px;
+}
+
+.order__italyc{
+    font-size: 14px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.order__weight{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.order__price{
+    text-align: right;
+    font-size: 16px;
+}
+
+.order__address{
+    font-size: 16px;
+}
+
+.order__left{
+    width: 58%;
+}
+
+.order__right{
+    flex: 1;
+}
+
+.order__bot{
+    padding: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #f7f7f7;
+}
+
+@media screen and (max-width: 400px) {
+    .order__element--group{
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .order__left{
+        width: 100%;
+    }
+
+    .order__line--hidde{
+        display: block;
+    }
 }

@@ -8,9 +8,11 @@ use App\Models\ProductModel;
 use App\Models\OrderModel;
 use App\Models\ShipmentModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-use Cart;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
+use Cart;
 
 class CartController extends Controller
 {
@@ -21,6 +23,11 @@ class CartController extends Controller
     }
 
     public function buyProducts(){
+        $transactionToken = Str::random(40);
+
+        // Almacena el token en la sesión
+        Session::put('transactionToken', $transactionToken);
+        
         $userData =  User::findOrFail(auth()->id());
         $cartItems = CartModel::where('idUser', auth()->id())->with('product', 'product.images', 'user.shipmentData')->get();
 
@@ -35,6 +42,7 @@ class CartController extends Controller
         $totalToPay = $totalAmountToPay;
 
         return view('compra', [
+            'transactionToken' => $transactionToken,
             'cartItems' => $cartItems,
             'totalProducts' => $totalAmountToPay,
             'totalToPay' => $totalToPay,
@@ -44,6 +52,11 @@ class CartController extends Controller
     }
 
     public function purchaseProduct(Request $request){
+        $transactionToken = Str::random(40);
+
+        // Almacena el token en la sesión
+        Session::put('transactionToken', $transactionToken);
+
         $requestID = $request->input('idProduct');
         $requestAmount = $request->input('amount', 1);
 
@@ -77,6 +90,7 @@ class CartController extends Controller
         $totalToPay = ($product->price * $requestAmount);
 
         return view('compra', [
+            'transactionToken' => $transactionToken,
             'cartItems' => $cartItem,
             'amountTotal' => $requestAmount,
             'totalProducts' => $productTotal,
@@ -145,58 +159,80 @@ class CartController extends Controller
     }
 
     public function billPurchase(Request $request){
+        $sessionToken = Session::get('transactionToken');
+        $requestToken = $request->get('transactionToken');
+
+        // Verificamos si el token de la sesión coincide con el token de la solicitud
+        if ($sessionToken !== $requestToken) {
+            return redirect()->route('pageCart')->with('error', 'Transacción inválida. Por favor, realiza la compra nuevamente.');
+        }
+        
+        Session::forget('transactionToken');
+
         $request->validate([
             'idAddress' => 'required|exists:shipment_info,id',
             'items' => 'required|array',
         ]);
 
-        $addressData = ShipmentModel::findOrFail($request->input('idAddress'));
+        $addressData = ShipmentModel::findOrFail($request->input('idAddress'))->toArray();
         $products = $request->input('items');
+        $prodsArray = [];
+        $orderArray = [];
+        $orderIds = [];
 
-        foreach($products as $item){
+        foreach ($products as $item) {
             $decodedItem = json_decode($item, true);
             $prodData = ProductModel::find($decodedItem['id']);
 
-            if($prodData){
-                $prodsArray[] = $prodData;
+            if ($prodData) {
+                $prodsArray[] = $prodData->toArray();
                 $amount = $decodedItem['amount'];
                 $stock = $prodData->amountAvailable;
 
-                // Validamos si la cantidad solicitada esta en stock
-                if($amount <= $stock){
+                // Validamos si la cantidad solicitada está en stock
+                if ($amount <= $stock) {
                     // Creamos el registro de la compra
-                    OrderModel::create([
+                    $order = OrderModel::create([
                         'idProduct' => $prodData->id,
                         'idUser' => auth()->id(),
-                        'idAddress' => $addressData->id,
+                        'idAddress' => $addressData['id'],
                         'state' => 1,
                         'amount' => $decodedItem['amount'],
                     ]);
+                    
+                    $orderIds[] = $order->id;
+                    $orderIdsString = implode('', $orderIds);
+                    $orderArray[] = $order->toArray();
 
-                    // actualizamos el nuevo monto en stock
+                    // Actualizamos el nuevo monto en stock
                     $prodData->update(['amountAvailable' => $stock - $amount]);
 
                     $existingCartItem = CartModel::where('idUser', auth()->id())
-                    ->where('idProduct', $prodData->id)
-                    ->first();
-                    
+                        ->where('idProduct', $prodData->id)
+                        ->first();
+
                     // Eliminamos / Restamos items del carrito del usuario
-                    if($existingCartItem) {
+                    if ($existingCartItem) {
                         $amountC = $existingCartItem->amount;
                         $newCartAmount = $amountC - $amount;
 
-                        if($newCartAmount <= 0){
+                        if ($newCartAmount <= 0) {
                             $existingCartItem->delete();
-                        }else{
+                        } else {
                             $existingCartItem->update(['amount' => $newCartAmount]);
                         }
                     }
-                }else{
+                } else {
                     return redirect()->route('pageCart')->with('error', 'Disminuye la cantidad de productos, que no supere la cantidad disponible.');
                 }
             }
         }
 
+        $currentDate = Carbon::now();
+
+        Session::put('orderId', $orderIdsString);
+        Session::put('orders', $orderArray);
+        Session::put('currentDate', $currentDate);
         Session::put('address', $addressData);
         Session::put('products', $prodsArray);
 
@@ -204,11 +240,36 @@ class CartController extends Controller
     }
 
     public function billView(){
-        $address = Session::get('address');
-        $products = Session::get('products');
-    
+        $orderId = Session::get('orderId');
+        $ordersArray = Session::get('orders');
+        $currentDate = Session::get('currentDate');
+        $addressData = Session::get('address');
+        $productsArray = Session::get('products');
+
+        $user = User::find(auth()->id());
+
+        // Convertimos los arrays de productos y pedidos de nuevo a objetos
+        $products = collect($productsArray)->map(function ($item) {
+            return (object) $item;
+        });
+
+        $orders = collect($ordersArray)->map(function ($item) {
+            return (object) $item;
+        });
+
+        $subTotal = 0;
+
+        foreach ($products as $i => $prod){
+            $subTotal += $orders[$i]->amount * $prod->price;
+        }
+
         return view('bill', [
-            'address' => $address,
+            'orderId' => $orderId,
+            'user' => (object) $user,
+            'currentDate' => $currentDate,
+            'subTotal' => $subTotal,
+            'orders' => $orders,
+            'address' => (object) $addressData,
             'products' => $products
         ]);
     }

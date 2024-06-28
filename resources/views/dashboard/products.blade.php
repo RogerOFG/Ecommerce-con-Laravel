@@ -96,7 +96,7 @@
                                 <form action="{{ route('pageShowI', $item->id) }}" method="POST">
                                     @csrf
                                     <button type="submit" class="recent-orders-btn">
-                                        <i class="bi bi-card-image"></i>
+                                        <i class="bi bi-nut"></i>
                                     </button>
                                 </form>
                             </td>

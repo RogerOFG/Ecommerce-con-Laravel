@@ -40,6 +40,15 @@ Route::middleware('admin')->group(function () {
 
         // Guardar Registro de Producto
         Route::post('/dashboard/products/save', 'store')->name('pageSaveP');
+
+        // Formulario Actualizar Información de Producto
+        Route::get('/dashboard/product/{id}/update', 'edit')->name('pageUpdateP');
+
+        // Guardar los Cambios del Producto 
+        Route::patch('/dashboard/product/{id}/update/save', 'update')->name('pageUpdateS');
+
+        // Eliminar Producto
+        Route::delete('dashboard/product/{id}/delete', 'delete')->name('deleteProd');
     });
 
     Route::controller(ImageProdController::class)->group(function(){
@@ -50,7 +59,7 @@ Route::middleware('admin')->group(function () {
         Route::post('/dashboard/upload/{id}', 'upload')->name('pageUploadP');
 
         // Ver Imagenes de Producto
-        Route::post('/dashboard/product/{id}/image', 'images')->name('pageShowI');
+        Route::post('/dashboard/product/{id}/data', 'images')->name('pageShowI');
 
         // Eliminar Imagen de Producto
         Route::delete('/dashboard/product/{id}/image/{url}/delete', 'delete')->name('deleteImage');
@@ -69,12 +78,6 @@ Route::middleware('admin')->group(function () {
 Route::controller(UserController::class)->group(function(){
     // Home de la pagina
     Route::get('/', 'index')->name('pageHome');
-
-    // Login de Usuarios
-    Route::get('/login', 'login')->name('pageLogin');
-
-    // Register de Usuarios
-    Route::get('/register', 'register')->name('register');
 
     // Perfil del Usuario
     Route::get('/perfil', 'perfil')->name('pagePerfil')->middleware('auth');

@@ -35,7 +35,8 @@
                         <option disabled selected></option>
                         <option value="Q&Q">Q&Q</option>
                         <option value="Rolex">Rolex</option>
-                        <option value="Cassio">Cassio</option>
+                        <option value="Orient">Orient</option>
+                        <option value="Orient">Tissot</option>
                     </select>
                     <span class="form__name">Marca</span>
                 </div>
