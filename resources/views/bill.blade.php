@@ -102,7 +102,9 @@
             </div>
 
             <div class="order__bot">
-                <p id="dateUpdate">Estado: En proceso</p>
+                <p>Estado: En proceso</p>
+
+                <p class="order__bot--cancel">¿Desea cancelar el pedido?</p>
             </div>
         </div>
 
@@ -134,33 +136,13 @@
         return `Fecha: ${formattedDate} a las ${formattedTime}`;
     }
 
-    function formatDateUpdate(dateString) {
-        // Crear un objeto Date a partir de la cadena de fecha
-        const date = new Date(dateString);
-
-        // Opciones para formatear la fecha
-        const optionsDate = { 
-            day: '2-digit', 
-            month: 'long', 
-            year: 'numeric' 
-        };
-
-        // Formatear la fecha y la hora por separado
-        const formattedDate = date.toLocaleDateString('es-ES', optionsDate);
-
-        // Devolver la fecha y hora formateadas
-        return `${formattedDate} | Estado: En proceso`;
-    }
-
     // Obtener la fecha del elemento <p>
     const dateElement = document.getElementById('dateCreate');
     const dateString = dateElement.textContent;
 
     // Formatear la fecha y mostrarla en el elemento <p> de salida
     const formattedDate = formatDate(dateString);
-    const formattedDateUpdate = formatDateUpdate(dateString);
 
     dateElement.textContent = formattedDate;
-    document.getElementById('dateUpdate').textContent = formattedDateUpdate;
 </script>
 @endSection

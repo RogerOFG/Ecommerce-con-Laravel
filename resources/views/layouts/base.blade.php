@@ -20,21 +20,37 @@
         <!-- Recibir Alertas -->
         @if(session('success'))
             <div class="alert alert-controller alert-success">
+                <div class="alert__close alert__close--success"> 
+                    <i class="bi bi-check2-circle"></i>
+                </div>
+
                 {{ session('success') }}
             </div>
         @elseif (session('error'))
             <div class="alert alert-controller alert-error">
+                <div class="alert__close"> 
+                    <i class="bi bi-exclamation-circle"></i>
+                </div>
+
                 {{ session('error') }}
             </div>
         @elseif (session('warning'))
             <div class="alert alert-controller alert-warning">
+                <div class="alert__close alert__close--warning"> 
+                    <i class="bi bi-exclamation-circle"></i>
+                </div>
+
                 {{ session('warning') }}
             </div>
         @endif
 
         <!-- Validacion de errores -->
         @if ($errors->any())
-            <div class="alert alert-danger">
+            <div class="alert alert-controller alert-error">
+                <div class="alert__close"> 
+                    <i class="bi bi-exclamation-circle"></i>
+                </div>
+
                 <ul>
                     @foreach($errors->all() as $error)
                         <li> {{ $error }} </li>

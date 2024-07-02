@@ -72,7 +72,7 @@ body{
 }
 
 .form__input{
-    background-color: #cda43421;
+    background-color: #4b4a4a21;
     border: none;
     margin: 8px 0;
     padding: 10px 15px;
@@ -83,7 +83,7 @@ body{
 }
 
 .form__btn{
-    background-color: var(--tertiaryColor);
+    background-color: var(--secondaryColor);
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -115,6 +115,7 @@ body{
 .form__btn.form__btn--hidden{
     font-weight: bolder;
     color: var(--tertiaryColor);
+    color: #000;
     background-color: #fff;
     border-color: #fff;
 }
@@ -159,9 +160,9 @@ body{
 }
 
 .toggle{
-    background-color: var(--tertiaryColor);
+    background-color: #000;
     height: 100%;
-    background: linear-gradient(to right, #cda434, #cda43477);
+    background: linear-gradient(to right, #00000061, #000000);
     color: #fff;
     position: relative;
     left: -100%;

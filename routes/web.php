@@ -93,6 +93,9 @@ Route::controller(UserController::class)->group(function(){
 
     // Información de la cuenta: Formulario
     Route::get('/perfil/my-account/direcctions', 'myAccountCreate')->name('pageAccountF')->middleware('auth');
+
+    // Dashboard: Modificar estado del pedido
+    Route::post('/perfil/my-shopping/{id}/state', 'changeOrder')->name('changeState');
 });
 
 // Rutas de Productos
