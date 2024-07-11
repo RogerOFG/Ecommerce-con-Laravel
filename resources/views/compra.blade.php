@@ -153,7 +153,7 @@
                     @endphp
                 @endforeach
 
-                @if($shipments->isEmpty())
+                @if(isset($shipments) && $shipments->isEmpty())
                     <div class="cart__a" onclick="openFormAddress()">
                         <div class="cart__ubi cart__ubi--empty">
                             <div class="cart__empty">
@@ -161,7 +161,7 @@
                             </div>
                         </div>
                     </div>
-                @else
+                @elseif(isset($shipments) && !$shipments->isEmpty())
                     @foreach ($shipments as $shipment)
                         <div class="cart__ubi">
                             <label class="checkbox">

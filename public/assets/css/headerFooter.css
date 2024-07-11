@@ -97,7 +97,9 @@
 }
 
 .perfil{
-    right: -48px;
+    right: unset;
+    left: 50%;
+    transform: translate(-50%, 0);
     width: 170px;
     padding: 10px 0 5px;
 }

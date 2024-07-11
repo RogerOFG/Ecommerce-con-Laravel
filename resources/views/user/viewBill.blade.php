@@ -125,7 +125,7 @@
                 <div class="order__bot">
                     <p>Estado: {{ $state }}</p>
     
-                    @if ($state != "Cancelado")
+                    @if ($state == "En proceso")
                     <form action="{{ route('cancelBill', $bill->idBill) }}" method="POST">
                         @csrf
                         @method('DELETE')

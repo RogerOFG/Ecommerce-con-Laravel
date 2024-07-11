@@ -33,7 +33,7 @@
                                             @method('PATCH')
                                             <button class="element__btn incremento">+</button>
                                             <input class="element_num amountChoose" type="hidden" value="{{ $item->amount }}">
-                                            <input class="element_num txtAmount" name="amount" type="text">
+                                            <input class="element_num txtAmount" name="amount" type="text" readonly>
                                             <button class="element__btn decremento">-</button>
                                             <input class="element__max" type="hidden" value="{{ $item->product->amountAvailable }}">
                                         </form>
