@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DashboardController;
 
+// Rutas de Dashboard (Admin)
 Route::middleware('admin')->group(function () {
     Route::controller(DashboardController::class)->group(function(){
         // Dashboard: Inicio
@@ -119,17 +120,17 @@ Route::controller(ProductController::class)->group(function(){
 
 // Rutas del Carrito de Compras
 Route::controller(CartController::class)->group(function(){
-    // Home de la pagina
+    // Home de la pagina del carrito
     Route::get('/cart', 'index')->name('pageCart');
 
     // Añadir productos al Carrito
-    Route::post('/cart/add/{id}', 'addToCart')->name('cartAdd');
+    Route::post('/cart/add/{id}', 'addToCart')->name('cartAdd')->middleware('auth');
 
     // Remover productos del Carrito
-    Route::delete('/cart/remove/{itemId}', 'removeToCart')->name('cartRemove');
+    Route::delete('/cart/remove/{itemId}', 'removeToCart')->name('cartRemove')->middleware('auth');
 
     // Aumentar o Disminuir la cantidad de productos del Carrito
-    Route::patch('/cart/update/{itemId}', 'updateCartItem')->name('updateCart');
+    Route::patch('/cart/update/{itemId}', 'updateCartItem')->name('updateCart')->middleware('auth');
 
     // Comprar productos del productos del Carrito
     Route::get('/cart/buy', 'buyProducts')->name('comprarCart')->middleware('auth');
@@ -143,23 +144,25 @@ Route::controller(CartController::class)->group(function(){
     Route::get('/bill/view', 'billView')->name('billView')->middleware('auth');
 });
 
+// Rutas de Información de la dirección del Usuario
 Route::controller(ShipmentController::class)->group(function(){
     // Formulario para añadir una dirección
-    Route::get('/perfil/my-account/direcctions/create', 'create')->name('createAddress');
+    Route::get('/perfil/my-account/direcctions/create', 'create')->name('createAddress')->middleware('auth');
     
     // Formulario para modificar una dirección
-    Route::get('/perfil/my-account/direcctions/edit/{id}', 'edit')->name('editAddress');
+    Route::get('/perfil/my-account/direcctions/edit/{id}', 'edit')->name('editAddress')->middleware('auth');
     
     // Modificar una dirección
-    Route::patch('/perfil/my-account/direcctions/update/{id}', 'update')->name('updateAddress');
+    Route::patch('/perfil/my-account/direcctions/update/{id}', 'update')->name('updateAddress')->middleware('auth');
 
     // Remover una dirección
-    Route::delete('/perfil/my-account/direcctions/remove/{id}', 'remove')->name('removeAddress');
+    Route::delete('/perfil/my-account/direcctions/remove/{id}', 'remove')->name('removeAddress')->middleware('auth');
 
     // Guardar la direccion
-    Route::post('/perfil/my-account/direcctions/save', 'store')->name('saveAddress');
+    Route::post('/perfil/my-account/direcctions/save', 'store')->name('saveAddress')->middleware('auth');
 });
 
+// Rutas de la creación de Pedidos
 Route::controller(OrderController::class)->group(function(){
     // Compras del Usuario
     Route::get('/perfil/my-shopping', 'myShopping')->name('pageShopping')->middleware('auth');
@@ -171,6 +174,7 @@ Route::controller(OrderController::class)->group(function(){
     Route::delete('/perfil/my-shopping/bill/{id}/delete', 'cancelBill')->name('cancelBill')->middleware('auth');
 });
 
+// Ruta de la Cupones de Descuento
 Route::controller(CouponController::class)->group(function(){
     Route::get('/cart/buy/coupon', 'search')->name('searchCoupon')->middleware('auth');
 });
