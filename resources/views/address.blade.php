@@ -108,7 +108,7 @@
             </div>
 
             <div class="inputs__content">
-                <input class="inputs__text" name="phone" type="number" required>
+                <input class="inputs__text inputs__text--phone" name="phone" type="text" required>
                 <label class="inputs__lbl">Telefono de contacto</label>
             </div>
 
@@ -116,6 +116,8 @@
                 <textarea class="inputs__text inputs__text--textarea" name="info" required></textarea>
                 <label class="inputs__lbl">Referencias adicionales de esta dirección</label>
             </div>
+
+            <input id="addressInput" name="address" type="hidden">
 
             <div class="inputs__submit">
                 <button type="submit" class="inputs__btn">Guardar</button>
@@ -126,5 +128,15 @@
 @endSection
 
 @section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.querySelector('.inputs__text--phone');
+
+            input.addEventListener('input', () => {
+                input.value = input.value.replace(/\D/g, '');
+            });
+        });
+    </script>
+
     <script src="{{ asset('/assets/js/colombia.js') }}"></script>
 @endSection

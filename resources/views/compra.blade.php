@@ -102,7 +102,7 @@
             </div>
 
             <div class="inputs__content">
-                <input class="inputs__text" name="phone" type="text" required>
+                <input class="inputs__text inputs__text--phone" name="phone" type="text" required>
                 <label class="inputs__lbl">Telefono de contacto</label>
             </div>
 
@@ -405,6 +405,14 @@
         elementCoupon.classList.add('hidde');
         totalPayTxt.innerHTML = '${{ number_format($totalToPay, 0, '.', '.') }} COP';
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const input = document.querySelector('.inputs__text--phone');
+
+        input.addEventListener('input', () => {
+            input.value = input.value.replace(/\D/g, '');
+        });
+    });
 </script>
 <script src="{{ asset('/assets/js/compra.js') }}"></script>
 <script src="{{ asset('/assets/js/colombia.js') }}"></script>

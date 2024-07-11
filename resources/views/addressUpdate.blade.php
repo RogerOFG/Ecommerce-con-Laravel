@@ -110,7 +110,7 @@
             </div>
 
             <div class="inputs__content">
-                <input class="inputs__text" name="phone" type="number" value="{{ $address->phone }}" required>
+                <input class="inputs__text inputs__text--phone" name="phone" type="text" value="{{ $address->phone }}" required>
                 <label class="inputs__lbl">Telefono de contacto</label>
             </div>
 
@@ -134,5 +134,13 @@
     <script src="{{ asset('/assets/js/colombia.js') }}"></script>
     <script>
         setAddressValues();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.querySelector('.inputs__text--phone');
+
+            input.addEventListener('input', () => {
+                input.value = input.value.replace(/\D/g, '');
+            });
+        });
     </script>
 @endSection

@@ -109,6 +109,7 @@
     border: 1px solid #000;
     background-color: var(--prymaryColor);
     box-shadow: 3px 3px 1px #000;
+    z-index: 4;
 }
 
 .main--main,

@@ -41,7 +41,7 @@
 
                     <div class="inputs__content">
                         <input class="inputs__text" name="numCC" type="text" value="{{ $user->numCC }}" required>
-                        <label class="inputs__lbl">Documento de identidad</label>
+                        <label class="inputs__lbl">Nro. Documento de identidad</label>
                     </div>
 
                     <div class="inputs__submit">
