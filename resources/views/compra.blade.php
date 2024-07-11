@@ -2,8 +2,10 @@
 @extends('layouts.header')
 
 @section('head')
-    <link rel="stylesheet" href="{{ asset('/assets/css/compra.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/css/address.css') }}">
+<link rel="stylesheet" href="{{ asset('/assets/css/compra.css') }}">
+<link rel="stylesheet" href="{{ asset('/assets/css/address.css') }}">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     {{-- Kanit Font --}}
     <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
@@ -226,6 +228,21 @@
                     @endforeach
 
                 </div>
+
+                <div class="card__coupon">
+                    <div class="coupon">
+                        <div class="coupon__wrapper">
+                            <span id="couponText" class="coupon__ttl">¿Tienes un codigo?</span>
+
+                            <div class="coupon__content">
+                                <input id="discount-code" class="coupon__input" type="text">
+                                <button class="coupon__btn-search" type="submit" onclick="validateCoupon()"><i class="bi bi-search"></i></button>
+                                <i class="coupon__cancel hidde bi bi-x" onclick="deleteCoupon()"></i>
+                                <div id="couponLine" class="coupon__line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @endif
         </div>
     </section>
@@ -247,9 +264,15 @@
                 <span>Gratis</span>
             </div>
 
+            <div id="elementCoupon" class="footer__box footer__box--mb hidde">
+                <span>Codigo de Descuento</span>
+                <span id="valueCoupon">value</span>
+            </div>
+
             <div class="footer__total">
                 <span>Total</span>
-                <span>${{ number_format($totalToPay, 0, '.', '.') }} COP</span>
+                <span id="totalPayTxt">${{ number_format($totalToPay, 0, '.', '.') }} COP</span>
+                <input id="totalPay" type="hidden" value="{{ $totalToPay }}">
             </div>
         </div>
 
@@ -258,7 +281,12 @@
             {{-- ID DE LA DIRECCION ESCOGIDA --}}
             <input id="addressChoose" name="idAddress" type="hidden">
 
+            {{-- TOKEN DE LA TRANSACIÓN --}}
             <input name="transactionToken" value="{{ $transactionToken }}" type="hidden">
+
+            {{-- CODIGO DE DESCUENTO --}}
+            <input id="codeDiscount" value="NULL" name="code" type="hidden">
+
             @foreach ($cartItems as $item)
                 <input name="items[]" value="{{ json_encode(['id' => $item->product->id, 'amount' => $item->amount]) }}" type="hidden">
             @endforeach
@@ -276,13 +304,107 @@
     var loader = document.querySelector(".loader");
     loader.style.display = "flex";
     
-    
     window.addEventListener("load", function() {
         setTimeout(() => {
             var loader = document.querySelector(".loader");
             loader.style.display = "none";
         }, 1000);
     });
+
+    function validateCoupon(){
+        const input = document.getElementById('discount-code');
+        const line = document.getElementById('couponLine');
+        const msj = document.getElementById('couponText');
+        const valueTxt = document.getElementById('valueCoupon');
+        const elementCoupon = document.getElementById('elementCoupon');
+        const totalPayTxt = document.getElementById('totalPayTxt');
+        const totalPay = document.getElementById('totalPay').value;
+
+        if(input.value.length > 0){
+            line.classList.remove('error');
+
+            $.ajax({
+                url: "{{ route('searchCoupon') }}",
+                method: 'GET',
+                data: { query: input.value },
+                success: function(data) {
+                    if(data[0] == 0){
+                        line.classList.add('error');
+                        line.classList.remove('valid');
+                        msj.innerHTML = "Codigo Invalido";
+                        elementCoupon.classList.add('hidde');
+                        totalPayTxt.innerHTML = '${{ number_format($totalToPay, 0, '.', '.') }} COP';
+                    }else if(data[0] == 1){
+                        // Guardamos el codigo ingresado en un input oculto
+                        const codeDiscount = document.getElementById('codeDiscount');
+                        codeDiscount.value = input.value;
+
+                        // Escondemos el boton de buscar y aparece el de borrar
+                        const btnCancel = document.querySelector('.coupon__cancel');
+                        const btnSearch = document.querySelector('.coupon__btn-search');
+                        btnCancel.classList.remove('hidde');
+                        btnSearch.classList.add('hidde');
+
+                        // Desactivamos el input
+                        input.disabled = true;
+
+                        line.classList.remove('error');
+                        line.classList.add('valid');
+                        msj.innerHTML = "Codigo Verificado";
+                        elementCoupon.classList.remove('hidde');
+                        valueTxt.innerHTML = data[1]+'%';
+
+                        const porcentajeDescuento = data[1];
+                        const descuentoAplicado = totalPay * (porcentajeDescuento / 100);
+                        const nuevoTotal = totalPay - descuentoAplicado;
+
+                        totalPayTxt.innerHTML = `${new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(nuevoTotal)} COP`;
+                    }else if(data[0] == 2){
+                        line.classList.add('error');
+                        line.classList.remove('valid');
+                        msj.innerHTML = "Codigo ya utilizado anteriormente";
+                        elementCoupon.classList.add('hidde');
+                        totalPayTxt.innerHTML = '${{ number_format($totalToPay, 0, '.', '.') }} COP';
+                    }else if(data[0] == 3){
+                        line.classList.add('error');
+                        line.classList.remove('valid');
+                        msj.innerHTML = "Codigo Descontinuado";
+                        elementCoupon.classList.add('hidde');
+                        totalPayTxt.innerHTML = '${{ number_format($totalToPay, 0, '.', '.') }} COP';
+                    }
+                },
+                error: function() {
+                    line.classList.add('error');
+                    line.classList.remove('valid');
+                    msj.innerHTML = "Ha ocurrido un error, pruebe mas tarde";
+                }
+            });
+        }else{
+            line.classList.add('error');
+        }
+    }
+
+    function deleteCoupon(){
+        const input = document.getElementById('discount-code');
+        const btnCancel = document.querySelector('.coupon__cancel');
+        const btnSearch = document.querySelector('.coupon__btn-search');
+        const codeDiscount = document.getElementById('codeDiscount');
+        const line = document.getElementById('couponLine');
+        const msj = document.getElementById('couponText');
+        const elementCoupon = document.getElementById('elementCoupon');
+        const totalPayTxt = document.getElementById('totalPayTxt');
+        
+        codeDiscount.value = "NULL";
+        input.value = "";
+        input.disabled = false;
+        btnCancel.classList.add('hidde');
+        btnSearch.classList.remove('hidde');
+        line.classList.remove('valid');
+        msj.innerHTML = "¿Tienes un codigo?";
+
+        elementCoupon.classList.add('hidde');
+        totalPayTxt.innerHTML = '${{ number_format($totalToPay, 0, '.', '.') }} COP';
+    }
 </script>
 <script src="{{ asset('/assets/js/compra.js') }}"></script>
 <script src="{{ asset('/assets/js/colombia.js') }}"></script>

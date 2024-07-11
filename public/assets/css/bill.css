@@ -78,6 +78,10 @@ body{
     font-size: 16px;
 }
 
+.order__name--cancel{
+    text-decoration: line-through;
+}
+
 .order__italyc{
     font-size: 14px;
     font-style: italic;
@@ -92,6 +96,10 @@ body{
 .order__price{
     text-align: right;
     font-size: 16px;
+}
+
+.order__price--cancel{
+    text-decoration: line-through;
 }
 
 .order__address{
@@ -113,7 +121,7 @@ body{
     gap: 10px;
     flex-wrap: wrap;
     padding: 20px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     background-color: #f7f7f7;
 }
@@ -122,6 +130,9 @@ body{
     font-size: 14px;
     text-decoration: underline;
     cursor: pointer;
+    font-weight: 600;
+    border: none;
+    background-color: transparent;
 }
 
 @media screen and (max-width: 400px) {
@@ -137,4 +148,23 @@ body{
     .order__line--hidde{
         display: block;
     }
+}
+
+/* ADICIONALES */
+
+.main--pdd{
+    gap: 0;
+    width: 600px;
+    max-width: 99%;
+    padding-top: 0;
+    margin: 0 auto;
+}
+
+.main__bot{
+    box-shadow: none;
+    padding-left: 0;
+}
+
+.ubi{
+    margin-bottom: 0;
 }

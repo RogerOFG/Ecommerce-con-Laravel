@@ -7,6 +7,9 @@ use App\Models\User;
 use App\Models\OrderModel;
 use App\Models\ProductModel;
 use App\Models\ShipmentModel;
+use App\Models\BillModel;
+use App\Models\CouponModel;
+use App\Models\CouponUsageModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,6 +17,14 @@ class UserController extends Controller
 {
     public function index(){
         return view('home');
+    }
+
+    public function legal(){
+        return view('privacyPolicies.legal');
+    }
+
+    public function policies(){
+        return view('privacyPolicies.policies');
     }
 
     public function perfil(){
@@ -88,6 +99,7 @@ class UserController extends Controller
 
     public function changeOrder(Request $request, $id){
         $order = OrderModel::where('id', $id)->first();
+        $idBill = $order->idBill;
 
         if ($order->state != 0) {
             $product = ProductModel::where('id', $order->idProduct)->first();
@@ -101,6 +113,37 @@ class UserController extends Controller
             }
 
             $order->update(['state' => $state]);
+
+            $orderBillState = OrderModel::where('idBill', $idBill)->get('state');
+            $sw = false;
+
+            // Buscamos si aun queda algun pedido de la misma factura que no este cancelado
+            foreach ($orderBillState as $item ){
+                $item;
+                if ($item->state != 0){
+                    $sw = true;
+                }
+            }
+
+            if(!$sw){
+                $couponUsage = CouponUsageModel::where('idBill', $idBill)->first();
+
+                if($couponUsage){
+                    $idCoupon = $couponUsage->idCoupon; 
+
+                    $coupon = CouponModel::where('id', $idCoupon)->first();
+
+                    // Devolvemos el cupon usado y eliminamos el uso del cupon
+                    if($coupon){
+                        $coupon->decrement('amountUsage');
+                        $couponUsage->delete();
+
+                        // Quitamos registros de uso del cupon en la factura
+                        $bill = BillModel::where('idBill', $idBill)->first();
+                        $bill->update(['discount' => "NULL"]);
+                    }
+                }
+            }
 
             return back()->with('success', 'Has cancelado tu pedido correctamente');
         }

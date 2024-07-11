@@ -12,6 +12,7 @@ class OrderModel extends Model
     protected $table = 'order';
 
     protected $fillable = [
+        'idBill',
         'idProduct',
         'idUser',
         'idAddress',

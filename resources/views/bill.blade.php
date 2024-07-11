@@ -14,7 +14,7 @@
         <div class="order">
             <div class="order__top">
                 <h3 class="order__ttl">Pedido #{{ $orderId }}</h3>
-                <p id="dateCreate" class="order__date">{{ $orders[0]->created_at }}</p>
+                <p id="dateCreate" class="order__date">{{ $bill->created_at }}</p>
             </div>
 
             <div class="order__mid">
@@ -38,9 +38,16 @@
                     <span class="order__price">$0.0</span>
                 </div>
 
+                @if ($bill->discount != "NULL")
+                    <div class="order__element">
+                        <span class="order__name">Descuento aplicado</span>
+                        <span class="order__price">{{ $bill->discount }}%</span>
+                    </div>
+                @endif
+
                 <div class="order__element order__element--total">
                     <span class="order__weight">Total</span>
-                    <span class="order__weight">${{ number_format($subTotal) }}</span>
+                    <span class="order__weight">${{ number_format($totalToPay) }}</span>
                 </div>
 
                 <div class="order__line"></div>
@@ -104,7 +111,10 @@
             <div class="order__bot">
                 <p>Estado: En proceso</p>
 
-                <p class="order__bot--cancel">¿Desea cancelar el pedido?</p>
+                <form action="{{ route('pageMyBill', $bill->idBill) }}" method="POST">
+                    @csrf
+                    <button class="order__bot--cancel" type="submit">¿Desea cancelar el pedido?</button>
+                </form>
             </div>
         </div>
 

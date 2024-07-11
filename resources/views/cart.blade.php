@@ -67,12 +67,14 @@
                     @endif
                 @else
                     <div class="element">
-                        <span class="element__name element__name--empty">Inicia Sesión para empezar a usar el carrito</span>
+                        <a href="{{ route('login') }}" class="element__name element__name--empty">Inicia Sesión para empezar a usar el carrito</a>
                     </div>
                 @endif
 
                 @if(!$cartItems->isEmpty())
                     <div class="boxCart__continue">
+                        <span class="boxCart__subtotal">SubTotal: {{ number_format($subTotal, 0, '.', '.') }} COP</span>
+
                         <a href="{{ route('comprarCart') }}">
                             <button class="boxCart__btn" type="submit">Continuar compra</button>
                         </a>
@@ -84,7 +86,6 @@
 @endSection
 
 @section('scripts')
-
 <!-- INCREMENTO / DECREMENTO DE CATINDAD -->
 <script>
     const cantidades = document.querySelectorAll('.element__content');

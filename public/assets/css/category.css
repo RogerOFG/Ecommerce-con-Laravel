@@ -221,6 +221,7 @@
     flex-wrap: wrap;
     gap: 15px;
     width: 90%;
+    max-width: 1210px;
     margin: 0 auto;
 }
 

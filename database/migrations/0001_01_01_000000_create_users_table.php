@@ -11,30 +11,57 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('bill', function (Blueprint $table) {
             $table->id()->primary();
-            $table->string('name');
-            $table->string('surname');
-            $table->string('numCC')->nullable()->default(null);
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('admin')->default('0');
-            $table->rememberToken();
+            $table->string('idBill');
+            $table->string('idUser');
+            $table->string('discount');
             $table->timestamps();
         });
 
-        Schema::create('shipment_info', function (Blueprint $table) {
+        Schema::create('cart', function (Blueprint $table) {
             $table->id()->primary();
             $table->string('idUser');
-            $table->string('city');
-            $table->string('department');
-            $table->string('district');
-            $table->string('address');
+            $table->string('idProduct');
+            $table->string('amount');
+            $table->timestamps();
+        });
+
+        Schema::create('coupon', function (Blueprint $table) {
+            $table->id()->primary();
+            $table->string('code');
+            $table->string('type');
+            $table->string('idProduct');
+            $table->string('idUser');
+            $table->string('discount');
+            $table->string('amountLimit');
+            $table->string('amountUsage');
+            $table->timestamps();
+        });
+
+        Schema::create('coupon_usage', function (Blueprint $table) {
+            $table->id()->primary();
+            $table->string('idCoupon');
+            $table->string('idBill')->nullable()->default(null);
+            $table->string('idUser');
+            $table->timestamps();
+        });
+
+        Schema::create('infoProduct', function (Blueprint $table) {
+            $table->id()->primary();
+            $table->string('idProduct');
             $table->string('info');
-            $table->string('number')->nullable()->default(null);
-            $table->string('phone');
-            $table->rememberToken();
+            $table->timestamps();
+        });
+
+        Schema::create('order', function (Blueprint $table) {
+            $table->id()->primary();
+            $table->string('idBill');
+            $table->string('idProduct');
+            $table->string('idUser');
+            $table->string('idAddress');
+            $table->string('state');
+            $table->string('amount');
             $table->timestamps();
         });
 
@@ -54,35 +81,37 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('infoProduct', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->string('idProduct');
-            $table->string('info');
-            $table->timestamps();
-        });
-
-        Schema::create('order', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->string('idProduct');
-            $table->string('idUser');
-            $table->string('idAddress');
-            $table->string('state');
-            $table->string('amount');
-            $table->timestamps();
-        });
-
-        Schema::create('cart', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->string('idUser');
-            $table->string('idProduct');
-            $table->string('amount');
-            $table->timestamps();
-        });
-
         Schema::create('product_image', function (Blueprint $table) {
             $table->id()->primary();
             $table->string('idProduct');
             $table->string('url');
+            $table->timestamps();
+        });
+
+        Schema::create('shipment_info', function (Blueprint $table) {
+            $table->id()->primary();
+            $table->string('idUser');
+            $table->string('city');
+            $table->string('department');
+            $table->string('district');
+            $table->string('address');
+            $table->string('info');
+            $table->string('number')->nullable()->default(null);
+            $table->string('phone');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+
+        Schema::create('users', function (Blueprint $table) {
+            $table->id()->primary();
+            $table->string('name');
+            $table->string('surname');
+            $table->string('numCC')->nullable()->default(null);
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->string('admin')->default('0');
+            $table->rememberToken();
             $table->timestamps();
         });
 
@@ -104,13 +133,16 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('shipment_info');
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('bill');
+        Schema::dropIfExists('cart');
+        Schema::dropIfExists('coupon');
+        Schema::dropIfExists('coupon_usage');
         Schema::dropIfExists('infoProduct');
         Schema::dropIfExists('order');
-        Schema::dropIfExists('cart');
+        Schema::dropIfExists('products');
         Schema::dropIfExists('product_image');
+        Schema::dropIfExists('shipment_info');
+        Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
     }

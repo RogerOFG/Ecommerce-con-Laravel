@@ -12,10 +12,10 @@
             <a href="#" class="footer__icon">
                 <i class="bi bi-instagram"></i>
             </a>
-            <a href="#" class="footer__icon">
+            <a class="footer__icon" onclick="location.href='mailto:myshop@shopxeng.com'">
                 <i class="bi bi-envelope"></i>
             </a>
-            <a href="#" class="footer__icon">
+            <a href="https://wa.me/573005369591" target="_blank" class="footer__icon">
                 <i class="bi bi-whatsapp"></i>
             </a>
         </div>
@@ -31,9 +31,9 @@
         <span class="footer__copy">Copyright © 2024 ShopXeng.</span>
 
         <div class="footer__politice">
-            <a class="footer__polit" href="#">Información legal</a>
+            <a class="footer__polit" href="{{ route('pageLegal') }}">Información legal</a>
             <div>|</div>
-            <a class="footer__polit" href="#">Política de privacidad</a>
+            <a class="footer__polit" href="{{ route('pagePolicies') }}">Política de privacidad</a>
         </div>
     </div>
 </footer>

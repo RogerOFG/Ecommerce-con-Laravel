@@ -6,6 +6,9 @@ use App\Models\User;
 use App\Models\CartModel;
 use App\Models\ProductModel;
 use App\Models\OrderModel;
+use App\Models\CouponModel;
+use App\Models\CouponUsageModel;
+use App\Models\BillModel;
 use App\Models\ShipmentModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -18,8 +21,19 @@ class CartController extends Controller
 {
     public function index(){
         $cartItems = CartModel::where('idUser', auth()->id())->with('product', 'product.images')->get();
+        $subTotal = 0;
+        $products = [];
 
-        return view('cart')->with('cartItems', $cartItems);
+        foreach ($cartItems as $i => $item){
+            $prod = ProductModel::where('id', $item->idProduct)->first();
+
+            if ($prod){
+                $products[] = $prod->price;
+                $subTotal = $subTotal + ($item->amount * $products[$i]);
+            }
+        }
+
+        return view('cart')->with('cartItems', $cartItems)->with('subTotal', $subTotal);
     }
 
     public function buyProducts(){
@@ -166,7 +180,7 @@ class CartController extends Controller
         if ($sessionToken !== $requestToken) {
             return redirect()->route('pageCart')->with('error', 'Transacción inválida. Por favor, realiza la compra nuevamente.');
         }
-        
+
         Session::forget('transactionToken');
 
         $request->validate([
@@ -178,7 +192,6 @@ class CartController extends Controller
         $products = $request->input('items');
         $prodsArray = [];
         $orderArray = [];
-        $orderIds = [];
 
         foreach ($products as $item) {
             $decodedItem = json_decode($item, true);
@@ -193,15 +206,14 @@ class CartController extends Controller
                 if ($amount <= $stock) {
                     // Creamos el registro de la compra
                     $order = OrderModel::create([
+                        'idBill' => auth()->id(),
                         'idProduct' => $prodData->id,
                         'idUser' => auth()->id(),
                         'idAddress' => $addressData['id'],
                         'state' => 1,
                         'amount' => $decodedItem['amount'],
                     ]);
-                    
-                    $orderIds[] = $order->id;
-                    $orderIdsString = implode('', $orderIds);
+
                     $orderArray[] = $order->toArray();
 
                     // Actualizamos el nuevo monto en stock
@@ -225,12 +237,53 @@ class CartController extends Controller
                 } else {
                     return redirect()->route('pageCart')->with('error', 'Disminuye la cantidad de productos, que no supere la cantidad disponible.');
                 }
+            }else{
+                return redirect()->route('pageCart')->with('error', 'Ha ocurrido un error con alguno de los productos, intente de nuevo.');
             }
         }
 
+        // Validamos la existencia del cupon usado (si fue asi)
+        $discount = CouponModel::where('code', $request->get('code'))->first();
+
+        if (!$discount) {
+            $discountValue = "NULL";
+        } else {
+            $discount->increment('amountUsage');
+
+            $couponUsage = CouponUsageModel::create([
+                'idCoupon' => $discount->id,
+                'idUser' => auth()->id()
+            ]);
+
+            $discountValue = $discount->discount;
+        }
+
+        // Creamos el registro de la factura
+        $bill = BillModel::create([
+            'idUser' => auth()->id(),
+            'discount' => $discountValue
+        ]);
+
+        // Modificamos el idBill del cupon creado
+        if($discount){
+            $couponUsage->update(['idBill' => $bill->idBill]);
+        }
+
+        // Le añadimos el id generado de la factura a cada uno de los elementos
+        foreach ($orderArray as $item){
+            $idOrder = $item['id'];
+            $existingItem = OrderModel::where('id', $idOrder)->first();
+
+            if ($existingItem) {
+                $existingItem->update(['idBill' => $bill->idBill]);
+            }
+        }
+
+        // Obtenemos fecha actual
         $currentDate = Carbon::now();
 
-        Session::put('orderId', $orderIdsString);
+        Session::put('discount', $discountValue);
+        Session::put('bill', $bill);
         Session::put('orders', $orderArray);
         Session::put('currentDate', $currentDate);
         Session::put('address', $addressData);
@@ -240,7 +293,8 @@ class CartController extends Controller
     }
 
     public function billView(){
-        $orderId = Session::get('orderId');
+        $discount = Session::get('discount');
+        $bill = Session::get('bill');
         $ordersArray = Session::get('orders');
         $currentDate = Session::get('currentDate');
         $addressData = Session::get('address');
@@ -263,12 +317,24 @@ class CartController extends Controller
             $subTotal += $orders[$i]->amount * $prod->price;
         }
 
+        $totalToPay = $subTotal;
+
+        if($bill->discount != "NULL"){
+            $discount = $subTotal * ($bill->discount / 100);
+            $totalToPay = $subTotal - $discount;
+        }
+
+        // Obtenemos el ID de la factura recien creada
+        $billId = $bill->idBill;
+
         return view('bill', [
-            'orderId' => $orderId,
+            'orderId' => $billId,
             'user' => (object) $user,
             'currentDate' => $currentDate,
             'subTotal' => $subTotal,
+            'totalToPay' => $totalToPay,
             'orders' => $orders,
+            'bill' => $bill,
             'address' => (object) $addressData,
             'products' => $products
         ]);

@@ -8,6 +8,7 @@ use App\Http\Controllers\ImageProdController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DashboardController;
 
 Route::middleware('admin')->group(function () {
@@ -79,6 +80,12 @@ Route::controller(UserController::class)->group(function(){
     // Home de la pagina
     Route::get('/', 'index')->name('pageHome');
 
+    // Información Legal
+    Route::get('/legal', 'legal')->name('pageLegal');
+
+    // Politicas de Privacidad
+    Route::get('/policies', 'policies')->name('pagePolicies');
+
     // Perfil del Usuario
     Route::get('/perfil', 'perfil')->name('pagePerfil')->middleware('auth');
 
@@ -95,7 +102,7 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/perfil/my-account/direcctions', 'myAccountCreate')->name('pageAccountF')->middleware('auth');
 
     // Dashboard: Modificar estado del pedido
-    Route::post('/perfil/my-shopping/{id}/state', 'changeOrder')->name('changeState');
+    Route::post('/perfil/my-shopping/{id}/state', 'changeOrder')->name('changeState')->middleware('auth');
 });
 
 // Rutas de Productos
@@ -156,6 +163,16 @@ Route::controller(ShipmentController::class)->group(function(){
 Route::controller(OrderController::class)->group(function(){
     // Compras del Usuario
     Route::get('/perfil/my-shopping', 'myShopping')->name('pageShopping')->middleware('auth');
+
+    // Información detallada de la factura generada
+    Route::post('/perfil/my-shopping/bill/{id}', 'myBill')->name('pageMyBill')->middleware('auth');
+
+    // Cancelar todos los pedidos de una factura
+    Route::delete('/perfil/my-shopping/bill/{id}/delete', 'cancelBill')->name('cancelBill')->middleware('auth');
+});
+
+Route::controller(CouponController::class)->group(function(){
+    Route::get('/cart/buy/coupon', 'search')->name('searchCoupon')->middleware('auth');
 });
 
 Auth::routes();

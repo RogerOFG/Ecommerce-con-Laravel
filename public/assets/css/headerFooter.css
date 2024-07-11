@@ -275,6 +275,7 @@
 
 .footer__icon{
     color: #fff;
+    cursor: pointer;
 }
 
 .footer__bot{
@@ -302,6 +303,7 @@
 }
 
 .footer__polit{
+    text-align: center;
     color: #fff;
 }
 
