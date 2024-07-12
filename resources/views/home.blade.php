@@ -49,37 +49,60 @@
             
         </div>
 
-        {{-- <form id="contactForm">
-            <input type="text" name="message" placeholder="Escribe tu mensaje aquí" required />
-            <button type="submit">Enviar</button>
-        </form> --}}
+        <div class="services">
+            <h3 class="services__ttl">Lo que ofrecemos</h3>
+
+            <div class="services__wrapper">
+                <div class="services__content">
+                    <i class="services__icon bi bi-box-seam"></i>
+    
+                    <div class="services__right">
+                        <h3 class="services__sub">Envíos GRATIS</h3>
+                        <p class="services__txt">Disfruta de envíos gratis en todos nuestros productos. Sin costo adicional, sin preocupaciones.</p>
+                    </div>
+                </div>
+
+                <div class="services__content">
+                    <i class="services__icon bi bi-shield-lock"></i>
+    
+                    <div class="services__right">
+                        <h3 class="services__sub">Protección de Datos</h3>
+                        <p class="services__txt">Tu privacidad es nuestra prioridad. Mantenemos tus datos seguros y protegidos con la más alta tecnología de seguridad.</p>
+                    </div>
+                </div>
+
+                <div class="services__content">
+                    <i class="services__icon bi bi-bag-heart"></i>
+    
+                    <div class="services__right">
+                        <h3 class="services__sub">Garantía de Calidad</h3>
+                        <p class="services__txt">Nuestros productos están respaldados por una garantía para asegurar tu completa satisfacción, visita nuestras políticas para conocer mas.</p>
+                    </div>
+                </div>
+
+                <div class="services__content">
+                    <i class="services__icon bi bi-truck"></i>
+    
+                    <div class="services__right">
+                        <h3 class="services__sub">Pago Contra Entrega</h3>
+                        <p class="services__txt">Paga cómodamente al recibir tu pedido. Garantizamos un proceso de compra seguro y sin complicaciones.</p>
+                    </div>
+                </div>
+
+                <div class="services__content">
+                    <i class="services__icon bi bi-telephone"></i>
+    
+                    <div class="services__right">
+                        <h3 class="services__sub">Atención al Cliente</h3>
+                        <p class="services__txt">Nuestro equipo de atención al cliente está disponible para ayudarte con cualquier consulta o problema que puedas tener.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 @endSection
 
 @section('scripts')
 {{-- SLIDER --}}
 <script src="{{ asset('/assets/js/slider.js') }}"></script>
-
-{{-- <script>
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const message = event.target.message.value;
-
-        fetch('http://localhost:5000/send-message', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ message })
-        }).then(response => {
-            if (response.ok) {
-                alert('Mensaje enviado');
-            } else {
-                alert('Error enviando mensaje');
-            }
-        }).catch(error => {
-            console.error('Error:', error);
-        });
-    });
-</script> --}}
 @endSection
