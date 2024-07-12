@@ -54,7 +54,7 @@
 
             <div class="services__wrapper">
                 <div class="services__content">
-                    <i class="services__icon bi bi-box-seam"></i>
+                    <div class="services__icon">📦</div>
     
                     <div class="services__right">
                         <h3 class="services__sub">Envíos GRATIS</h3>
@@ -63,7 +63,7 @@
                 </div>
 
                 <div class="services__content">
-                    <i class="services__icon bi bi-shield-lock"></i>
+                    <div class="services__icon">🛡️</div>
     
                     <div class="services__right">
                         <h3 class="services__sub">Protección de Datos</h3>
@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="services__content">
-                    <i class="services__icon bi bi-bag-heart"></i>
+                    <div class="services__icon">🛠️</div>
     
                     <div class="services__right">
                         <h3 class="services__sub">Garantía de Calidad</h3>
@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="services__content">
-                    <i class="services__icon bi bi-truck"></i>
+                    <div class="services__icon">🚚</div>
     
                     <div class="services__right">
                         <h3 class="services__sub">Pago Contra Entrega</h3>
@@ -90,7 +90,7 @@
                 </div>
 
                 <div class="services__content">
-                    <i class="services__icon bi bi-telephone"></i>
+                    <div class="services__icon">📞</div>
     
                     <div class="services__right">
                         <h3 class="services__sub">Atención al Cliente</h3>
