@@ -61,6 +61,7 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 8px;
     padding: 0 40px;
     height: 100%;
 }
@@ -71,15 +72,56 @@ body{
     text-shadow: 1px 1px 2px #00000047;
 }
 
+.form__content-wrapper{
+    width: 100%;
+}
+
+.form__content-input{
+    position: relative;
+}
+
 .form__input{
     background-color: #4b4a4a21;
     border: none;
-    margin: 8px 0;
     padding: 10px 15px;
     font-size: 13px;
     border-radius: 8px;
     width: 100%;
     outline: none;
+}
+
+.form__input.error{
+    border: 1px solid #d10000;
+}
+
+.form__input.valid{
+    border: 1px solid #00b52e;
+}
+
+.form__error{
+    display: none;
+    padding-left: 10px;
+    font-size: 12px;
+    font-weight: 900;
+    color: #d10000;
+}
+
+.form__error.active{
+    display: block;
+}
+
+.form__icon-eye{
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translate(0, -50%);
+    color: #818181;
+    cursor: pointer;
+}
+
+.form__icon-eye.active{
+    display: block;
 }
 
 .form__btn{
