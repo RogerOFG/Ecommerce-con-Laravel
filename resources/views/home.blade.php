@@ -65,7 +65,7 @@
         </div>
 
         <div class="services services--txt">
-            <h3 class="services__ttl services__ttl--center">Explora nuestras colecciones destacadas que combinan estilo, elegancia y calidad inigualables.</h3>
+            <h3 class="services__ttl services__ttl--center">Explora nuestra coleccion que combina estilo, elegancia y calidad inigualables.</h3>
         </div>
 
         <div class="line"></div>

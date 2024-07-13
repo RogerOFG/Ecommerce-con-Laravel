@@ -28,13 +28,18 @@
     <div class="footer__bot">
         <h2 class="footer__ttl">ShopXeng</h2>
 
-        <span class="footer__copy">Copyright © 2024 ShopXeng.</span>
-
         <div class="footer__politice">
             <a class="footer__polit" href="{{ route('pageLegal') }}">Información legal</a>
             <div>|</div>
             <a class="footer__polit" href="{{ route('pagePolicies') }}">Política de privacidad</a>
         </div>
+
+        <div class="footer__contact">
+            <span class=""><b>WhatsApp:</b> +57 300 536 9591</span>
+            <span class=""><b>Correo:</b> myshop@shopxeng.com</span>
+        </div>
+
+        <span class="footer__copy">Copyright © 2024 ShopXeng.</span>
     </div>
 </footer>
 @endSection

@@ -293,20 +293,28 @@
     font-size: 30px;
 }
 
-.footer__copy{
-    margin: 20px 0 10px;
-    font-size: 13px;
-}
-
 .footer__politice{
     display: flex;
     gap: 15px;
+    margin: 20px 0 10px;
     font-size: 13px;
 }
 
 .footer__polit{
     text-align: center;
     color: #fff;
+}
+
+.footer__contact{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.footer__copy{
+    font-size: 13px;
 }
 
 @media screen and (max-width: 600px) {
