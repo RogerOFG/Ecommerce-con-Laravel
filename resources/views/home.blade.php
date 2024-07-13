@@ -13,6 +13,27 @@
 
 @section('content')
     <main class="main">
+        <div class="services offer">
+            <img class="services__img--coupon" src="{{ asset('/assets/img/coupon/NUEVO20.png') }}" alt="...">
+
+            <div class="services__wrapper-coupon">
+                <div class="services__content-txt">
+                    <h2 class="services__ttl">Obten un 10% de descuento en tu proxima compra</h2>
+                    <p class="services__txt">¡Bienvenido a <b>ShopXeng</b>! Queremos celebrar tu visita ofreciéndote un descuento exclusivo del 10% en tu primera compra. Aprovecha esta oportunidad única para adquirir los mejores relojes a precios aún más accesibles.</p>
+                </div>
+
+                <div class="services__content-txt">
+                    @if (auth()->check())
+                        <a href="{{ route('pageCategory') }}" class="services__btn">Empieza a añadir productos</a>
+                    @else
+                        <a href="{{ route('login') }}" class="services__btn">Registrate</a>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        <div class="line"></div>
+
         <div class="slider">
             <div class="slider__items">
                 <img class="slider__item slider__img" src="{{ asset('/assets/img/slider/img-1.jpg') }}" alt="...">
@@ -43,11 +64,11 @@
             </div>
         </div>
 
-        <div class="featured">
-            {{-- <h2>Mas vendidos</h2> --}}
-
-            
+        <div class="services services--txt">
+            <h3 class="services__ttl services__ttl--center">Explora nuestras colecciones destacadas que combinan estilo, elegancia y calidad inigualables.</h3>
         </div>
+
+        <div class="line"></div>
 
         <div class="services">
             <h3 class="services__ttl">Lo que ofrecemos</h3>
