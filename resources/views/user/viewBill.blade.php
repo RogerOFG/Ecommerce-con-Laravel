@@ -118,7 +118,7 @@
     
                     <div class="order__element">
                         <span class="order__name">Pago contra entrega</span>
-                        <span class="order__price">2 a 5 dias habiles</span>
+                        <span class="order__price">1 a 3 dias habiles</span>
                     </div>
                 </div>
     

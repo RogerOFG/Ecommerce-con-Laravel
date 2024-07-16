@@ -47,13 +47,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('infoProduct', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->string('idProduct');
-            $table->string('info');
-            $table->timestamps();
-        });
-
         Schema::create('order', function (Blueprint $table) {
             $table->id()->primary();
             $table->string('idBill');
@@ -69,14 +62,18 @@ return new class extends Migration
             $table->id()->primary();
             $table->string('name');
             $table->string('category');
-            $table->string('brand');
+            $table->string('bisuteria_hilo')->nullable()->default(null);
+            $table->string('bisuteria_piedras')->nullable()->default(null);
+            $table->string('bisuteria_dijen')->nullable()->default(null);
+            $table->string('bisuteria_cierre')->nullable()->default(null);
+            $table->string('brand')->nullable()->default(null);
             $table->string('price');
-            $table->string('cristal');
-            $table->string('caja');
-            $table->string('pulsera');
-            $table->string('manecillas');
-            $table->string('metrosAgua');
-            $table->string('garanty');
+            $table->string('cristal')->nullable()->default(null);
+            $table->string('caja')->nullable()->default(null);
+            $table->string('pulsera')->nullable()->default(null);
+            $table->string('manecillas')->nullable()->default(null);
+            $table->string('metrosAgua')->nullable()->default(null);
+            $table->string('garanty')->nullable()->default(null);
             $table->string('amountAvailable');
             $table->timestamps();
         });
@@ -137,7 +134,6 @@ return new class extends Migration
         Schema::dropIfExists('cart');
         Schema::dropIfExists('coupon');
         Schema::dropIfExists('coupon_usage');
-        Schema::dropIfExists('infoProduct');
         Schema::dropIfExists('order');
         Schema::dropIfExists('products');
         Schema::dropIfExists('product_image');

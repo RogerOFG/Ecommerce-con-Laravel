@@ -35,7 +35,11 @@
 
         <!-- Validacion de errores -->
         @if ($errors->any())
-            <div class="alert alert-danger">
+            <div class="alert alert-controller alert-error">
+                <div class="alert__close"> 
+                    <i class="bi bi-exclamation-circle"></i>
+                </div>
+
                 <ul>
                     @foreach($errors->all() as $error)
                         <li> {{ $error }} </li>
@@ -79,9 +83,9 @@
                     <i class="bi bi-cart3"></i>
 
                     <h3>Pedidos</h3>
-                    @if ($totalOrdersP > 0)
+                    @if ($totalBillsP > 0)
                         <span class="message-count">
-                            {{ $totalOrdersP }}
+                            {{ $totalBillsP }}
                         </span>
                     @endif
                 </a>

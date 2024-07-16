@@ -8,6 +8,7 @@ use App\Models\OrderModel;
 use App\Models\ProductModel;
 use App\Models\User;
 use App\Models\ShipmentModel;
+use App\Models\BillModel;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -96,20 +97,81 @@ class DashboardController extends Controller
         $totalOrdersFinished = OrderModel::where('state', 3)->count();
         $totalOrdersCanceled = OrderModel::where('state', 0)->count();
 
+        $bills = BillModel::latest()->get();
         $orders = OrderModel::latest()->get();
-        
-        foreach ($orders as $order) {
-            $idUser = $order->idUser;
-            $idProd = $order->idProduct;
 
+        foreach ($bills as $item){
+            $idUser = $item->idUser;
             $user = User::where('id', $idUser)->first();
-            $prod = ProductModel::where('id', $idProd)->first();
+            $item->user = $user;
 
-            $order->user = $user;
-            $order->prod = $prod;
+            $ordersBill = OrderModel::where('idBill', $item->idBill)->get();
+            $amount = 0;
+            $subtotal = 0;
+
+            // Inicializar contadores de estados
+            $stateCounts = [
+                'P' => 0, // En proceso
+                'W' => 0, // En Camino
+                'D' => 0, // Entregado
+                'C' => 0  // Cancelado
+            ];
+
+            // Recorremos cada pedido perteneciente a cada factura
+            foreach ($ordersBill as $order){
+                // Estado General del pedido
+                switch ($order->state) {
+                    case 1:
+                        $stateCounts['P']++;
+                        break;
+                    case 2:
+                        $stateCounts['W']++;
+                        break;
+                    case 3:
+                        $stateCounts['D']++;
+                        break;
+                    case 0:
+                        $stateCounts['C']++;
+                        break;
+                }
+
+                $idProd = $order->idProduct;
+                $prod = ProductModel::where('id', $idProd)->first();
+
+                $amount = $order->amount;
+                $price = $prod->price;
+
+                $subtotal += ($amount * $price);
+            }
+
+            // Definir estado general por prioridad
+            if ($stateCounts['P'] >= 1) {
+                $stateG = 1;
+            } elseif ($stateCounts['W'] >= 1) {
+                $stateG = 2;
+            } elseif ($stateCounts['D'] >= 1) {
+                $stateG = 3;
+            } else {
+                $stateG = 0;
+            }
+
+            $totalToPay = $subtotal;
+
+            if($item->discount != "NULL"){
+                $discount = $subtotal * ($item->discount / 100);
+                $totalToPay = $subtotal - $discount;
+            }
+
+            // Almacenamos en la factura la informacion recolectada
+            $item->state = $stateG;
+            $item->subtotal = $subtotal;
+            $item->coupon = $item->discount;
+            $item->totalToPay = $totalToPay;
         }
 
         return view('dashboard.orders', [
+            'bills' => $bills,
+            'orders' => $orders,
             'totalOrders' => $totalOrders,
             'totalOrdersT' => $totalOrdersToday,
             'totalOrdersP' => $totalOrdersInProcess,
@@ -121,44 +183,120 @@ class DashboardController extends Controller
     }
 
     public function dashboardSeeOrder($id){
-        $order = OrderModel::where('id', $id)->first();
+        $bill = billModel::where('idBill', $id)->first();
 
-        $idUser = $order->idUser;
-        $idProd = $order->idProduct;
-        $idAddress = $order->idAddress;
+        $idUser = $bill->idUser;
+        $orders =   OrderModel::where('idBill', $bill->idBill)->get();
+        $subtotal = 0;
+        $products = [];
+
+        // Inicializar contadores de estados
+        $stateCounts = [
+            'P' => 0, // En proceso
+            'W' => 0, // En Camino
+            'D' => 0, // Entregado
+            'C' => 0  // Cancelado
+        ];
+
+        foreach ($orders as $i => $order){
+            // Estado General del pedido
+            switch ($order->state) {
+                case 1:
+                    $stateCounts['P']++;
+                    break;
+                case 2:
+                    $stateCounts['W']++;
+                    break;
+                case 3:
+                    $stateCounts['D']++;
+                    break;
+                case 0:
+                    $stateCounts['C']++;
+                    break;
+            }
+
+            $idAddress = $order->idAddress;
+
+            $prod = ProductModel::where('id', $order->idProduct)->first();
+            $products[$i] = $prod;
+
+            if($order->state != 0){
+                $amount = $order->amount;
+                $price = $prod->price;
+
+                $subtotal += $amount * $price;
+            }
+        }
+
+        // Definir estado general por prioridad
+        if ($stateCounts['P'] >= 1) {
+            $stateG = 1;
+        } elseif ($stateCounts['W'] >= 1) {
+            $stateG = 2;
+        } elseif ($stateCounts['D'] >= 1) {
+            $stateG = 3;
+        } else {
+            $stateG = 0;
+        }
+
+        $totalToPay = $subtotal;
+
+        if($bill->discount != "NULL"){
+            $discount = $subtotal * ($bill->discount / 100);
+            $totalToPay = $subtotal - $discount;
+        }
 
         $user = User::where('id', $idUser)->first();
-        $prod = ProductModel::where('id', $idProd)->first();
         $address = ShipmentModel::where('id', $idAddress)->first(); 
 
-        $order->user = $user;
-        $order->prod = $prod;
-        $order->add = $address;
+        $bill->state = $stateG;
+        $bill->user = $user;
+        $bill->add = $address;
+        $bill->subtotal = $subtotal;
+        $bill->total = $totalToPay;
+
+        if ($bill->discount != "NULL"){
+            $bill->discount = $bill->discount."%";
+        }else{
+            $bill->discount = "N/A";
+        }
 
         return view('dashboard.seeOrder', [
-            'order' => $order
+            'bill' => $bill,
+            'orders' => $orders,
+            'prods' => $products
         ]);
     }
 
     public function dashboardChangeOrder(Request $request, $id){
-        $order = OrderModel::where('id', $id)->first();
-        
-        if ($order->state != 0) {
-            $product = ProductModel::where('id', $order->idProduct)->first();
-        
-            $state = $request->input('state');
-            $amount = $request->input('amount');
-            $newAmount = $product->amountAvailable + $amount;
-            
-            if ($state == 0) {
-                $product->update(['amountAvailable' => $newAmount]);
+        $orders = OrderModel::where('idBill', $id)
+            ->where('state', '!=', 0)
+            ->get();
+
+        $state = 0;
+
+        foreach ($orders as $order){
+            if ($order->state != 0) {
+                $product = ProductModel::where('id', $order->idProduct)->first();
+
+                $state = $request->input('state');
+                $amount = $order->amount;
+                $newAmount = $product->amountAvailable + $amount;
+
+                if ($state == 0) {
+                    $product->update(['amountAvailable' => $newAmount]);
+                }
+
+                $order->update(['state' => $state]);
+            }else{
+                $state++;
             }
-    
-            $order->update(['state' => $state]);
-    
-            return redirect()->route('pageDashO')->with('success', 'Estado cambiado correctamente');
         }
-        
-        return redirect()->route('pageDashO')->with('error', 'Esta orden ya ha sido cancelada');
+
+        if ($state == 0){
+            return redirect()->route('pageDashO')->with('error', 'El pedido ya ha sido cancelado ('.$id.') ');
+        }
+
+        return redirect()->route('pageDashO')->with('success', 'Estado cambiado correctamente ('.$id.')');
     }
 }

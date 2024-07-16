@@ -42,19 +42,33 @@ class productController extends Controller
     }
 
     public function store(Request $request){
-        $validate = $this->validate($request, [
-            'name' => 'required|string',
-            'category' => 'required',
-            'brand' => 'required',
-            'price' => 'required',
-            'cristal' => 'required',
-            'caja' => 'required',
-            'pulsera' => 'required',
-            'manecillas' => 'required',
-            'metrosAgua' => 'required',
-            'garanty' => 'required',
-            'amountAvailable' => 'required'
-        ]);
+        $category = $request->input('category');
+
+        if ($category == "Relojeria"){
+            $validate = $this->validate($request, [
+                'name' => 'required',
+                'category' => 'required',
+                'brand' => 'required',
+                'price' => 'required',
+                'cristal' => 'required',
+                'caja' => 'required',
+                'pulsera' => 'required',
+                'manecillas' => 'required',
+                'metrosAgua' => 'required',
+                'garanty' => 'required',
+                'amountAvailable' => 'required'
+            ]);
+        }else if ($category == "Bisuteria"){
+            $validate = $this->validate($request, [
+                'name' => 'required',
+                'category' => 'required',
+                'bisuteria_hilo' => 'required',
+                'bisuteria_piedras' => 'required',
+                'bisuteria_cierre' => 'required',
+                'price' => 'required',
+                'amountAvailable' => 'required'
+            ]);
+        }
 
         $productData = request()->except('_token');
 
@@ -70,22 +84,32 @@ class productController extends Controller
     }
 
     public function update(Request $request, $id){
-        $validate = $this->validate($request, [
-            'name' => 'required|string',
-            'category' => 'required',
-            'brand' => 'required',
-            'price' => 'required',
-            'cristal' => 'required',
-            'caja' => 'required',
-            'pulsera' => 'required',
-            'manecillas' => 'required',
-            'metrosAgua' => 'required',
-            'garanty' => 'required',
-            'amountAvailable' => 'required'
-        ]);
+        $category = $request->input('category');
 
-        if(!$validate){
-            return redirect()->back()->with('error', 'Verifique todos los campos');
+        if ($category == "Relojeria"){
+            $validate = $this->validate($request, [
+                'name' => 'required',
+                'category' => 'required',
+                'brand' => 'required',
+                'price' => 'required',
+                'cristal' => 'required',
+                'caja' => 'required',
+                'pulsera' => 'required',
+                'manecillas' => 'required',
+                'metrosAgua' => 'required',
+                'garanty' => 'required',
+                'amountAvailable' => 'required'
+            ]);
+        }else if ($category == "Bisuteria"){
+            $validate = $this->validate($request, [
+                'name' => 'required',
+                'category' => 'required',
+                'bisuteria_hilo' => 'required',
+                'bisuteria_piedras' => 'required',
+                'bisuteria_cierre' => 'required',
+                'price' => 'required',
+                'amountAvailable' => 'required'
+            ]);
         }
 
         $productData = request()->except((['_token', '_method']));

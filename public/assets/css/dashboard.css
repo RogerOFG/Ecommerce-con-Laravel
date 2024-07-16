@@ -577,9 +577,17 @@ main .recent-orders table:hover{
     box-shadow: none;
 }
 
+.recent-orders__pay{
+    background-color: #00890047;
+}
+
 main table tbody td.title {
     font-weight: bold;
     color: var(--color-dark);
+}
+
+td.hidde{
+    display: none !important;
 }
 
 main table tbody td{
@@ -594,30 +602,42 @@ main table tbody td.recent-orders-td{
 
 main table tbody td.cancel{
     font-weight: 600;
-    color: #fff;
-    background-color: var(--color-danger);
+    color: var(--color-danger);
     cursor: no-drop;
+}
+
+main table tbody td.cancel--border{
+    border: 2px solid var(--color-danger) !important;
 }
 
 main table tbody td.process{
     font-weight: 600;
-    color: #fff;
-    background-color: var(--color-warning);
+    color: var(--color-warning);
     cursor: zoom-in;
+}
+
+main table tbody td.process--border{
+    border: 2px solid var(--color-warning) !important;
 }
 
 main table tbody td.way{
     font-weight: 600;
-    color: #fff;
-    background-color: var(--color-primary);
+    color: var(--color-primary);
     cursor: wait;
+}
+
+main table tbody td.way--border{
+    border: 2px solid var(--color-primary) !important;
 }
 
 main table tbody td.delivered{
     font-weight: 600;
-    color: #fff;
-    background-color: var(--color-success);
+    color: var(--color-success);
     cursor: cell;
+}
+
+main table tbody td.delivered--border{
+    border: 2px solid var(--color-success) !important;
 }
 
 main table tbody tr:last-child td{
@@ -629,6 +649,10 @@ main .recent-orders a{
     display: block;
     margin: 1rem auto;
     color: var(--color-primary);
+}
+
+.order-cancel{
+    text-decoration: line-through;
 }
 
 .recent-orders-btn{
@@ -838,6 +862,10 @@ main .recent-orders a{
 .form__content{
     position: relative;
     width: 100%;
+}
+
+.form__content.hidde{
+    display: none;
 }
 
 .form__content--area{
@@ -1241,6 +1269,12 @@ main .recent-orders a{
     main .recent-orders--tbody table tbody td{
         border: none;
     }
+
+    .total-pay{
+        font-weight: bolder;
+        color: var(--color-dark);
+        border: 2px solid var(--color-success) !important;
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -1273,6 +1307,12 @@ main .recent-orders a{
 
     main .new-users .user-list .user{
         flex-basis: 40%;
+    }
+
+    .total-pay{
+        font-weight: bolder;
+        color: var(--color-dark);
+        border: 2px solid var(--color-success) !important;
     }
 }
 

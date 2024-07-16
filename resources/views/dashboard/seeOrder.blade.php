@@ -18,40 +18,65 @@
                 {{-- Order --}}
                 <tbody>
                     <tr>
-                        <td colspan="6"><h2>Pedido: {{ $order->id }}</h2></td>
+                        <td colspan="6"><h2>Pedido: {{ $bill->idBill }}</h2></td>
+                    </tr>
+                    @foreach ($prods as $i => $prod)
+                        <tr>
+                            <td class="title">{{ $prod->name }} : {{ $prod->id }}</td>
+                            <td>Cantidad: {{ $orders[$i]->amount }}</td>
+
+                            <td class="title">Estado:</td>
+                            @if ($orders[$i]->state == 0)
+                                <td class="cancel">Cancelado</td>
+                            @elseif ($orders[$i]->state == 1)
+                                <td class="process">En proceso</td>
+                            @elseif ($orders[$i]->state == 2)
+                                <td class="way">En camino</td>
+                            @elseif ($orders[$i]->state == 3)
+                                <td class="delivered">Entregado</td>
+                            @endif
+                        </tr>
+
+                        <tr>
+                            <td>Precio: ${{ number_format($prod->price, 0, ".", ".") }}</td>
+
+                            @if($orders[$i]->state != 0)
+                                <td>Total: $ {{ number_format($orders[$i]->amount * $prod->price, 0, ".", ".") }}</td>
+                            @else
+                                <td class="order-cancel">$ 0.0</td>
+                            @endif
+                        </tr>
+                    @endforeach
+
+                    <tr class="recent-orders__pay">
+                        <td class="title">Subtotal:</td>
+                        <td>${{ number_format($bill->subtotal, 0, ".", ".") }}</td>
+
+                        <td class="title">Descuento:</td>
+                        <td>{{ $bill->discount }}</td>
                     </tr>
 
-                    <tr>
-                        <td class="title">Comprador:</td>
-                        <td>{{ $order->user->name }} {{ $order->user->surname }}</td>
+                    <tr class="recent-orders__pay">
+                        <td class="title">Valor Total:</td>
+                        <td class="total-pay">${{ number_format($bill->total, 0, ".", ".") }}</td>
 
-                        <td class="title">Producto:</td>
-                        <td>{{ $order->prod->name }}</td>
-                    </tr>
-
-                    <tr>
-                        <td class="title">Cantidad solicitada:</td>
-                        <td>{{ $order->amount }}</td>
-
-                        <td class="title">Estado:</td>
-                        @if ($order->state == 0)
-                            <td class="btn-state cancel">Cancelado</td>
-                        @elseif ($order->state == 1)
-                            <td class="btn-state process">En proceso</td>
-                        @elseif ($order->state == 2)
-                            <td class="btn-state way">En camino</td>
-                        @elseif ($order->state == 3)
-                            <td class="btn-state delivered">Entregado</td>
+                        <td class="title">Estado General:</td>
+                        @if ($bill->state == 0)
+                            <td class="btn-state cancel cancel--border">Cancelado</td>
+                        @elseif ($bill->state == 1)
+                            <td class="btn-state process process--border">En proceso</td>
+                        @elseif ($bill->state == 2)
+                            <td class="btn-state way way--border">En camino</td>
+                        @elseif ($bill->state == 3)
+                            <td class="btn-state delivered delivered--border">Entregado</td>
                         @endif
                     </tr>
 
                     <tr class="element-tr">
                         <td class="change-state">
-                            <form action="{{ route('pageDashOC', $order->id) }}" method="POST" class="disk">
+                            <form action="{{ route('pageDashOC', $bill->idBill) }}" method="POST" class="disk">
                                 @csrf
-
                                 <input id="stateOrder" name="state" type="hidden">
-                                <input name="amount" type="hidden" value="{{ $order->amount }}">
 
                                 <div class="up">
                                     <button class="card1">
@@ -78,29 +103,32 @@
                 {{-- User --}}
                 <tbody>
                     <tr>
-                        <td colspan="6"><h2>Usuario: {{ $order->user->id }}</h2></td>
+                        <td colspan="6"><h2>Usuario: {{ $bill->user->id }}</h2></td>
                     </tr>
 
                     <tr>
                         <td class="title">Nombre:</td>
-                        <td>{{ $order->user->name }}</td>
+                        <td>{{ $bill->user->name }}</td>
 
                         <td class="title">Apellidos:</td>
-                        <td>{{ $order->user->surname }}</td>
+                        <td>{{ $bill->user->surname }}</td>
                     </tr>
 
                     <tr>
                         <td class="title">Cedula:</td>
-                        <td>{{ $order->user->numCC }}</td>
+                        <td>{{ $bill->user->numCC }}</td>
 
                         <td class="title">correo:</td>
-                        <td>{{ $order->user->email }}</td>
+                        <td>{{ $bill->user->email }}</td>
                     </tr>
 
                     <tr>
+                        <td class="title">Celular:</td>
+                        <td>{{ $bill->add->phone }}</td>
+
                         <td class="title">Direcciones:</td>
                         <td>
-                            <form action="{{ route('pageDashUA', $order->user->id) }}" method="POST">
+                            <form action="{{ route('pageDashUA', $bill->user->id) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="recent-orders-btn"><i class="bi bi-geo-alt"></i></button>
                             </form>
@@ -112,84 +140,36 @@
                 {{-- Address --}}
                 <tbody>
                     <tr>
-                        <td colspan="6"><h2>Direccion del usuario: {{ $order->add->id }}</h2></td>
+                        <td colspan="6"><h2>Direccion del usuario: {{ $bill->add->id }}</h2></td>
                     </tr>
 
                     <tr>
                         <td class="title">Ciudad:</td>
-                        <td>{{ $order->add->city }}</td>
+                        <td>{{ $bill->add->city }}</td>
 
                         <td class="title">Departamento:</td>
-                        <td>{{ $order->add->department }}</td>
+                        <td>{{ $bill->add->department }}</td>
                     </tr>
 
                     <tr>
                         <td class="title">Dirección:</td>
-                        <td>{{ str_replace(['[', ']'], '', $order->add->address) }}</td>
+                        <td>{{ str_replace(['[', ']'], '', $bill->add->address) }}</td>
 
                         <td class="title">Numero Casa:</td>
-                        <td>{{ $order->add->number }}</td>
+                        <td>{{ $bill->add->number }}</td>
                     </tr>
 
                     <tr>
                         <td class="title">Barrio:</td>
-                        <td>{{ $order->add->district }}</td>
-
-                        <td class="title">Celular:</td>
-                        <td>{{ $order->add->phone }}</td>
+                        <td>{{ $bill->add->district }}</td>
                     </tr>
 
                     <tr>
                         <td colspan="1" class="title">Información adicional:</td>
-                        <td colspan="5">{{ $order->add->info }}</td>
+                        <td colspan="5">{{ $bill->add->info }}</td>
                     </tr>
                 </tbody>
                 {{-- End of Address --}}
-
-                {{-- Product --}}
-                <tbody>
-                    <tr>
-                        <td colspan="6"><h2>Producto: {{ $order->prod->id }}</h2></td>
-                    </tr>
-
-                    <tr>
-                        <td class="title">Marca:</td>
-                        <td>{{ $order->prod->brand }}</td>
-
-                        <td class="title">Material del Cristal:</td>
-                        <td>{{ $order->prod->cristal }}</td>
-                    </tr>
-
-                    <tr>
-                        <td class="title">Material de la Caja:</td>
-                        <td>{{ $order->prod->caja }}</td>
-
-                        <td class="title">Material de la Pulsera:</td>
-                        <td>{{ $order->prod->pulsera }}</td>
-                    </tr>
-
-                    <tr>
-                        <td class="title">Manecillas:</td>
-                        <td>{{ $order->prod->manecillas }}</td>
-
-                        <td class="title">Resistente al agua:</td>
-                        <td>{{ $order->prod->metrosAgua }} metros</td>
-                    </tr>
-
-                    <tr>
-                        <td class="title">Garantia:</td>
-                        <td>{{ $order->prod->garanty }} meses</td>
-
-                        <td class="title">Stock:</td>
-                        <td>{{ $order->prod->amountAvailable }}</td>
-                    </tr>
-
-                    <tr>
-                        <td class="title">Precio:</td>
-                        <td>{{ number_format($order->prod->price, 0, '.', '.') }}</td>
-                    </tr>
-                </tbody>
-                {{-- End of Product --}}
             </table>
         </div>
         <!-- End of Tables -->

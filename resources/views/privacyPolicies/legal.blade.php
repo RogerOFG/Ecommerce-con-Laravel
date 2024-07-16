@@ -145,7 +145,7 @@
 
         <p class="main__txt">
             El tiempo de entrega varía según la ubicación del cliente. No nos comprometemos 
-            con fechas, los envíos tienen una demora de 2 días vencidos y de 3 a 5 días hábiles.
+            con fechas, los envíos tienen de 1 a 3 días hábiles.
         </p>
 
         <p class="main__txt">

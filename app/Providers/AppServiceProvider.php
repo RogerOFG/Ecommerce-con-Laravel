@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CartModel;
+use App\Models\BillModel;
 use App\Models\OrderModel;
 use App\Models\User;
 
@@ -27,12 +28,23 @@ class AppServiceProvider extends ServiceProvider {
 
                 $totalAmount = $cartItems->sum('amount');
 
-                $totalOrdersInProcess = OrderModel::where('state', 1)->count();
+                $bills = BillModel::get();
+                $totalBillsInProcess = 0;
+
+                foreach ($bills as $bill){
+                    $ordersBill = OrderModel::where('idBill', $bill->idBill)
+                        ->where('state', 1)
+                        ->get();
+
+                    if ($ordersBill->count() > 0) {
+                        $totalBillsInProcess++;
+                    }
+                }
 
                 $view->with([
                     'cartItems' => $cartItems,
                     'totalAmount' => $totalAmount,
-                    'totalOrdersP' => $totalOrdersInProcess,
+                    'totalBillsP' => $totalBillsInProcess,
                     'userName' => $userName
                 ]);
             }

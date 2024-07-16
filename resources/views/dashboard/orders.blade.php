@@ -85,13 +85,13 @@
 
         <!-- Recent Orders Table -->
         <div class="recent-orders">
-            <h2>Pedidos Registrados</h2>
+            <h2>Facturas Registrados</h2>
             <table>
                 <thead>
                     <tr>
+                        <th>No.</th>
                         <th>Comprador</th>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
+                        <th>Valor</th>
                         <th>Fecha</th>
                         <th>Tiempo Limite</th>
                         <th>Estado</th>
@@ -99,13 +99,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($orders as $item)
+                    @foreach ($bills as $item)
                         <tr>
+                            <td>{{ $item->idBill }}</td>
                             <td>{{ $item->user->name }} {{ $item->user->surname }}</td>
-                            <td>{{ $item->prod->name }}</td>
-                            <td>{{ $item->amount }}</td>
+                            <td>${{ number_format($item->totalToPay, 0, '.', '.') }}</td>
                             <td class="datesCreate">{{ $item->created_at }}</td>
-                            <td class="timeAvailable">5 dias habiles</td>
+                            <td class="timeAvailable">[TIEMPO]</td>
                             @if ($item->state == 0)
                                 <td class="cancel">Cancelado</td>
                             @elseif ($item->state == 1)
@@ -116,7 +116,7 @@
                                 <td class="delivered">Entregado</td>
                             @endif
                             <td>
-                                <form action="{{ route('pageDashOS', $item->id) }}" method="POST">
+                                <form action="{{ route('pageDashOS', $item->idBill) }}" method="POST">
                                     @csrf
                                     <button type="submit" class="recent-orders-btn">
                                         <i class="bi bi-search"></i>

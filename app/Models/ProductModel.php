@@ -12,7 +12,7 @@ class productModel extends Model
     protected $table = 'products';
 
     protected $fillable = [
-        'name', 'category', 'brand', 'price', 'cristal', 'caja', 'pulsera', 
+        'name', 'category', 'bisuteria_hilo', 'bisuteria_piedras', 'bisuteria_dijen', 'bisuteria_cierre', 'brand', 'price', 'cristal', 'caja', 'pulsera', 
         'manecillas', 'metrosAgua', 'garanty', 'amountAvailable'
     ];
 

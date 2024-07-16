@@ -30,7 +30,7 @@
                 <h2 class="infoProduct__title">{{$product->name}}</h2>
                 <p class="infoProduct__price">$ {{ number_format($product->price, 0, '.', '.') }}</p> 
                 <div>
-                    <span> <i class="bi bi-truck"></i>  Los productos normalmente te llegaran de 2 a 5 días hábiles. </span> <br> <br>
+                    <span> <i class="bi bi-truck"></i>  Los productos normalmente te llegaran de 1 a 3 días hábiles. </span> <br> <br>
                     <span class="infoProduct__alert">
                         <i class="bi bi-truck"></i>  
                         Pagos CONTRA ENTREGA. 
@@ -56,10 +56,8 @@
                         </div>
 
                         <div class="infoProduct__buttons">
-
                             @if ($product->amountAvailable > 0)
-
-                            <form action="{{ route('purchaseP') }}" method="POST">
+                            <form class="infoProduct__content" action="{{ route('purchaseP') }}" method="POST">
                                 @csrf
                                 <input id="txtPurchaseAmount" name="amount" type="hidden">
                                 <input name="idProduct" type="hidden" value="{{ $product->id }}">
@@ -67,7 +65,7 @@
                                 <button class="infoProduct__btn">Comprar Ahora</button>
                             </form>
 
-                            <form id="addToCartForm" action="{{ route('cartAdd', $product->id) }}" method="POST">
+                            <form id="addToCartForm" class="infoProduct__content" action="{{ route('cartAdd', $product->id) }}" method="POST">
                                 @csrf
                                 <input id="txtAmount" name="amount" type="hidden">
 
@@ -83,26 +81,37 @@
                             @else
                                 <button class="infoProduct__btn infoProduct__btn--non">No disponible</button>
                             @endif
-
                         </div>
                     </span>
 
                     <div class="data">
                         <strong class="data__title">Lo que tienes que saber de este producto</strong> <br><br>
-                        <li class="data__li"> <strong>Marca:</strong> {{$product->brand}}</li>
-                        <li class="data__li"> <strong>Manecillas:</strong> {{$product->manecillas}}</li>
-                        <li class="data__li"> <strong>Material del cristal:</strong> {{$product->cristal}}</li>
-                        <li class="data__li"> <strong>Caja: </strong> {{$product->caja}} <strong>(No es caja de presentación)</strong></li>
-                        <li class="data__li"> <strong>Pulsera: </strong> {{$product->pulsera}}</li>
-                        <li class="data__li"> Hora análoga</li>
-                        @if ($product->metrosAgua == 0)
-                            <li class="data__li"> No es resistente al agua</li>
-                        @elseif (is_numeric($product->metrosAgua))
-                            <li class="data__li"> Resistente al agua ({{$product->metrosAgua}}M de profundidad)</li>
-                        @else
-                            <li class="data__li"> {{$product->metrosAgua}} </li>
+                        @if ($product->category == "Relojeria")
+                            <li class="data__li"> <strong>Marca:</strong> {{$product->brand}}</li>
+                            <li class="data__li"> <strong>Manecillas:</strong> {{$product->manecillas}}</li>
+                            <li class="data__li"> <strong>Material del cristal:</strong> {{$product->cristal}}</li>
+                            <li class="data__li"> <strong>Caja: </strong> {{$product->caja}} <strong>(No es caja de presentación)</strong></li>
+                            <li class="data__li"> <strong>Pulsera: </strong> {{$product->pulsera}}</li>
+                            <li class="data__li"> Hora análoga</li>
+                            @if ($product->metrosAgua == 0)
+                                <li class="data__li"> No es resistente al agua</li>
+                            @elseif (is_numeric($product->metrosAgua))
+                                <li class="data__li"> Resistente al agua ({{$product->metrosAgua}}M de profundidad)</li>
+                            @else
+                                <li class="data__li"> {{$product->metrosAgua}} </li>
+                            @endif
+                            <li class="data__li"> Garantia de {{$product->garanty}} Meses por defectos de fábrica y funcionamiento</li>
+                        @elseif ($product->category == "Bisuteria")
+                            <li class="data__li"><strong>Tipo de hilo:</strong> {{ $product->bisuteria_hilo }}.</li>
+                            <li class="data__li"><strong>Tipo de piedras:</strong> {{ $product->bisuteria_piedras }}.</li>
+                            @if ($product->bisuteria_dijen != "")
+                            <li class="data__li"><strong>Material del dijen:</strong> {{ $product->bisuteria_dijen }}.</li>
+                            @endif
+                            <li class="data__li"><strong>Tipo de cierre:</strong> {{ $product->bisuteria_cierre }}.</li>
+                            <div class="data__warning">
+                                <b>Cuidados:</b> Para una mayor durabilidad de nuestras piezas, se debe evitar el contacto directo con: Agua de Mar, piscina, cremas, perfumes, alcohol y cualquier tipo de líquidos que puedan deteriorarla. Cada vez que se use se recomienda limpiar con paño suave y seco. A mayor cuidado, mayor durabilidad. <br><br> Producto Colombiano hecho 100% a mano.
+                            </div>
                         @endif
-                        <li class="data__li"> Garantia de {{$product->garanty}} Meses por defectos de fábrica y funcionamiento</li>
                     </div>
                 </div>
             </div>
