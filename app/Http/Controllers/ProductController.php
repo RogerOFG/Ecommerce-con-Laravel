@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class productController extends Controller
 {
     public function index(){
-        $products = ProductModel::latest()->get();
+        $products = ProductModel::orderByRaw('amountAvailable = 0, amountAvailable ASC')->get();
 
         foreach ($products as $product) {
             $image = $product->images()->first();

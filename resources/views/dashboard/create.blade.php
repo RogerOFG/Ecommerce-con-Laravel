@@ -81,6 +81,12 @@
                         <option value="Rolex">Rolex</option>
                         <option value="Orient">Orient</option>
                         <option value="Tissot">Tissot</option>
+                        <option value="Casio">Casio</option>
+                        <option value="Hublot">Hublot</option>
+                        <option value="Cartier">Cartier</option>
+                        <option value="Invicta">Invicta</option>
+                        <option value="Technomarine">Technomarine</option>
+                        <option value="Tommy">Tommy</option>
                     </select>
                     <span class="form__name">Marca</span>
                 </div>

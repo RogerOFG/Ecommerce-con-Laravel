@@ -66,6 +66,15 @@
 
         <div class="services services--txt">
             <h3 class="services__ttl services__ttl--center">Explora nuestra coleccion que combina estilo, elegancia y calidad inigualables.</h3>
+
+            <div class="explorer">
+                <a class="explorer__btn" href="{{ route('pageCategory') }}">
+                    <span class="explorer__top-key"></span>
+                    <span class="explorer__text">Ver productos</span>
+                    <span class="explorer__bottom-key-1"></span>
+                    <span class="explorer__bottom-key-2"></span>
+                </a>
+            </div>
         </div>
 
         <div class="line"></div>

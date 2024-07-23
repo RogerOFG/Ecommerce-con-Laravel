@@ -42,6 +42,26 @@
                 <p class="aside__subt">
                     - <a href="{{ route('pageCategoryFilter', ['brand' => 'Casio']) }}" class="aside__mark">Casio</a>
                 </p> 
+
+                <p class="aside__subt">
+                    - <a href="{{ route('pageCategoryFilter', ['brand' => 'Hublot']) }}" class="aside__mark">Hublot</a>
+                </p> 
+
+                <p class="aside__subt">
+                    - <a href="{{ route('pageCategoryFilter', ['brand' => 'Cartier']) }}" class="aside__mark">Cartier</a>
+                </p> 
+
+                <p class="aside__subt">
+                    - <a href="{{ route('pageCategoryFilter', ['brand' => 'Invicta']) }}" class="aside__mark">Invicta</a>
+                </p> 
+
+                <p class="aside__subt">
+                    - <a href="{{ route('pageCategoryFilter', ['brand' => 'Technomarine']) }}" class="aside__mark">Technomarine</a>
+                </p> 
+
+                <p class="aside__subt">
+                    - <a href="{{ route('pageCategoryFilter', ['brand' => 'Tommy']) }}" class="aside__mark">Tommy</a>
+                </p> 
             </div>
         </aside>
 

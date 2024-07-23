@@ -82,6 +82,12 @@
                         <option value="Rolex" {{ $prod->brand == 'Rolex' ? 'selected' : ''}}>Rolex</option>
                         <option value="Orient" {{ $prod->brand == 'Orient' ? 'selected' : ''}}>Orient</option>
                         <option value="Tissot" {{ $prod->brand == 'Tissot' ? 'selected' : ''}}>Tissot</option>
+                        <option value="Casio" {{ $prod->brand == 'Casio' ? 'selected' : ''}}>Casio</option>
+                        <option value="Hublot" {{ $prod->brand == 'Hublot' ? 'selected' : ''}}>Hublot</option>
+                        <option value="Cartier" {{ $prod->brand == 'Cartier' ? 'selected' : ''}}>Cartier</option>
+                        <option value="Invicta" {{ $prod->brand == 'Invicta' ? 'selected' : ''}}>Invicta</option>
+                        <option value="Technomarine" {{ $prod->brand == 'Technomarine' ? 'selected' : ''}}>Technomarine</option>
+                        <option value="Tommy" {{ $prod->brand == 'Tommy' ? 'selected' : ''}}>Tommy</option>
                     </select>
                     <span class="form__name">Marca</span>
                 </div>
