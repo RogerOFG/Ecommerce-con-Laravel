@@ -212,6 +212,8 @@ b{
     width: 2rem;
     height: 2rem;
     border-radius: 0.4rem;
+    color: #000;
+    font-weight: 600;
 }
 
 .page__numbers:hover {

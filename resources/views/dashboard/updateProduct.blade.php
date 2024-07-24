@@ -121,6 +121,9 @@
                         <option disabled selected></option>
                         <option value="Hora, minutos y segundos" {{ $prod->manecillas == 'Hora, minutos y segundos' ? 'selected' : ''}}>Hora, minutos y segundos</option>
                         <option value="Hora y minutos" {{ $prod->manecillas == 'Hora y minutos' ? 'selected' : ''}}>Hora y minutos</option>
+                        <option value="1" {{ $prod->manecillas == '1' ? 'selected' : ''}}>Digital</option>
+                        <option value="2" {{ $prod->manecillas == '2' ? 'selected' : ''}}>Analogo y Digital (2 manecillas)</option>
+                        <option value="3" {{ $prod->manecillas == '3' ? 'selected' : ''}}>Analogo y Digital (3 manecillas)</option>
                     </select>
                     <span class="form__name">Manecillas</span>
                 </div>

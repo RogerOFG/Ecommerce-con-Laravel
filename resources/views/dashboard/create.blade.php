@@ -120,6 +120,9 @@
                         <option disabled selected></option>
                         <option value="Hora, minutos y segundos">Hora, minutos y segundos</option>
                         <option value="Hora y minutos">Hora y minutos</option>
+                        <option value="1">Digital</option>
+                        <option value="2">Analogo y Digital (2 manecillas)</option>
+                        <option value="3">Analogo y Digital (3 manecillas)</option>
                     </select>
                     <span class="form__name">Manecillas</span>
                 </div>

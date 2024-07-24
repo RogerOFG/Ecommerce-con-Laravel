@@ -73,7 +73,6 @@
                         <th>Cristal</th>
                         <th>Caja</th>
                         <th>Pulsera</th>
-                        <th>Manecillas</th>
                         <th>Agua</th>
                         <th>Garantia</th>
                         <th>Stock</th>
@@ -88,7 +87,6 @@
                             <td>{{ $item->cristal }}</td>
                             <td>{{ $item->caja }}</td>
                             <td>{{ $item->pulsera }}</td>
-                            <td>{{ $item->manecillas }}</td>
                             <td>{{ $item->metrosAgua }}</td>
                             <td>{{ $item->garanty }}</td>
                             <td>{{ $item->amountAvailable }}</td>

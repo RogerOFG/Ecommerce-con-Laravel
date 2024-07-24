@@ -88,11 +88,27 @@
                         <strong class="data__title">Lo que tienes que saber de este producto</strong> <br><br>
                         @if ($product->category == "Relojeria")
                             <li class="data__li"> <strong>Marca:</strong> {{$product->brand}}</li>
-                            <li class="data__li"> <strong>Manecillas:</strong> {{$product->manecillas}}</li>
                             <li class="data__li"> <strong>Material del cristal:</strong> {{$product->cristal}}</li>
                             <li class="data__li"> <strong>Caja: </strong> {{$product->caja}} <strong>(No es caja de presentación)</strong></li>
                             <li class="data__li"> <strong>Pulsera: </strong> {{$product->pulsera}}</li>
-                            <li class="data__li"> Hora análoga</li>
+
+                            @switch($product->manecillas)
+                                @case(1)
+                                    <li class="data__li"> Hora digital</li>
+                                    @break
+                                @case(2)
+                                    <li class="data__li"> <strong>Manecillas:</strong> Hora y minutos</li>
+                                    <li class="data__li"> Hora análogo y digital</li>
+                                    @break
+                                @case(3)
+                                    <li class="data__li"> <strong>Manecillas:</strong> Hora, minutos y segundos</li>
+                                    <li class="data__li"> Hora análogo y digital</li>
+                                    @break
+                                @default
+                                    <li class="data__li"> <strong>Manecillas:</strong> {{$product->manecillas}}</li>
+                                    <li class="data__li"> Hora análoga</li>
+                            @endswitch
+
                             @if ($product->metrosAgua == 0)
                                 <li class="data__li"> No es resistente al agua</li>
                             @elseif (is_numeric($product->metrosAgua))
