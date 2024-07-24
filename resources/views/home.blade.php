@@ -14,7 +14,7 @@
 @section('content')
     <main class="main">
         <div class="services offer">
-            <img class="services__img--coupon" src="{{ asset('/assets/img/coupon/NUEVO20.png') }}" alt="...">
+            <img class="services__img--coupon" src="{{ asset('/assets/img/coupon/NUEVO20.webp') }}" alt="...">
 
             <div class="services__wrapper-coupon">
                 <div class="services__content-txt">
@@ -36,9 +36,9 @@
 
         <div class="slider">
             <div class="slider__items">
-                <img class="slider__item slider__img" src="{{ asset('/assets/img/slider/img-1.jpg') }}" alt="...">
-                <img class="slider__item slider__img" src="{{ asset('/assets/img/slider/img-2.jpg') }}" alt="...">
-                <img class="slider__item slider__img" src="{{ asset('/assets/img/slider/img-3.jpg') }}" alt="...">
+                <img class="slider__item slider__img" src="{{ asset('/assets/img/slider/img-1.webp') }}" alt="...">
+                <img class="slider__item slider__img" src="{{ asset('/assets/img/slider/img-2.webp') }}" alt="...">
+                <img class="slider__item slider__img" src="{{ asset('/assets/img/slider/img-3.webp') }}" alt="...">
             </div>
 
             <div class="slider__controls">
