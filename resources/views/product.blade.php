@@ -140,6 +140,15 @@
 <script src="{{ asset('/assets/js/carrouselProduct.js') }}"></script>
 
 <script>
+    // LOADER
+    var loader = document.querySelector(".loader");
+    loader.style.display = "flex";
+    
+    window.addEventListener("load", function() {
+        var loader = document.querySelector(".loader");
+        loader.style.display = "none";
+    });
+
     function amountChange(){
         const inputAmount = document.getElementById('amountProducts').value;
         const txtAmount = document.getElementById('txtAmount');
