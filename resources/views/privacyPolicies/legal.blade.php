@@ -65,7 +65,7 @@
         <p class="main__txt">
             Para iniciar el proceso de devolución, por favor contacte a 
             nuestro equipo de servicio al cliente vía WhatsApp al número 
-            +57 300 536 9591, proporcionando la siguiente información:
+            +57 350 270 8546, proporcionando la siguiente información:
         </p>
 
         <ul class="main__ul">

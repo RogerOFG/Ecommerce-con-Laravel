@@ -168,7 +168,7 @@
             </li>
 
             <li class="main__li main__li-point">
-                O a nuestra linea en WhatsApp: +57 300 536 95 91
+                O a nuestra linea en WhatsApp: +57 350 270 8546
             </li>
         </ul>
 

@@ -15,7 +15,7 @@
             <a class="footer__icon" onclick="location.href='mailto:myshop@shopxeng.com'">
                 <i class="bi bi-envelope"></i>
             </a>
-            <a href="https://wa.me/573005369591" target="_blank" class="footer__icon">
+            <a href="https://wa.me/573502708546" target="_blank" class="footer__icon">
                 <i class="bi bi-whatsapp"></i>
             </a>
         </div>
@@ -35,7 +35,7 @@
         </div>
 
         <div class="footer__contact">
-            <span class=""><b>WhatsApp:</b> +57 300 536 9591</span>
+            <span class=""><b>WhatsApp:</b> +57 350 270 8546</span>
             <span class=""><b>Correo:</b> myshop@shopxeng.com</span>
         </div>
 
