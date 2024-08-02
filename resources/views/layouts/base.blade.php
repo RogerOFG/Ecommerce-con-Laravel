@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <meta name="title" content="ShopXeng - Relojes AAA de Alta Calidad en Colombia | Envíos GRATIS y Pago Contra Entrega">
+    <meta name="description" content="Bienvenido a ShopXeng - Relojes AAA en Colombia. Ofrecemos Envíos GRATIS y Pago Contra Entrega. ¡Compra los mejores relojes ahora!">
+    <meta property="og:title" content="ShopXeng - Relojes AAA de Alta Calidad en Colombia | Envíos GRATIS y Pago Contra Entrega">
+    <meta property="og:description" content="Bienvenido a ShopXeng - Relojes AAA en Colombia. Ofrecemos Envíos GRATIS y Pago Contra Entrega. ¡Compra los mejores relojes ahora!">
+
     <link rel="icon" href="{{ asset('/assets/img/logo/icon/icon-black.ico') }}">
 
     <link rel="stylesheet" href="{{ asset('/assets/css/app.css') }}">
@@ -77,7 +82,7 @@
 
         @if (Auth::check())
             @if ($totalAmount)
-                <a href="{{ route('comprarCart') }}">
+                <a href="{{ route('comprarCart') }}" title="Compra directa">
                     <button class="btnShop">
                         ¡Comprar ahora!
                         <span class="btnShop__icon">

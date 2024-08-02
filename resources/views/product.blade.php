@@ -17,12 +17,12 @@
                         <div class="carrousel__thumbnail"></div>
                     </div>
                     <div class="carrousel__picture">
-                        <img class="carrousel__img" id="main-image" src="">
+                        <img class="carrousel__img" id="main-image" src="" title="Producto" alt="Esta imagen no esta soportada por tu navegador">
                     </div>
                 </div>
 
                 @foreach ($images as $image)
-                    <img  class="carrousel__thumbnailIMG" src="{{ asset('storage/img/products/' .'/'. $product->id .'/'. $image->url) }}" alt="Imagen del producto">
+                    <img  class="carrousel__thumbnailIMG" src="{{ asset('storage/img/products/' .'/'. $product->id .'/'. $image->url) }}" title="Producto" alt="Imagen del producto">
                 @endforeach
             </div>
 

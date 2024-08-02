@@ -23,7 +23,7 @@
                                         $firstImage = $item->product->images->first();
                                     @endphp
 
-                                    <img class="element__img" src="{{ asset('/storage/img/products/'.$item->product->id.'/'.$firstImage->url) }}" alt="">
+                                    <img class="element__img" src="{{ asset('/storage/img/products/'.$item->product->id.'/'.$firstImage->url) }}" title="Producto" alt="Esta imagen no esta soportada por tu navegador">
 
                                     <span class="element__name">{{ $item->product->name }}</span>
 

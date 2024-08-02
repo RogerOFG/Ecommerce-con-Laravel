@@ -1,7 +1,7 @@
 @section('header')
 <header class="header">
     <div class="header__logo">
-        <a href="{{route('pageHome')}}">
+        <a href="{{route('pageHome')}}" title="Home">
             <svg class="header__logoSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 474 456">
                 <g transform="translate(-530 -25)">
                     <line x2="275" transform="translate(629 359.5)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="8"/>
@@ -20,23 +20,23 @@
     
     <nav id="headerNav" class="header__nav no-animate">
         <ul id="headerUl" class="header__ul no-animate">
-            <div class="header__divider"></div>
+            <li class="header__divider"></li>
 
-            <li class="header__li"><a class="header__a" href="{{route('pageCategory')}}">Categorias</a></li>
+            <li class="header__li"><a class="header__a" href="{{route('pageCategory')}}" title="Categorias">Categorias</a></li>
 
             @if (Auth::check())
                 <li class="header__li">
                     <div class="header__a header__a--father">
-                        <a class="header__a" href="{{route('pagePerfil')}}">
+                        <a class="header__a" href="{{route('pagePerfil')}}" title="Menu Perfil">
                             {{ Auth::user()->name }}
                         </a> 
 
                         <div class="perfil">
-                            <a class="perfil__content" href="{{ route('pagePerfil') }}">
+                            <a class="perfil__content" href="{{ route('pagePerfil') }}" title="Perfil del usuario">
                                 <span class="perfil__op">Mi perfil</span>
                             </a>
                             <hr class="perfil__hr">
-                            <a class="perfil__content" href="{{ route('pageShopping') }}">
+                            <a class="perfil__content" href="{{ route('pageShopping') }}" title="Compras del usuario">
                                 <span class="perfil__op">Mis compras</span>
                             </a>
                         </div>
@@ -44,15 +44,15 @@
                     </div>
                 </li>
             @else
-                <li class="header__li"><a class="header__a" href="{{route('login')}}">Ingresar</a></li>
+                <li class="header__li"><a class="header__a" href="{{route('login')}}" title="Iniciar Sesión">Ingresar</a></li>
             @endif
 
             @if (Auth::check() && Auth::user()->admin == 1)
-                <li class="header__li"><a class="header__a" href="{{route('pageDash')}}">Dashboard</a></li>
+                <li class="header__li"><a class="header__a" href="{{route('pageDash')}}" title="Dashboard">Dashboard</a></li>
             @endif
 
             <li class="header__li">
-                <a class="header__a header__a--father" href="{{ route('pageCart') }}">
+                <a class="header__a header__a--father" href="{{ route('pageCart') }}" title="Carrito">
                     @if (Auth::check())
                         <div class="header_amountCart">{{ $totalAmount }}</div>
                     @else
@@ -84,7 +84,7 @@
                                                     $firstImage = $item->product->images->first();
                                                 @endphp
 
-                                                <img class="carrito__img" src="{{ asset('/storage/img/products/'.$item->product->id.'/'.$firstImage->url) }}" alt="">
+                                                <img class="carrito__img" src="{{ asset('/storage/img/products/'.$item->product->id.'/'.$firstImage->url) }}" title="Producto" alt="Esta imagen no esta soportada por tu navegador">
                                             </div>
                                             <span class="carrito__name"> {{ $item->product->name }}</span>
                                             <span class="carrito__precio">COP{{ $item->product->price }}</span>
@@ -107,11 +107,11 @@
 
             @if (Auth::check())
                 <li class="header__li">
-                    <a class="header__a" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <a class="header__a" href="{{ route('logout') }}" title="Cerrar sesión" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="bi bi-box-arrow-left"></i>
                     </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    <form id="logout-form" action="{{ route('logout') }}" title="Salir" method="POST">
                         @csrf
                     </form>
                 </li>

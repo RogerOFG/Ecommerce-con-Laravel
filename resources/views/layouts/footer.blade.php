@@ -15,7 +15,7 @@
             <a class="footer__icon" onclick="location.href='mailto:myshop@shopxeng.com'">
                 <i class="bi bi-envelope"></i>
             </a>
-            <a href="https://wa.me/573502708546" target="_blank" class="footer__icon">
+            <a href="https://wa.me/573502708546" target="_blank" class="footer__icon" title="Comunicate por WhatsApp">
                 <i class="bi bi-whatsapp"></i>
             </a>
         </div>
@@ -29,9 +29,9 @@
         <h2 class="footer__ttl">ShopXeng</h2>
 
         <div class="footer__politice">
-            <a class="footer__polit" href="{{ route('pageLegal') }}">Información legal</a>
+            <a class="footer__polit" href="{{ route('pageLegal') }}" title="Información legal">Información legal</a>
             <div>|</div>
-            <a class="footer__polit" href="{{ route('pagePolicies') }}">Política de privacidad</a>
+            <a class="footer__polit" href="{{ route('pagePolicies') }}" title="Política de privacidad">Política de privacidad</a>
         </div>
 
         <div class="footer__contact">

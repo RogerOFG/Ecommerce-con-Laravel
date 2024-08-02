@@ -8,13 +8,13 @@
     {{-- Kanit Font --}}
     <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
-    <title>ShopXeng - Home</title>
+    <title>ShopXeng - Home | Relojes AAA</title>
 @endSection
 
 @section('content')
     <main class="main">
         <div class="services offer">
-            <img class="services__img--coupon" src="{{ asset('/assets/img/coupon/NUEVO20.webp') }}" alt="...">
+            <img class="services__img--coupon" src="{{ asset('/assets/img/coupon/NUEVO20.webp') }}" title="Descuento" alt="Esta imagen no esta soportada por tu navegador">
 
             <div class="services__wrapper-coupon">
                 <div class="services__content-txt">
@@ -36,9 +36,9 @@
 
         <div class="slider">
             <div class="slider__items">
-                <img class="slider__item slider__img" src="{{ asset('/assets/img/slider/img-1.webp') }}" alt="...">
-                <img class="slider__item slider__img" src="{{ asset('/assets/img/slider/img-2.webp') }}" alt="...">
-                <img class="slider__item slider__img" src="{{ asset('/assets/img/slider/img-3.webp') }}" alt="...">
+                <img class="slider__item slider__img" src="{{ asset('/assets/img/slider/img-1.webp') }}" title="Estilo" alt="Esta imagen no esta soportada por tu navegador">
+                <img class="slider__item slider__img" src="{{ asset('/assets/img/slider/img-2.webp') }}" title="Elegancia" alt="Esta imagen no esta soportada por tu navegador">
+                <img class="slider__item slider__img" src="{{ asset('/assets/img/slider/img-3.webp') }}" title="Calidad" alt="Esta imagen no esta soportada por tu navegador">
             </div>
 
             <div class="slider__controls">
@@ -65,7 +65,7 @@
         </div>
 
         <div class="services services--txt">
-            <h3 class="services__ttl services__ttl--center">Explora nuestra coleccion que combina estilo, elegancia y calidad inigualables.</h3>
+            <h1 class="services__ttl services__ttl--center">Explora nuestra coleccion que combina estilo, elegancia y calidad inigualables.</h1>
 
             <div class="explorer">
                 <a class="explorer__btn" href="{{ route('pageCategory') }}">
@@ -85,7 +85,7 @@
             <div class="services__wrapper">
                 <div class="services__content">
                     <div class="services__icon">📦</div>
-    
+
                     <div class="services__right">
                         <h3 class="services__sub">Envíos GRATIS</h3>
                         <p class="services__txt">Disfruta de envíos gratis en todos nuestros productos. Sin costo adicional, sin preocupaciones.</p>
@@ -94,7 +94,7 @@
 
                 <div class="services__content">
                     <div class="services__icon">🛡️</div>
-    
+
                     <div class="services__right">
                         <h3 class="services__sub">Protección de Datos</h3>
                         <p class="services__txt">Tu privacidad es nuestra prioridad. Mantenemos tus datos seguros y protegidos con la más alta tecnología de seguridad.</p>
@@ -103,7 +103,7 @@
 
                 <div class="services__content">
                     <div class="services__icon">🛠️</div>
-    
+
                     <div class="services__right">
                         <h3 class="services__sub">Garantía de Calidad</h3>
                         <p class="services__txt">Nuestros productos están respaldados por una garantía para asegurar tu completa satisfacción, visita nuestras políticas para conocer mas.</p>
@@ -112,7 +112,7 @@
 
                 <div class="services__content">
                     <div class="services__icon">🚚</div>
-    
+
                     <div class="services__right">
                         <h3 class="services__sub">Pago Contra Entrega</h3>
                         <p class="services__txt">Paga cómodamente al recibir tu pedido. Garantizamos un proceso de compra seguro y sin complicaciones.</p>
@@ -121,7 +121,7 @@
 
                 <div class="services__content">
                     <div class="services__icon">📞</div>
-    
+
                     <div class="services__right">
                         <h3 class="services__sub">Atención al Cliente</h3>
                         <p class="services__txt">Nuestro equipo de atención al cliente está disponible para ayudarte con cualquier consulta o problema que puedas tener.</p>
